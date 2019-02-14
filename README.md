@@ -1,2 +1,2 @@
 # Wizard-of-Wor
-# Ethan, Jonathon, Sam, Justin
+Ethan, Jonathon, Sam, Justin
