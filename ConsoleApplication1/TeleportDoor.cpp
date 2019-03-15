@@ -55,14 +55,16 @@ bool TeleportDoor::checkCollision()
 				std::cout << "Closed Doors\n";
 				
 				open = false;
+				updateTexture();
 				return true;
 			}
-			else if (sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
+			else if (second.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 			{
 				entities->at(i)->sprite.setPosition(sprite.getPosition());
 				std::cout << "Closed Doors\n";
 				
 				open = false;
+				updateTexture();
 				return true;
 			}
 		}
@@ -74,21 +76,15 @@ void TeleportDoor::updateTexture()
 {
 	if(open)
 	{
-		if(sprite.getTexture() != &texture)
-		{
-			texture.loadFromFile("Sprites/TeleportDoorOpen.png");
-			sprite.setTexture(texture);
-			second.setTexture(texture);	
-		}
+		texture.loadFromFile("Sprites/TeleportDoorOpen.png");
+		sprite.setTexture(texture);
+		second.setTexture(texture);	
 	}
 	else
 	{
-		if(sprite.getTexture() != &texture)
-		{
-			texture.loadFromFile("Sprites/TeleportDoorClosed.png");
-			sprite.setTexture(texture);
-			second.setTexture(texture);	
-		}
+		texture.loadFromFile("Sprites/TeleportDoorClosed.png");
+		sprite.setTexture(texture);
+		second.setTexture(texture);	
 	}
 }
 
@@ -99,6 +95,9 @@ void TeleportDoor::checkFrameCount()
 	if((frameCount / 60) / 10 == 1)
 	{
 		open = true;
+		std::cout << "Re-opened doors\n";
+		updateTexture();
+		frameCount = 0;
 	}
 }
 	
@@ -112,7 +111,6 @@ void TeleportDoor::handleEvents()
 	{
 		checkCollision();
 	}
-	updateTexture();
 }
 
 void TeleportDoor::draw(sf::RenderTarget& target, sf::RenderStates states) const

@@ -11,9 +11,8 @@ public:
 	sf::Sprite sprite;	
 	Map* map = nullptr;
 	std::vector<Entity*>* entities;
-	sf::Color color = sf::Color(0,0,0,0);
-	
-	
+	sf::Color color = sf::Color::Transparent;
+
 	
 	enum directions { N, S, E, W };
 	int charScale, charMove;

@@ -101,7 +101,6 @@ void Game::handleGameEvents(sf::RenderWindow* _window)
 						{
 							entities.push_back(new Bullet(entities.at(i)->facing, &map));
 							entities.at(entities.size() - 1)->sprite.setPosition(entities.at(i)->sprite.getPosition());
-					
 						}
 					}
 					break;
@@ -110,8 +109,9 @@ void Game::handleGameEvents(sf::RenderWindow* _window)
 			}
 			break;
 		}
+
+
 		frameCount++;
-		
 		if(frameCount / 60 / 7 == 1)
 		{
 			entities.push_back(new Enemy(&map, &entities));
@@ -211,7 +211,7 @@ void Game::populateMap()
 						s.setPosition(sf::Vector2f(60 + (60 * i), 60 + (60 * j)));
 						s.setOrigin(sf::Vector2f(30, 30));
 						s.setRotation((k * 90));
-						s.setFillColor(sf::Color::Red);
+						s.setFillColor(sf::Color::Transparent);
 						map.at(i).at(j).at(k) = s;
 						}
 						//a really ghetto solution to make sure the player can't phase through closed doors

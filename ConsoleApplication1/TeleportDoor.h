@@ -16,6 +16,7 @@ public:
 	void updateTexture();
 	
 	bool open = true;
+
 	sf::Sprite second;
 	int frameCount = 0;
 	std::string type() override;
