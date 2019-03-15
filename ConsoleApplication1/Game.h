@@ -21,14 +21,13 @@ public:
 	
 
 	//Player p;
-	Map getMap();
 	void drawMap(sf::RenderWindow*);
 	void populateMap();
 	void handleGameEvents(sf::RenderWindow* window);
 	void init();
 	void kill(int);
 	bool outsideMap(Entity*);
-	
+	bool bulletExists();
 	
 	int frameCount = 0;
 	std::vector<sf::RectangleShape> shapes;

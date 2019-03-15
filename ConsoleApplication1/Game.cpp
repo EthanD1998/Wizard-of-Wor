@@ -95,14 +95,18 @@ void Game::handleGameEvents(sf::RenderWindow* _window)
 					entities.push_back(new Player(&map));
 					break;
 				case sf::Keyboard::Space:
-					for(int i=0; i < entities.size(); i++)
+					if (!bulletExists())
 					{
-						if(entities.at(i)->type() == "Player")
+						for (int i = 0; i < entities.size(); i++)
 						{
-							entities.push_back(new Bullet(entities.at(i)->facing, &map));
-							entities.at(entities.size() - 1)->sprite.setPosition(entities.at(i)->sprite.getPosition());
+							if (entities.at(i)->type() == "Player")
+							{
+								entities.push_back(new Bullet(entities.at(i)->facing, &map));
+								entities.at(entities.size() - 1)->sprite.setPosition(entities.at(i)->sprite.getPosition());
+							}
 						}
 					}
+					
 					break;
 				}
 				break;
@@ -142,6 +146,18 @@ void Game::handleGameEvents(sf::RenderWindow* _window)
 
 	_window->display();
 	
+}
+
+bool Game::bulletExists()
+{
+	for (int i = 0; i < entities.size(); i++)
+	{
+		if (entities.at(i)->type() == "Bullet")
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void Game::drawMap(sf::RenderWindow * _window)
