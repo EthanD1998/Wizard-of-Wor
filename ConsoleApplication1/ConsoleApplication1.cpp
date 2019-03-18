@@ -1,21 +1,21 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
-#include <vector>
-#include <fstream>
-#include <cstdlib>
-#include <cmath>
 #include <time.h>
+#include <cmath>
 
-#include "Game.h"
+#include "StateManager.h"
+#include "StateManager.cpp"
 
+#include "DisplayState.h"
+#include "DisplayState.cpp"
 
 int main()
 { 
 	srand(time(NULL));
 	
-	Game game = Game();
+	StateManager control = StateManager();
 
-	game.init();
+	control.init();
 
 }
 

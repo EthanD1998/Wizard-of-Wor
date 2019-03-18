@@ -10,38 +10,30 @@ Game::Game()
 	
 	entities.push_back(new Player(&map));
 	
-}
-
-
-
-Game::~Game()
-{
-	
-}
-
-void Game::init()
-{
-	std::cout << "Game Init" << std::endl;
-	
-	sf::RenderWindow window(sf::VideoMode(850, 600), "Wizard of Wor [DEBUG]");
-	window.setFramerateLimit(60);
-	
 	sf::RectangleShape s(sf::Vector2f(299,161));
-	//s.setOrigin(sf::Vector2f(150,100));
 	s.setFillColor(sf::Color::Transparent);
 	s.setOutlineColor(sf::Color::Blue);
 	s.setOutlineThickness(2);
 	s.setPosition(sf::Vector2f(275, 410));
 	shapes.push_back(s);
 
-
-		entities.push_back(new TeleportDoor(&entities));
+	entities.push_back(new TeleportDoor(&entities));
 	
-	while (window.isOpen())
+	for(int i=0; i < 6; i++)
 	{
-		handleGameEvents(&window);
-		
+		entities.push_back(new Enemy(&map, &entities));
 	}
+	
+}
+
+std::string Game::type()
+{
+	return "Game";
+}
+
+Game::~Game()
+{
+	
 }
 
 void Game::kill(int index)
@@ -50,102 +42,90 @@ void Game::kill(int index)
 	entities.erase(entities.begin() + index);
 }
 
-void Game::handleGameEvents(sf::RenderWindow* _window)
+void Game::draw(sf::RenderTarget* target)
 {
-	sf::Event event;
-
 	
-		while (_window->pollEvent(event))
+	drawMap(target);
+	
+	for(int i=0; i < entities.size(); i++)
+	{
+		if(entities.at(i)->Alive && !outsideMap(entities.at(i)))
 		{
-			switch (event.type)
+			target->draw(*entities.at(i));
+			entities.at(i)->handleEvents();
+		}
+		else
+		{
+			kill(i);
+		}
+	}
+	
+	for(int i=0; i < shapes.size(); i++)
+	{
+		target->draw(shapes.at(i));
+	}
+	
+}
+
+void Game::updateEvents()
+{
+	frameCount++;
+	if(frameCount / 60 / 7 == 1)
+	{
+		//entities.push_back(new Enemy(&map, &entities));
+		frameCount = 0;
+	}
+	
+	
+
+}
+
+void Game::keyEvent(sf::Keyboard::Key& k)
+{
+	switch (k)
+	{
+	case sf::Keyboard::Q:
+		entities.push_back(new Enemy(&map, &entities));
+		break;
+	case sf::Keyboard::E:
+		for(int i = entities.size() - 1; i >= 0; i--)
+		{
+			if(entities.at(i)->type() == "Enemy")
 			{
-			case sf::Event::Closed:
-				_window->close();
-				break;
-			case sf::Event::KeyPressed:
-				//single presses
-				switch (event.key.code)
+				kill(i);	
+			}
+		}
+		
+		break;
+	case sf::Keyboard::R:
+		for(int i = entities.size() - 1; i > 0; i--)
+		{
+			if(entities.at(i)->type().find("Door") != std::string::npos)
+			{
+				kill(i);	
+			}
+		}
+				
+		entities.push_back(new TeleportDoor(&entities));
+		break;
+	case sf::Keyboard::O:
+		entities.push_back(new Player(&map));
+		break;
+	case sf::Keyboard::Space:
+		if (!bulletExists())
+		{
+			for (int i = 0; i < entities.size(); i++)
+			{
+				if (entities.at(i)->type() == "Player")
 				{
-				case sf::Keyboard::Q:
-					entities.push_back(new Enemy(&map, &entities));
-					break;
-				case sf::Keyboard::E:
-					for(int i = entities.size() - 1; i >= 0; i--)
-					{
-						if(entities.at(i)->type() == "Enemy")
-						{
-							kill(i);	
-						}
-					}
-					
-					break;
-				case sf::Keyboard::R:
-					for(int i = entities.size() - 1; i > 0; i--)
-					{
-						if(entities.at(i)->type().find("Door") != std::string::npos)
-						{
-							kill(i);	
-						}
-					}
-					
-					entities.push_back(new TeleportDoor(&entities));
-					
-					break;
-				case sf::Keyboard::O:
-					entities.push_back(new Player(&map));
-					break;
-				case sf::Keyboard::Space:
-					if (!bulletExists())
-					{
-						for (int i = 0; i < entities.size(); i++)
-						{
-							if (entities.at(i)->type() == "Player")
-							{
-								entities.push_back(new Bullet(entities.at(i)->facing, &map));
-								entities.at(entities.size() - 1)->sprite.setPosition(entities.at(i)->sprite.getPosition());
-							}
-						}
-					}
-					
-					break;
+					entities.push_back(new Bullet(entities.at(i)->facing, &map));
+					entities.at(entities.size() - 1)->sprite.setPosition(entities.at(i)->sprite.getPosition());
 				}
-				break;
-			}
-			break;
-		}
-
-
-		frameCount++;
-		if(frameCount / 60 / 7 == 1)
-		{
-			entities.push_back(new Enemy(&map, &entities));
-			frameCount = 0;
-		}
-		
-		
-		_window->clear();
-		drawMap(_window);
-		
-		for(int i=0; i < entities.size(); i++)
-		{
-			if(entities.at(i)->Alive && !outsideMap(entities.at(i)))
-			{
-				_window->draw(*entities.at(i));
-				entities.at(i)->handleEvents();
-			}
-			else
-			{
-				kill(i);
 			}
 		}
 		
-		for(int i=0; i < shapes.size(); i++)
-		{
-			_window->draw(shapes.at(i));
-		}
-
-	_window->display();
-	
+		break;
+	}
 }
 
 bool Game::bulletExists()
@@ -160,7 +140,7 @@ bool Game::bulletExists()
 	return false;
 }
 
-void Game::drawMap(sf::RenderWindow * _window)
+void Game::drawMap(sf::RenderTarget* target)
 {
 	for (int i = 0; i < 13; i++)
 	{
@@ -168,7 +148,7 @@ void Game::drawMap(sf::RenderWindow * _window)
 		{
 			for (int k = 0; k < 4; k++)
 			{
-				_window->draw(map.at(i).at(j).at(k));
+				target->draw(map.at(i).at(j).at(k));
 			}
 
 		}

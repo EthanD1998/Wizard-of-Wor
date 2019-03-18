@@ -6,7 +6,7 @@
 Bullet::Bullet(int _facing = -1, Map* _map = nullptr)
 {
 	charScale = 1;
-	charMove = 3;
+	charMove = 5;
 	
 	map = _map;
 	

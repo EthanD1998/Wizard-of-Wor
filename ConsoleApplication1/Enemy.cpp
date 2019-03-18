@@ -86,7 +86,7 @@ void Enemy::handleEvents()
 void Enemy::newDirection()
 {
 	//std::cout << "New Direction\n";
-	while(temp == facing || temp > 3)
+	while(temp == facing || temp > 3 || temp < 0)
 	{
 		temp = rand() % 4;
 	}

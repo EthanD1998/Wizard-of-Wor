@@ -2,29 +2,41 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include "DisplayState.h"
+
 #include "Entity.h"
+#include "Entity.cpp"
+
 #include "Player.h"
+#include "Player.cpp"
+
 #include "Bullet.h"
+#include "Bullet.cpp"
+
 #include "Enemy.h"
+#include "Enemy.cpp"
+
 #include "TeleportDoor.h"
-
-
+#include "TeleportDoor.cpp"
 
 
 typedef std::vector<std::vector<std::vector<sf::RectangleShape>>> Map;
 
-class Game
+class Game : public DisplayState
 {
 public:
 	Game();
 	~Game();
 	
 
-	//Player p;
-	void drawMap(sf::RenderWindow*);
+	void updateEvents() 		override;
+	void draw(sf::RenderTarget*) override;
+	void keyEvent(sf::Keyboard::Key&) override;
+	std::string type() override;
+
+
+	void drawMap(sf::RenderTarget*);
 	void populateMap();
-	void handleGameEvents(sf::RenderWindow* window);
-	void init();
 	void kill(int);
 	bool outsideMap(Entity*);
 	bool bulletExists();
