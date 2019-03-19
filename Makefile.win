@@ -1,0 +1,61 @@
+# Project: Project1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = ConsoleApplication1/Debug/Bullet.o ConsoleApplication1/Debug/DisplayState.o ConsoleApplication1/Debug/Enemy.o ConsoleApplication1/Debug/Entity.o ConsoleApplication1/Debug/Game.o ConsoleApplication1/Debug/pch.o ConsoleApplication1/Debug/Player.o ConsoleApplication1/Debug/StartMenu.o ConsoleApplication1/Debug/StateManager.o ConsoleApplication1/Debug/TeleportDoor.o ConsoleApplication1/Debug/ConsoleApplication1.o ConsoleApplication1/Debug/StarBackground.o
+LINKOBJ  = ConsoleApplication1/Debug/Bullet.o ConsoleApplication1/Debug/DisplayState.o ConsoleApplication1/Debug/Enemy.o ConsoleApplication1/Debug/Entity.o ConsoleApplication1/Debug/Game.o ConsoleApplication1/Debug/pch.o ConsoleApplication1/Debug/Player.o ConsoleApplication1/Debug/StartMenu.o ConsoleApplication1/Debug/StateManager.o ConsoleApplication1/Debug/TeleportDoor.o ConsoleApplication1/Debug/ConsoleApplication1.o ConsoleApplication1/Debug/StarBackground.o
+LIBS     = -L"C:/Users/20jmh01/Pictures/mingw64/lib" -L"C:/Users/20jmh01/Pictures/SFML/lib" -static-libgcc -lgdi32 -L"C:/Users/20jmh01/Pictures/SFML/lib"  -static-libgcc -DSFML_STATIC -lsfml-graphics -lsfml-window -lsfml-system
+INCS     = -I"C:/Users/20jmh01/Pictures/SFML/include"
+CXXINCS  = -I"C:/Users/20jmh01/Pictures/SFML/include" -I"C:/Users/20jmh01/Pictures/mingw64/include" -I"C:/Users/20jmh01/Pictures/SFML/include"
+BIN      = ConsoleApplication1/Game.exe
+CXXFLAGS = $(CXXINCS) -IC:\users\20jmh01\pictures\SFML\include -LC:\users\20jmh01\pictures\SFML\lib -lsfml-graphics -lsfml-window -lsfml-system
+CFLAGS   = $(INCS) -IC:\users\20jmh01\pictures\SFML\include -LC:\users\20jmh01\pictures\SFML\lib -lsfml-graphics -lsfml-window -lsfml-system
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+ConsoleApplication1/Debug/Bullet.o: ConsoleApplication1/Bullet.cpp
+	$(CPP) -c ConsoleApplication1/Bullet.cpp -o ConsoleApplication1/Debug/Bullet.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/DisplayState.o: ConsoleApplication1/DisplayState.cpp
+	$(CPP) -c ConsoleApplication1/DisplayState.cpp -o ConsoleApplication1/Debug/DisplayState.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/Enemy.o: ConsoleApplication1/Enemy.cpp
+	$(CPP) -c ConsoleApplication1/Enemy.cpp -o ConsoleApplication1/Debug/Enemy.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/Entity.o: ConsoleApplication1/Entity.cpp
+	$(CPP) -c ConsoleApplication1/Entity.cpp -o ConsoleApplication1/Debug/Entity.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/Game.o: ConsoleApplication1/Game.cpp
+	$(CPP) -c ConsoleApplication1/Game.cpp -o ConsoleApplication1/Debug/Game.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/pch.o: ConsoleApplication1/pch.cpp
+	$(CPP) -c ConsoleApplication1/pch.cpp -o ConsoleApplication1/Debug/pch.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/Player.o: ConsoleApplication1/Player.cpp
+	$(CPP) -c ConsoleApplication1/Player.cpp -o ConsoleApplication1/Debug/Player.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/StartMenu.o: ConsoleApplication1/StartMenu.cpp
+	$(CPP) -c ConsoleApplication1/StartMenu.cpp -o ConsoleApplication1/Debug/StartMenu.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/StateManager.o: ConsoleApplication1/StateManager.cpp
+	$(CPP) -c ConsoleApplication1/StateManager.cpp -o ConsoleApplication1/Debug/StateManager.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/TeleportDoor.o: ConsoleApplication1/TeleportDoor.cpp
+	$(CPP) -c ConsoleApplication1/TeleportDoor.cpp -o ConsoleApplication1/Debug/TeleportDoor.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/ConsoleApplication1.o: ConsoleApplication1/ConsoleApplication1.cpp
+	$(CPP) -c ConsoleApplication1/ConsoleApplication1.cpp -o ConsoleApplication1/Debug/ConsoleApplication1.o $(CXXFLAGS)
+
+ConsoleApplication1/Debug/StarBackground.o: ConsoleApplication1/StarBackground.cpp
+	$(CPP) -c ConsoleApplication1/StarBackground.cpp -o ConsoleApplication1/Debug/StarBackground.o $(CXXFLAGS)

@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
@@ -10,9 +11,6 @@ public:
 	
 	bool hasFocus = true, exists = true;
 	
-
-	//std::vector<sf::RectangleShape> shapes;
-	std::vector<sf::CircleShape> shapes;
 
 	virtual DisplayState* nextState();
 	virtual void keyEvent(sf::Keyboard::Key&);

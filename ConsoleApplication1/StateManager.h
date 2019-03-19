@@ -1,14 +1,11 @@
 #pragma once
+#include "pch.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-//#include "DisplayState.h"
-
 #include "Game.h"
-//#include "Game.cpp"
-
+#include "StarBackground.h"
 #include "StartMenu.h"
-//#include "StartMenu.cpp"
 
 class StateManager
 {

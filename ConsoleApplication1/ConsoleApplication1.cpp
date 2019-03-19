@@ -3,11 +3,9 @@
 #include <time.h>
 #include <cmath>
 
+#include "pch.h"
 #include "StateManager.h"
-//#include "StateManager.cpp"
-
 #include "DisplayState.h"
-//#include "DisplayState.cpp"
 
 int main()
 { 
@@ -17,3 +15,7 @@ int main()
 
 	control.init();
 }
+
+
+
+

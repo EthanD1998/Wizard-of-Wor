@@ -1,8 +1,9 @@
 #pragma once
+#include "pch.h"
 #include <iostream>
 #include "SFML/Graphics.hpp"
 
-typedef std::vector<std::vector<std::vector<sf::RectangleShape>>> Map;
+typedef std::vector<std::vector<std::vector<sf::RectangleShape> > > Map;
 
 class Entity : public sf::Drawable
 {

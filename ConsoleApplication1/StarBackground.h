@@ -4,18 +4,16 @@
 #include "DisplayState.h"
 #include <SFML/Graphics.hpp>
 
-class StartMenu : public DisplayState
+class StarBackground : public DisplayState
 {
 public:
-	StartMenu();
-	~StartMenu();
+	StarBackground();
+	~StarBackground();
 	
-	sf::Text text;
-	sf::Font font;
-	
+	std::vector<sf::CircleShape> shapes;
+	int frameCount = 0;
+
 	void updateEvents() override;
-	DisplayState* nextState() override;
-	void keyEvent(sf::Keyboard::Key&) override;
 	std::string type() override;
 	void draw(sf::RenderWindow*) override;	
 };

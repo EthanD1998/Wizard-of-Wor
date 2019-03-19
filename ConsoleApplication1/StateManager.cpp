@@ -7,6 +7,7 @@ StateManager::StateManager()
 {
 	std::cout << "StateManager Created" << std::endl;	
 	
+	gameStates.push_back(new StarBackground());
 	gameStates.push_back(new StartMenu());
 }
 

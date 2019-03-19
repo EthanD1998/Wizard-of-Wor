@@ -1,7 +1,7 @@
 #include "TeleportDoor.h"
 #include <iostream>
 #include "Entity.h"
-
+#include <cmath>
 
 
 TeleportDoor::TeleportDoor(std::vector<Entity*>* _entities = nullptr)

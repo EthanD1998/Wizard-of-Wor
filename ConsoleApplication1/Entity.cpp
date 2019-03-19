@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include <cmath>
 
 Entity::Entity() {
 	//std::cout << "Entity Created" << std::endl;

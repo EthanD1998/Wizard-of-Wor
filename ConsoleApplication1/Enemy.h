@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 #include "SFML/Graphics.hpp"
 #include "Entity.h"
 #include <iostream>
