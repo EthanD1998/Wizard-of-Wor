@@ -47,10 +47,6 @@ void StartMenu::draw(sf::RenderWindow* target)
 	target->draw(text);
 }
 
-void StartMenu::updateEvents()
-{
-}
-
 std::string StartMenu::type()
 {
 	return "StartMenu";

@@ -13,7 +13,6 @@ public:
 	sf::Text text;
 	sf::Font font;
 	
-	void updateEvents() override;
 	DisplayState* nextState() override;
 	void keyEvent(sf::Keyboard::Key&) override;
 	std::string type() override;
