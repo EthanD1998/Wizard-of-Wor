@@ -28,14 +28,13 @@ public:
 	Game();
 	~Game();
 	
-
-	void updateEvents() 		override;
-	void draw(sf::RenderTarget*) override;
+	void updateEvents() override;
+	void draw(sf::RenderWindow*) override;
 	void keyEvent(sf::Keyboard::Key&) override;
 	std::string type() override;
 
 
-	void drawMap(sf::RenderTarget*);
+	void drawMap(sf::RenderWindow*);
 	void populateMap();
 	void kill(int);
 	bool outsideMap(Entity*);

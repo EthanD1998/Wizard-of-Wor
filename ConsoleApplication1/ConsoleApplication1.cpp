@@ -16,7 +16,6 @@ int main()
 	StateManager control = StateManager();
 
 	control.init();
-
 }
 
 

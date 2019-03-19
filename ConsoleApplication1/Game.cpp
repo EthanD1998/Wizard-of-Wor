@@ -5,16 +5,16 @@
 
 Game::Game()
 {
-	std::cout << "Game Created" << std::endl;
+	std::cout << "DisplayState Game Created" << std::endl;
 	populateMap();
 	
 	entities.push_back(new Player(&map));
 	
-	sf::RectangleShape s(sf::Vector2f(299,161));
+	sf::RectangleShape s(sf::Vector2f(286,156));
 	s.setFillColor(sf::Color::Transparent);
 	s.setOutlineColor(sf::Color::Blue);
 	s.setOutlineThickness(2);
-	s.setPosition(sf::Vector2f(275, 410));
+	s.setPosition(sf::Vector2f(282, 410));
 	shapes.push_back(s);
 
 	entities.push_back(new TeleportDoor(&entities));
@@ -38,11 +38,11 @@ Game::~Game()
 
 void Game::kill(int index)
 {
-	std::cout << "Killed entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
+	std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
 	entities.erase(entities.begin() + index);
 }
 
-void Game::draw(sf::RenderTarget* target)
+void Game::draw(sf::RenderWindow* target)
 {
 	
 	drawMap(target);
@@ -140,7 +140,7 @@ bool Game::bulletExists()
 	return false;
 }
 
-void Game::drawMap(sf::RenderTarget* target)
+void Game::drawMap(sf::RenderWindow* target)
 {
 	for (int i = 0; i < 13; i++)
 	{

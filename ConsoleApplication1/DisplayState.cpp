@@ -4,7 +4,6 @@
 
 DisplayState::DisplayState()
 {
-	std::cout << "DisplayState Created" << std::endl;	
 }
 
 DisplayState::~DisplayState()
@@ -19,8 +18,13 @@ void DisplayState::updateEvents()
 {
 }
 
-void DisplayState::draw(sf::RenderTarget* target)
-{	
+DisplayState* DisplayState::nextState()
+{
+	return new DisplayState();
+}
+
+void DisplayState::draw(sf::RenderWindow* target)
+{
 }
 
 std::string DisplayState::type()

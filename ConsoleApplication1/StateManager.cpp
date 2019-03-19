@@ -7,7 +7,7 @@ StateManager::StateManager()
 {
 	std::cout << "StateManager Created" << std::endl;	
 	
-	gameStates.push_back(new Game());
+	gameStates.push_back(new StartMenu());
 }
 
 
@@ -18,7 +18,7 @@ StateManager::~StateManager()
 
 void StateManager::kill(int index)
 {
-	std::cout << "Killed state [" << gameStates.at(index)->type() << "] @ " << index << std::endl;
+	std::cout << "Killed DisplayState [" << gameStates.at(index)->type() << "] @ " << index << std::endl;
 	gameStates.erase(gameStates.begin() + index);
 }
 
@@ -41,13 +41,20 @@ void StateManager::init()
 		            break;
 		            
 		        case sf::Event::KeyPressed:
-		        	for(int i=0; i < gameStates.size(); i++)
+		        {
+					        	
+		        	sf::Keyboard::Key j = event.key.code;
+		        	if(j != sf::Keyboard::W && j != sf::Keyboard::A && j != sf::Keyboard::S && j != sf::Keyboard::D)
 		        	{
-		        		if(gameStates.at(i)->hasFocus)
+		        		for(int i=0; i < gameStates.size(); i++)
 		        		{
-		        			gameStates.at(i)->keyEvent(event.key.code);
+		        			if(gameStates.at(i)->hasFocus)
+		        			{
+		        				gameStates.at(i)->keyEvent(j);
+							}
 						}
 					}
+				}
 		            break;
 		            
 		        default:
@@ -56,7 +63,6 @@ void StateManager::init()
 		}
 		
 		window.clear();
-		
 		for(int i=0; i < gameStates.size(); i++)
 		{
 			if(gameStates.at(i)->exists)
@@ -66,12 +72,13 @@ void StateManager::init()
 			}
 			else
 			{
+				gameStates.push_back(gameStates.at(i)->nextState());
 				kill(i);
+				break;
 			}
 		}
 		
 		window.display();
-		
 	}
 }
 

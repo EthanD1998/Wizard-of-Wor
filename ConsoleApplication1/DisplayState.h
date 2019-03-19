@@ -10,12 +10,10 @@ public:
 	
 	bool hasFocus = true, exists = true;
 	
+	virtual DisplayState* nextState();
 	virtual void keyEvent(sf::Keyboard::Key&);
 	virtual void updateEvents();
 	virtual std::string type();
-	
-	DisplayState* nextState();
-	
-	virtual void draw(sf::RenderTarget* target);	
+	virtual void draw(sf::RenderWindow* target);	
 };
 

@@ -2,11 +2,13 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "DisplayState.h"
-//#include "DisplayState.cpp"
+//#include "DisplayState.h"
 
 #include "Game.h"
 #include "Game.cpp"
+
+#include "StartMenu.h"
+#include "StartMenu.cpp"
 
 class StateManager
 {
