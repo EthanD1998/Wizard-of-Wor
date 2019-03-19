@@ -5,19 +5,19 @@
 #include "DisplayState.h"
 
 #include "Entity.h"
-#include "Entity.cpp"
+//#include "Entity.cpp"
 
 #include "Player.h"
-#include "Player.cpp"
+//#include "Player.cpp"
 
 #include "Bullet.h"
-#include "Bullet.cpp"
+//#include "Bullet.cpp"
 
 #include "Enemy.h"
-#include "Enemy.cpp"
+//#include "Enemy.cpp"
 
 #include "TeleportDoor.h"
-#include "TeleportDoor.cpp"
+//#include "TeleportDoor.cpp"
 
 
 typedef std::vector<std::vector<std::vector<sf::RectangleShape>>> Map;

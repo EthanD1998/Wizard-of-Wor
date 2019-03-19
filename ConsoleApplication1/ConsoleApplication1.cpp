@@ -4,10 +4,10 @@
 #include <cmath>
 
 #include "StateManager.h"
-#include "StateManager.cpp"
+//#include "StateManager.cpp"
 
 #include "DisplayState.h"
-#include "DisplayState.cpp"
+//#include "DisplayState.cpp"
 
 int main()
 { 

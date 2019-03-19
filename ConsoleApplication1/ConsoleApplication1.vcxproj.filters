@@ -36,6 +36,15 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StartMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -60,6 +69,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

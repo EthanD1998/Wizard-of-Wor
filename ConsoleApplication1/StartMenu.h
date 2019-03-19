@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "DisplayState.h"
 #include <SFML/Graphics.hpp>
 
 class StartMenu : public DisplayState

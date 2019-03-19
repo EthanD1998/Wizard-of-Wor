@@ -155,16 +155,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="DisplayState.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="StartMenu.h" />
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="TeleportDoor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="ConsoleApplication1.cpp" />
+    <ClCompile Include="DisplayState.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -175,6 +179,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="StartMenu.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="TeleportDoor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

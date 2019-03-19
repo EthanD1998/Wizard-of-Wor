@@ -5,10 +5,10 @@
 //#include "DisplayState.h"
 
 #include "Game.h"
-#include "Game.cpp"
+//#include "Game.cpp"
 
 #include "StartMenu.h"
-#include "StartMenu.cpp"
+//#include "StartMenu.cpp"
 
 class StateManager
 {
