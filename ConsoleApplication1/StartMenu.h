@@ -8,14 +8,13 @@ class StartMenu : public DisplayState
 {
 public:
 	StartMenu();
-	StartMenu(sf::Clock*);
 	~StartMenu();
 	
-	sf::Text text;
-	sf::Text second;
+	sf::Text text, second;
 	sf::Font font;
 	bool triggered = false;
-	int frameCount = 0;
+	sf::Clock c;	
+	
 	
 	void updateEvents() override;
 	DisplayState* nextState() override;

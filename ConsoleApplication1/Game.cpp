@@ -69,15 +69,7 @@ void Game::draw(sf::RenderWindow* target)
 
 void Game::updateEvents()
 {
-	frameCount++;
-	if(frameCount / 60 / 7 == 1)
-	{
-		//entities.push_back(new Enemy(&map, &entities));
-		frameCount = 0;
-	}
-	
-	
-
+	//clock for the respawn timer to be implemented
 }
 
 void Game::keyEvent(sf::Keyboard::Key& k)

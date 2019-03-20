@@ -1,7 +1,4 @@
-#include "pch.h"
-#include <iostream>
 #include "Bullet.h"
-#include "Entity.h"
 
 
 Bullet::Bullet(int _facing = -1, Map* _map = nullptr)

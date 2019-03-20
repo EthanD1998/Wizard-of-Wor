@@ -3,11 +3,10 @@
 #include <iostream>
 #include <cmath>
 
-StartMenu::StartMenu(sf::Clock* _c)
+StartMenu::StartMenu()
 {
 	std::cout << "DisplayState StartMenu Created" << std::endl;
 	
-	c = _c;
 	font.loadFromFile("Fonts/Adore.ttf");
 		
 	text.setFont(font);
@@ -30,9 +29,6 @@ StartMenu::StartMenu(sf::Clock* _c)
 	second.setPosition(sf::Vector2f(425,400));
 }
 
-StartMenu::StartMenu()
-{
-}
 
 StartMenu::~StartMenu()
 {
@@ -51,7 +47,7 @@ void StartMenu::keyEvent(sf::Keyboard::Key& k)
 				if(!triggered)
 				{
 					triggered = true;	
-					c->restart();
+					c.restart();
 				}
 				
 			break;
@@ -73,10 +69,10 @@ void StartMenu::updateEvents()
 {
 	if(triggered)
 	{
-		if(round(c->getElapsedTime().asSeconds()) > sec)
+		int temp = round(c.getElapsedTime().asSeconds());
+		if(temp > sec)
 		{
-			std::cout << sec << std::endl;
-			sec = round(c->getElapsedTime().asSeconds());
+			sec = temp;
 		}
 		
 		switch(sec)

@@ -7,8 +7,10 @@ StateManager::StateManager()
 {
 	std::cout << "StateManager Created" << std::endl;	
 	
+	srand(time(NULL));
+	
 	gameStates.push_back(new StarBackground());
-	gameStates.push_back(new StartMenu(&clock));
+	gameStates.push_back(new StartMenu());
 }
 
 
