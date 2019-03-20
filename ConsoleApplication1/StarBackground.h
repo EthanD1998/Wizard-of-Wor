@@ -1,8 +1,14 @@
 #pragma once
 #include "pch.h"
-#include <iostream>
 #include "DisplayState.h"
+#include "Game.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
+
+/*
+	StarBackground is exactly what is sounds like.
+	In order to have the stars behind the Game as well, it must be a seperate DisplayState and not just a part of startMenu.	
+*/
 
 class StarBackground : public DisplayState
 {
@@ -11,10 +17,20 @@ public:
 	~StarBackground();
 	
 	std::vector<sf::CircleShape> shapes;
-	int frameCount = 0;
-
+	/*
+		A vector of shapes to draw (stars)
+	*/
 	void updateEvents() override;
+	/*
+		Updating the events on each shape
+	*/
 	std::string type() override;
+	/*
+		Returns type
+	*/
 	void draw(sf::RenderWindow*) override;	
+	/*
+		drawing each shape
+	*/
 };
 

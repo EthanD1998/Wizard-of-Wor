@@ -11,10 +11,7 @@ TeleportDoor::TeleportDoor(std::vector<Entity*>* _entities = nullptr)
 	
 	entities = _entities;
 	
-	if (!texture.loadFromFile("Sprites/TeleportDoorOpen.png"))
-	{
-		std::cout << "Error loading texture (image)" << std::endl;
-	}
+	texture.loadFromFile("Sprites/TeleportDoorOpen.png");
 
 	sprite.setTexture(texture);
 	sprite.setScale(sf::Vector2f(charScale, charScale));

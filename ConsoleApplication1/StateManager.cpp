@@ -7,13 +7,9 @@ StateManager::StateManager()
 {
 	std::cout << "StateManager Created" << std::endl;	
 	
-	srand(time(NULL));
-	
 	gameStates.push_back(new StarBackground());
 	gameStates.push_back(new StartMenu());
 }
-
-
 
 StateManager::~StateManager()
 {
@@ -45,20 +41,43 @@ void StateManager::init()
 		            
 		        case sf::Event::KeyPressed:
 		        {
-					        	
 		        	sf::Keyboard::Key j = event.key.code;
-		        	if(j != sf::Keyboard::W && j != sf::Keyboard::A && j != sf::Keyboard::S && j != sf::Keyboard::D)
+		        	switch(j)
 		        	{
-		        		for(int i=0; i < gameStates.size(); i++)
-		        		{
-		        			if(gameStates.at(i)->hasFocus)
+		        		case sf::Keyboard::W:
+		        			break;
+		        		case sf::Keyboard::A:
+		        			break;
+		        		case sf::Keyboard::S:
+		        			break;
+		        		case sf::Keyboard::D:
+		        			break;
+		        		case sf::Keyboard::P:
+		        			if(!isPaused())
 		        			{
-		        				gameStates.at(i)->keyEvent(j);
+		        				for(int i=0; i < gameStates.size(); i++)
+		        				{
+		        					if(gameStates.at(i)->type() == "Game")
+		        					{
+		        						gameStates.at(i)->hasFocus = false;
+		        						gameStates.at(i)->getsEvents = false;
+		        						gameStates.push_back(new PauseMenu(gameStates.at(i)));
+									}
+								}
+		        				
 							}
-						}
+		        		default:
+		        			for(int i=0; i < gameStates.size(); i++)
+		        			{
+		        				if(gameStates.at(i)->hasFocus)
+		        				{
+		        					gameStates.at(i)->keyEvent(j);
+								}
+							}
+							break;
 					}
 				}
-		            break;
+		    		break;
 		            
 		        default:
 		            break;
@@ -68,20 +87,30 @@ void StateManager::init()
 		window.clear();
 		for(int i=0; i < gameStates.size(); i++)
 		{
-			if(gameStates.at(i)->exists)
+			gameStates.at(i)->draw(&window);
+			
+			if(gameStates.at(i)->getsEvents)
 			{
 				gameStates.at(i)->updateEvents();
-				gameStates.at(i)->draw(&window);
 			}
-			else
+			
+			if(!gameStates.at(i)->exists)
 			{
 				gameStates.push_back(gameStates.at(i)->nextState());
 				kill(i);
-				break;
 			}
+			
 		}
 		
 		window.display();
 	}
 }
 
+bool StateManager::isPaused()
+{
+	for(int i=0; i < gameStates.size(); i++)
+	{
+		if(gameStates.at(i)->type() == "PauseMenu") return true;
+	}
+	return false;
+}

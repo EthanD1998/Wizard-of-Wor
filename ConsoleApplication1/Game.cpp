@@ -1,8 +1,12 @@
 #include "Game.h"
-#include <fstream>
-#include <iostream>
 
+/*
+	Game is where most of the flow is handled.		
+*/
 
+	/*
+		Creating the map and some starting entities.
+	*/
 Game::Game()
 {
 	std::cout << "DisplayState Game Created" << std::endl;
@@ -16,12 +20,14 @@ Game::Game()
 	s.setOutlineThickness(2);
 	s.setPosition(sf::Vector2f(282, 410));
 	shapes.push_back(s);
+	//the radar outline box
 
 	entities.push_back(new TeleportDoor(&entities));
 	
 	for(int i=0; i < 6; i++)
 	{
 		entities.push_back(new Enemy(&map, &entities));
+		//Makes 6 enemies
 	}
 	
 }
@@ -42,9 +48,12 @@ void Game::kill(int index)
 	entities.erase(entities.begin() + index);
 }
 
+
+/*
+	Loops through the vector of entities and shapes and draws them all.		
+*/
 void Game::draw(sf::RenderWindow* target)
 {
-	
 	drawMap(target);
 	
 	for(int i=0; i < entities.size(); i++)
@@ -52,7 +61,6 @@ void Game::draw(sf::RenderWindow* target)
 		if(entities.at(i)->Alive && !outsideMap(entities.at(i)))
 		{
 			target->draw(*entities.at(i));
-			entities.at(i)->handleEvents();
 		}
 		else
 		{
@@ -69,17 +77,34 @@ void Game::draw(sf::RenderWindow* target)
 
 void Game::updateEvents()
 {
-	//clock for the respawn timer to be implemented
+	//clock for the respawn timer to be implemented (maybe)
+	
+	for(int i=0; i < entities.size(); i++)
+	{
+		if(entities.at(i)->Alive && !outsideMap(entities.at(i)))
+		{
+			entities.at(i)->handleEvents();
+		}
+		else
+		{
+			kill(i);
+		}
+	}
 }
-
+/*
+	Most of these are helpful in debug.
+	They will be remove in production.	
+*/
 void Game::keyEvent(sf::Keyboard::Key& k)
 {
 	switch (k)
 	{
 	case sf::Keyboard::Q:
+		//spawn new enemy
 		entities.push_back(new Enemy(&map, &entities));
 		break;
 	case sf::Keyboard::E:
+		//kill all enemies
 		for(int i = entities.size() - 1; i >= 0; i--)
 		{
 			if(entities.at(i)->type() == "Enemy")
@@ -90,6 +115,7 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 		
 		break;
 	case sf::Keyboard::R:
+		//re-open doors
 		for(int i = entities.size() - 1; i > 0; i--)
 		{
 			if(entities.at(i)->type().find("Door") != std::string::npos)
@@ -101,9 +127,11 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 		entities.push_back(new TeleportDoor(&entities));
 		break;
 	case sf::Keyboard::O:
+		//respawn player
 		entities.push_back(new Player(&map));
 		break;
 	case sf::Keyboard::Space:
+		//shoot a bullet
 		if (!bulletExists())
 		{
 			for (int i = 0; i < entities.size(); i++)
@@ -115,7 +143,6 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 				}
 			}
 		}
-		
 		break;
 	}
 }
@@ -130,6 +157,11 @@ bool Game::bulletExists()
 		}
 	}
 	return false;
+}
+
+DisplayState* Game::nextState()
+{
+	return new StartMenu();
 }
 
 void Game::drawMap(sf::RenderWindow* target)
@@ -159,7 +191,10 @@ void Game::populateMap()
 {
 	std::ifstream file("Levels/level_1.csv");
 	std::string value;
-
+	
+	//resizing the vector to what we need.
+	//will be removed with the addition of the Map class.
+	
 	map.resize(13);
 	for (int j = 0; j < 13; j++)
 	{
@@ -181,6 +216,12 @@ void Game::populateMap()
 				for (int k = 0; k < 4; k++)
 				{
 					getline(file, value, ',');
+					
+					/*
+						read the fstream, and look for a 1.
+							If we see a 1, there is a wall there.
+							Might be more numbers later.
+					*/
 					if (value.find("1") != std::string::npos)
 					{
 						sf::RectangleShape s(sf::Vector2f(60, 5));
@@ -192,7 +233,8 @@ void Game::populateMap()
 						map.at(i).at(j).at(k) = s;
 					}
 					
-					
+					//Very rudimentary solution to put a transparent wall at the door location.
+					//relocate this ASAP.
 					if((i == 1 && j == 2 && k == 3) || (i == 11 && j == 2 && k == 1))
 						{
 						sf::RectangleShape s(sf::Vector2f(60, 5));
@@ -202,8 +244,6 @@ void Game::populateMap()
 						s.setFillColor(sf::Color::Transparent);
 						map.at(i).at(j).at(k) = s;
 						}
-						//a really ghetto solution to make sure the player can't phase through closed doors
-						//basically a transparent wall
 				}
 			}
 		}

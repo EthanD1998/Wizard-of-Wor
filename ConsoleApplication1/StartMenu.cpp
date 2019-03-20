@@ -1,16 +1,16 @@
 #include "StartMenu.h"
-#include "Game.h"
-#include <iostream>
-#include <cmath>
+
 
 StartMenu::StartMenu()
 {
 	std::cout << "DisplayState StartMenu Created" << std::endl;
-	
+	/*
+		Setting up both text objects	
+	*/
 	font.loadFromFile("Fonts/Adore.ttf");
 		
 	text.setFont(font);
-	text.setString("PRESS ENTER TO START");	text.setString("PRESS ENTER TO START");
+	text.setString("PRESS ENTER TO START");
 	text.setCharacterSize(24);
 	
 	text.setFillColor(sf::Color::Red);
@@ -47,7 +47,7 @@ void StartMenu::keyEvent(sf::Keyboard::Key& k)
 				if(!triggered)
 				{
 					triggered = true;	
-					c.restart();
+					clock.restart();
 				}
 				
 			break;
@@ -69,7 +69,7 @@ void StartMenu::updateEvents()
 {
 	if(triggered)
 	{
-		int temp = round(c.getElapsedTime().asSeconds());
+		int temp = round(clock.getElapsedTime().asSeconds());
 		if(temp > sec)
 		{
 			sec = temp;

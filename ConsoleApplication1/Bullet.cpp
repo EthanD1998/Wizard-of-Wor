@@ -5,19 +5,22 @@ Bullet::Bullet(int _facing = -1, Map* _map = nullptr)
 {
 	charScale = 1;
 	charMove = 5;
+	//The sprite scale and movement scale.  Both are ints.
 	
 	map = _map;
+	//setting the map pointer
 	
-	if (!texture.loadFromFile("Sprites/bullet.png"))
-	{
-		std::cout << "Error loading texture (image)" << std::endl;
-	}
+	texture.loadFromFile("Sprites/bullet.png");
 
 	sprite.setTexture(texture);
 	sprite.setScale(sf::Vector2f(charScale, charScale));
 	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
-	sprite.setColor(sf::Color::Red);
 	
+	//sprite.setColor(sf::Color::Red);
+	
+	//set up the sprite & texture
+	
+	//This switch handles the rotation of the sprite depending on the direction it faces.
 	switch(_facing)
 	{
 		case N:
@@ -35,19 +38,20 @@ Bullet::Bullet(int _facing = -1, Map* _map = nullptr)
 			velocity.x = -1;
 			break;
 	}
-	//std::cout << "Bullet Created" << std::endl;
 }
 
 
 Bullet::~Bullet()
 {
-	//std::cout << "Bullet deconstuctor called" << std::endl;
 }
 
 void Bullet::handleEvents()
 {
 	if(checkCollision()) Alive = false;
+	//if the Bullet collides, it needs to die.
+	
 	sprite.move(sf::Vector2f(velocity.x * charMove, velocity.y * charMove));
+	//move the sprite (dependent on the x / y velocity)
 }
 
 std::string Bullet::type()

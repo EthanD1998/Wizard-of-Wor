@@ -2,8 +2,8 @@
 #include "pch.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
 #include "Game.h"
+#include "PauseMenu.h"
 #include "StarBackground.h"
 #include "StartMenu.h"
 
@@ -15,6 +15,7 @@ public:
 	
 	void init();
 	void kill(int);
+	bool isPaused();
 	
 	std::vector<DisplayState*> gameStates;
 	

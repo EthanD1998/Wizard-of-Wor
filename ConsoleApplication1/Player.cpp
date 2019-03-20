@@ -1,12 +1,15 @@
 #include "Player.h"
-#include <iostream>
-#include "Entity.h"
+
+/*
+	Player needs a reference to the map so it can check collision.	
+*/
 
 Player::Player(Map* _map = nullptr)
 {
 	charScale = 2;
 	charMove = 2;
 	
+	//radar color
 	color = sf::Color::White;
 	
 	map = _map;
@@ -39,6 +42,9 @@ void Player::handleEvents()
 
 void Player::keyInput()
 {
+	/*
+		Has to be setup this way in order to remove stuttering.
+	*/
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		sprite.setScale(charScale, charScale);

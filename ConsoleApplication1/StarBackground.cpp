@@ -1,6 +1,4 @@
 #include "StarBackground.h"
-#include "Game.h"
-#include <iostream>
 
 
 StarBackground::StarBackground()
@@ -34,16 +32,11 @@ void StarBackground::draw(sf::RenderWindow* target)
 
 void StarBackground::updateEvents()
 {
-	frameCount++;
-
-	if (frameCount % 4 == 0)
+	sf::Color c;
+	for (int i = 0; i < shapes.size(); i++)
 	{
-		sf::Color c;
-		for (int i = 0; i < shapes.size(); i++)
-		{
-			c = shapes.at(i).getFillColor();
-			shapes.at(i).setFillColor(sf::Color(c.r, c.g, c.b, rand() % 155 + 100));
-		}
+		c = shapes.at(i).getFillColor();
+		shapes.at(i).setFillColor(sf::Color(c.r, c.g, c.b, rand() % 155 + 100));
 	}
 }
 	

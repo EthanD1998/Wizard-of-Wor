@@ -1,6 +1,9 @@
 #include "DisplayState.h"
-#include <iostream>
 
+/*
+	Almost everything here is blank, as you should NEVER use DisplayState by itself.
+		Use the children.
+*/
 
 DisplayState::DisplayState()
 {

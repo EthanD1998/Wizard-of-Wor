@@ -1,8 +1,9 @@
 #include "Enemy.h"
-#include <iostream>
-#include "Entity.h"
 
-
+/*
+	Im not commenting this class yet because it still needs a ton  of work
+	-Justin		
+*/
 
 Enemy::Enemy(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
 {
@@ -85,12 +86,12 @@ void Enemy::handleEvents()
 
 void Enemy::newDirection()
 {
-	//std::cout << "New Direction\n";
 	while(temp == facing || temp > 3 || temp < 0)
 	{
 		temp = rand() % 4;
 	}
 	facing = temp;
+	//needs fixed ASAP
 
 }
 
