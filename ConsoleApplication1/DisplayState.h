@@ -10,8 +10,10 @@ public:
 	~DisplayState();
 	
 	bool hasFocus = true, exists = true;
-	
 
+	sf::Clock *c = nullptr;
+	int sec = 0;
+	
 	virtual DisplayState* nextState();
 	virtual void keyEvent(sf::Keyboard::Key&);
 	virtual void updateEvents();

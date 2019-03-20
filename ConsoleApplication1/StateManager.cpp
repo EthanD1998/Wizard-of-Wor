@@ -8,7 +8,7 @@ StateManager::StateManager()
 	std::cout << "StateManager Created" << std::endl;	
 	
 	gameStates.push_back(new StarBackground());
-	gameStates.push_back(new StartMenu());
+	gameStates.push_back(new StartMenu(&clock));
 }
 
 
@@ -25,7 +25,7 @@ void StateManager::kill(int index)
 
 void StateManager::init()
 {
-	sf::RenderWindow window(sf::VideoMode(850, 600), "Wizard of Wor [DEBUG]");
+	sf::RenderWindow window(sf::VideoMode(840, 600), "Wizard of Wor [DEBUG]");
 	window.setFramerateLimit(60);
 	
 	

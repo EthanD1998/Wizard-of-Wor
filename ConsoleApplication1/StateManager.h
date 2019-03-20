@@ -16,6 +16,7 @@ public:
 	void init();
 	void kill(int);
 	
+	sf::Clock clock;
 	std::vector<DisplayState*> gameStates;
 	
 	
