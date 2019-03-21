@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "SFML/Graphics.hpp"
+#include "map.h"
 #include <iostream>
 #include <cmath>
 
@@ -13,10 +14,6 @@
 			targer.draw(Entity) is how it should be drawn.
 */
 
-typedef std::vector<std::vector<std::vector<sf::RectangleShape>>> Map;
-//Map declaration to make is cleaner
-//Might be removed with the addition of the Map class.
-
 class Entity
 {
 public:
@@ -25,6 +22,10 @@ public:
 	
 	//		VARIABLES
 	
+	map* level;
+	/*
+		The pointer to a map
+	*/
 	int lives = 1;
 	/*
 		The amount of lives the Entity has.  
@@ -57,11 +58,6 @@ public:
 	/*
 		A reference to the Game's list of entities.
 			Each Entity needs this to be able to properly handle it's events.
-	*/
-	Map* map = nullptr;
-	/*
-		A reference to the map.
-			Each Entity that has collision needs this.
 	*/
 	sf::Color color = sf::Color::Transparent;
 	/*

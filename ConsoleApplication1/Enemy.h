@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "Entity.h"
+#include "map.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
 
@@ -15,7 +16,7 @@ class Enemy : public Entity
 	
 public:
 
-	Enemy(Map*, std::vector<Entity*> *);
+	Enemy(map*, std::vector<Entity*> *);
 	~Enemy();
 	
 	//		VARIABLES

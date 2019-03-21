@@ -7,6 +7,7 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "TeleportDoor.h"
+#include "map.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>
@@ -37,7 +38,9 @@ public:
 		A vector of Entity pointers the game holds.
 			During each frame, the game will call Entity.handleEvents() and draw(Entity) for each item in the vector.
 	*/
-	Map map;
+	map level;
+	
+	
 	/*
 		Map declaration
 	*/
@@ -63,16 +66,7 @@ public:
 		Returns the type of DisplayState.
 	*/
 	DisplayState* nextState() override;
-	void drawMap(sf::RenderWindow*);
-	/*
-		Draws the map to the RenderWindow passed.
-			Called in this.draw
-	*/
-	void populateMap();
-	/*
-		Populates the map from a csv file.
-			Will be updated to allow different levels to be read.
-	*/
+
 	void kill(int);
 	/*
 		Kills the entity at the index given.

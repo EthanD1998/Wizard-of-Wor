@@ -5,7 +5,7 @@
 	Player needs a reference to the map so it can check collision.	
 */
 
-Player::Player(Map* _map = nullptr)
+Player::Player(map* _map = nullptr)
 {
 	charScale = 2;
 	charMove = 2;
@@ -16,7 +16,7 @@ Player::Player(Map* _map = nullptr)
 
 	lives = 4;
 
-	map = _map;
+	level = _map;
 	
 	texture.loadFromFile("Sprites/Worrior.png");
 

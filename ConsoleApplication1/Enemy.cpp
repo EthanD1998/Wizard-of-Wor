@@ -6,14 +6,14 @@
 	-Justin		
 */
 
-Enemy::Enemy(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
+Enemy::Enemy(map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
 {
 	color = sf::Color::Blue;
 	
 	charScale = 2;
 	charMove = 1;
 	
-	map = _map;
+	level = _map;
 	entities = _entities;
 	
 	texture.loadFromFile("Sprites/Burwor.png");

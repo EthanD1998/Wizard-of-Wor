@@ -4,12 +4,14 @@
 #include "Entity.h"
 #include <cmath>
 
-TeleportDoor::TeleportDoor(std::vector<Entity*>* _entities = nullptr)
+TeleportDoor::TeleportDoor(map* _map, std::vector<Entity*>* _entities = nullptr)
 {
 	charScale = 1;
 	charMove = 1;
 	
 	entities = _entities;
+	
+	level = _map;
 	
 	texture.loadFromFile("Sprites/TeleportDoorOpen.png");
 
@@ -50,18 +52,18 @@ bool TeleportDoor::checkCollision()
 			{
 				entities->at(i)->sprite.setPosition(second.getPosition());
 				std::cout << "Closed Doors\n";
-				
+				level->getCell(1, 2)->addWall(walls(3, 1, 2));
+				level->getCell(11, 2)->addWall(walls(1, 11, 2));
 				open = false;
-				updateTexture();
 				return true;
 			}
 			else if (second.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 			{
 				entities->at(i)->sprite.setPosition(sprite.getPosition());
 				std::cout << "Closed Doors\n";
-				
+				level->getCell(1, 2)->addWall(walls(3, 1, 2));
+				level->getCell(11, 2)->addWall(walls(1, 11, 2));
 				open = false;
-				updateTexture();
 				return true;
 			}
 		}
@@ -88,12 +90,11 @@ void TeleportDoor::updateTexture()
 void TeleportDoor::checkFrameCount()
 {
 	frameCount++;
-	
 	if((frameCount / 60) / 10 == 1)
 	{
+		level->getCell(1, 2)->deleteLastWall();
+		level->getCell(11, 2)->deleteLastWall();
 		open = true;
-		std::cout << "Re-opened doors\n";
-		updateTexture();
 		frameCount = 0;
 	}
 }

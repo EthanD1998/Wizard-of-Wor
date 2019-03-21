@@ -39,8 +39,6 @@ void Entity::respawn()
 	sprite.setPosition(startPos);
 }
 
-bool Entity::checkCollision() 
-{
 	/*
 		This function is long and complicated.
 		Essentially, each Entity will find it's position in the grid.
@@ -59,15 +57,25 @@ bool Entity::checkCollision()
 			
 			0/10 would not reccomend trying to make it more effecient.
 	*/
-	if(!map) return false;
-
+	
+bool Entity::checkCollision()
+{
+	if(!level) return false;
+	
 	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
 
-	for (int i = pos.x - 1; i < pos.x + 2; i++) {
-		for (int j = pos.y - 1; j < pos.y + 2; j++) {
-			for (int k = 0; k < 4; k++) {
-				if (!(i >= 13 || j >= 7 || i < 0 || j < 0)) {
-					if (sprite.getGlobalBounds().intersects(map->at(i).at(j).at(k).getGlobalBounds())) {
+
+	for (int i = pos.x - 1; i < pos.x + 2; i++)
+	{
+		for (int j = pos.y - 1; j < pos.y + 2; j++)
+		{
+			if (!(i >= 13 || j >= 7 || i < 0 || j < 0))
+			{
+				for (int k = 0; k < level->getCell(i,j)->getWalls().size(); k++)
+				{
+		
+					if (sprite.getGlobalBounds().intersects(level->getCell(i,j)->getWalls().at(k).getWall().getGlobalBounds()))
+					{
 						return true;
 					}
 				}

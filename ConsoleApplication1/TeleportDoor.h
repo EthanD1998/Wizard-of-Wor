@@ -9,7 +9,7 @@ class TeleportDoor : public Entity
 	
 public:
 
-	TeleportDoor(std::vector<Entity*>*);
+	TeleportDoor(map*,std::vector<Entity*>*);
 	~TeleportDoor();
 	void handleEvents() override;
 	bool checkCollision() override;
@@ -17,7 +17,6 @@ public:
 	void updateTexture();
 	
 	bool open = true;
-
 	sf::Sprite second;
 	int frameCount = 0;
 	std::string type() override;

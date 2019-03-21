@@ -1,13 +1,13 @@
 #include "pch.h"
 #include "Bullet.h"
 
-Bullet::Bullet(int _facing = -1, Map* _map = nullptr)
+Bullet::Bullet(map* _map, int _facing = -1)
 {
 	charScale = 1;
 	charMove = 5;
 	//The sprite scale and movement scale.  Both are ints.
 	
-	map = _map;
+	level = _map;
 	//setting the map pointer
 	
 	texture.loadFromFile("Sprites/bullet.png");

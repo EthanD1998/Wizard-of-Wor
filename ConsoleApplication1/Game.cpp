@@ -11,9 +11,10 @@
 Game::Game()
 {
 	std::cout << "DisplayState Game Created" << std::endl;
-	populateMap();
+
+	level = map("level_1.csv");
 	
-	entities.push_back(new Player(&map));
+	entities.push_back(new Player(&level));
 	
 	sf::RectangleShape s(sf::Vector2f(286,156));
 	s.setFillColor(sf::Color::Transparent);
@@ -23,11 +24,11 @@ Game::Game()
 	shapes.push_back(s);
 	//the radar outline box
 
-	entities.push_back(new TeleportDoor(&entities));
+	entities.push_back(new TeleportDoor(&level, &entities));
 	
 	for(int i=0; i < 6; i++)
 	{
-		entities.push_back(new Enemy(&map, &entities));
+		entities.push_back(new Enemy(&level, &entities));
 		//Makes 6 enemies
 	}
 	
@@ -66,7 +67,7 @@ void Game::kill(int index)
 */
 void Game::draw(sf::RenderWindow* target)
 {
-	drawMap(target);
+	target->draw(level);
 	
 	for(int i=0; i < entities.size(); i++)
 	{
@@ -113,7 +114,7 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 	{
 	case sf::Keyboard::Q:
 		//spawn new enemy
-		entities.push_back(new Enemy(&map, &entities));
+		entities.push_back(new Enemy(&level, &entities));
 		break;
 	case sf::Keyboard::E:
 		//kill all enemies
@@ -136,11 +137,11 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 			}
 		}
 				
-		entities.push_back(new TeleportDoor(&entities));
+		entities.push_back(new TeleportDoor(&level, &entities));
 		break;
 	case sf::Keyboard::O:
 		//respawn player
-		entities.push_back(new Player(&map));
+		entities.push_back(new Player(&level));
 		break;
 	case sf::Keyboard::Space:
 		//shoot a bullet
@@ -150,7 +151,7 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 			{
 				if (entities.at(i)->type() == "Player")
 				{
-					entities.push_back(new Bullet(entities.at(i)->facing, &map));
+					entities.push_back(new Bullet(&level, entities.at(i)->facing));
 					entities.at(entities.size() - 1)->sprite.setPosition(entities.at(i)->sprite.getPosition());
 				}
 			}
@@ -176,21 +177,6 @@ DisplayState* Game::nextState()
 	return new StartMenu();
 }
 
-void Game::drawMap(sf::RenderWindow* target)
-{
-	for (int i = 0; i < 13; i++)
-	{
-		for (int j = 0; j < 7; j++)
-		{
-			for (int k = 0; k < 4; k++)
-			{
-				target->draw(map.at(i).at(j).at(k));
-			}
-
-		}
-	}
-}
-
 bool Game::outsideMap(Entity* e)
 {
 	sf::Vector2f pos = e->sprite.getPosition();
@@ -199,65 +185,3 @@ bool Game::outsideMap(Entity* e)
 	return false;
 }
 
-void Game::populateMap()
-{
-	std::ifstream file("Levels/level_1.csv");
-	std::string value;
-	
-	//resizing the vector to what we need.
-	//will be removed with the addition of the Map class.
-	
-	map.resize(13);
-	for (int j = 0; j < 13; j++)
-	{
-		map.at(j).resize(7);
-
-		for (int k = 0; k < 7; k++)
-		{
-			map.at(j).at(k).resize(4);
-		}
-	}
-
-
-	while (file.good())
-	{
-		for (int i = 0; i < 13; i++)
-		{
-			for (int j = 0; j < 7; j++)
-			{
-				for (int k = 0; k < 4; k++)
-				{
-					getline(file, value, ',');
-					
-					/*
-						read the fstream, and look for a 1.
-							If we see a 1, there is a wall there.
-							Might be more numbers later.
-					*/
-					if (value.find("1") != std::string::npos)
-					{
-						sf::RectangleShape s(sf::Vector2f(60, 5));
-						s.setPosition(sf::Vector2f(60 + (60 * i), 60 + (60 * j)));
-						s.setOrigin(sf::Vector2f(30, 30));
-						s.setRotation((k * 90));
-						s.setFillColor(sf::Color::Blue);
-						
-						map.at(i).at(j).at(k) = s;
-					}
-					
-					//Very rudimentary solution to put a transparent wall at the door location.
-					//relocate this ASAP.
-					if((i == 1 && j == 2 && k == 3) || (i == 11 && j == 2 && k == 1))
-						{
-						sf::RectangleShape s(sf::Vector2f(60, 5));
-						s.setPosition(sf::Vector2f(60 + (60 * i), 60 + (60 * j)));
-						s.setOrigin(sf::Vector2f(30, 30));
-						s.setRotation((k * 90));
-						s.setFillColor(sf::Color::Transparent);
-						map.at(i).at(j).at(k) = s;
-						}
-				}
-			}
-		}
-	}
-}
