@@ -15,12 +15,11 @@ class Player : public Entity
 public:
 
 	Player(Map*);
-	Player(sf::Texture);
 	~Player();
 	
 	//		VARIABLES
 	
-	std::vector<sf::Sprite*> lifeDisplay;
+	std::vector<sf::Sprite> lifeDisplay;
 	/*
 		Handles the life display
 	*/

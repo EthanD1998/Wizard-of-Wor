@@ -25,21 +25,16 @@ Player::Player(Map* _map = nullptr)
 	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
 	sprite.setPosition(startPos);
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		Player* p = new Player(texture);
-		p->sprite.setPosition(sf::Vector2f(300, 100 + (i * 40)));
+		sf::Sprite p = sf::Sprite();
+		p.setPosition(sf::Vector2f(780, 250 + (i * 60)));
+		p.setScale(sf::Vector2f(charScale, charScale));
+		p.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
+		p.setTexture(texture);
 		lifeDisplay.push_back(p);
 	}
 
-}
-
-Player::Player(sf::Texture t)
-{
-	texture.loadFromFile("Sprites/Worrior.png");
-	sprite.setTexture(texture);
-	sprite.setScale(sf::Vector2f(charScale, charScale));
-	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
 }
 
 Player::~Player()
@@ -58,7 +53,7 @@ void Player::draw(sf::RenderWindow* target)
 
 	for (int i = 0; i < lifeDisplay.size(); i++)
 	{
-		target->draw(lifeDisplay.at(i)->sprite);
+		target->draw(lifeDisplay.at(i));
 	}
 }
 
