@@ -7,6 +7,11 @@
 #include "StarBackground.h"
 #include "StartMenu.h"
 
+/*
+	Class that manages the game's many states.
+		Will draw everything and manage the window.
+*/
+
 class StateManager
 {
 public:
@@ -14,7 +19,13 @@ public:
 	~StateManager();
 	
 	void init();
+	/*
+		Starts the game and doesn't return until the window closes.
+	*/
 	void kill(int);
+	/*
+		Kills the DisplayState at the given index
+	*/
 	bool isPaused();
 	
 	std::vector<DisplayState*> gameStates;

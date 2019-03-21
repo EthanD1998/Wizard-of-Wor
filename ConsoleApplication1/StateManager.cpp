@@ -45,6 +45,7 @@ void StateManager::init()
 		        	switch(j)
 		        	{
 		        		case sf::Keyboard::W:
+		        			//dont pass WASD, as it is checked in handleEvents.
 		        			break;
 		        		case sf::Keyboard::A:
 		        			break;

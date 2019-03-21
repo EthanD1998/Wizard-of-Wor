@@ -90,7 +90,6 @@ StyleCopReport.xml
 *.h.gch
 #*.vcxproj
 #*.vcxproj.filters
-*.dev
 *.layout
 *.win
 *.o

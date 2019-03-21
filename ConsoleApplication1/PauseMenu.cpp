@@ -13,7 +13,7 @@ PauseMenu::PauseMenu(DisplayState* g)
 		
 	text.setFont(font);
 	text.setString("PAUSED");
-	text.setCharacterSize(30);
+	text.setCharacterSize(100);
 	
 	text.setFillColor(sf::Color::White);
 
