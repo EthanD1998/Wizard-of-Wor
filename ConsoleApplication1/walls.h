@@ -5,6 +5,7 @@ class walls : public sf::Drawable
 public:
 	walls();
 	walls(int, int, int);
+	walls(int, int, int, sf::Color);
 	~walls();
 	void setWall(int, int, int);
 	sf::RectangleShape getWall();

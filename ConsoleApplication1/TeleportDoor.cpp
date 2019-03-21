@@ -18,13 +18,13 @@ TeleportDoor::TeleportDoor(map* _map, std::vector<Entity*>* _entities = nullptr)
 	sprite.setTexture(texture);
 	sprite.setScale(sf::Vector2f(charScale, charScale));
 	sprite.setOrigin(sf::Vector2f(30, 30));
-	sprite.setPosition(sf::Vector2f(1 * 60 + 61, 2 * 60 + 60));
+	sprite.setPosition(sf::Vector2f(1 * 60 + 60, 2 * 60 + 60));
 	
 	
 	second.setTexture(texture);
 	second.setScale(sf::Vector2f(charScale, charScale));
 	second.setOrigin(sf::Vector2f(30, 30));
-	second.setPosition(sf::Vector2f(11 * 60 + 59, 2 * 60 + 60));	
+	second.setPosition(sf::Vector2f(11 * 60 + 60, 2 * 60 + 60));	
 	second.setRotation(180);
 	
 
@@ -33,7 +33,6 @@ TeleportDoor::TeleportDoor(map* _map, std::vector<Entity*>* _entities = nullptr)
 
 TeleportDoor::~TeleportDoor()
 {
-	
 }
 
 std::string TeleportDoor::type()
@@ -43,7 +42,6 @@ std::string TeleportDoor::type()
 
 bool TeleportDoor::checkCollision()
 {
-	
 	for(int i = 0; i < entities->size(); i++)
 	{
 		if(entities->at(i)->type() == "Player" || entities->at(i)->type() == "Enemy")
@@ -52,8 +50,8 @@ bool TeleportDoor::checkCollision()
 			{
 				entities->at(i)->sprite.setPosition(second.getPosition());
 				std::cout << "Closed Doors\n";
-				level->getCell(1, 2)->addWall(walls(3, 1, 2));
-				level->getCell(11, 2)->addWall(walls(1, 11, 2));
+				level->getCell(1, 2)->addWall(walls(3, 1, 2, sf::Color::Red));
+				level->getCell(11, 2)->addWall(walls(1, 11, 2, sf::Color::Red));
 				open = false;
 				return true;
 			}
@@ -61,8 +59,8 @@ bool TeleportDoor::checkCollision()
 			{
 				entities->at(i)->sprite.setPosition(sprite.getPosition());
 				std::cout << "Closed Doors\n";
-				level->getCell(1, 2)->addWall(walls(3, 1, 2));
-				level->getCell(11, 2)->addWall(walls(1, 11, 2));
+				level->getCell(1, 2)->addWall(walls(3, 1, 2, sf::Color::Red));
+				level->getCell(11, 2)->addWall(walls(1, 11, 2, sf::Color::Red));
 				open = false;
 				return true;
 			}
@@ -71,27 +69,12 @@ bool TeleportDoor::checkCollision()
 	return false;
 }
 
-void TeleportDoor::updateTexture()
-{
-	if(open)
-	{
-		texture.loadFromFile("Sprites/TeleportDoorOpen.png");
-		sprite.setTexture(texture);
-		second.setTexture(texture);	
-	}
-	else
-	{
-		texture.loadFromFile("Sprites/TeleportDoorClosed.png");
-		sprite.setTexture(texture);
-		second.setTexture(texture);	
-	}
-}
-
 void TeleportDoor::checkFrameCount()
 {
 	frameCount++;
 	if((frameCount / 60) / 10 == 1)
 	{
+		std::cout << "Re-Opened Doors" << std::endl;
 		level->getCell(1, 2)->deleteLastWall();
 		level->getCell(11, 2)->deleteLastWall();
 		open = true;
@@ -113,11 +96,9 @@ void TeleportDoor::handleEvents()
 
 void TeleportDoor::draw(sf::RenderWindow* target)
 {	
-	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
-	radarShape.setFillColor(color);
-	radarShape.setPosition(sf::Vector2f((pos.x * 26) + 282 - 26, (pos.y * 26) + 410));
-
-	target->draw(sprite);
-	target->draw(radarShape);
-	target->draw(second);
+	if(open)
+	{
+		target->draw(sprite);
+		target->draw(second);
+	}
 }

@@ -19,6 +19,15 @@ walls::walls(int side, int x, int y)
 	wall.setPosition(sf::Vector2f(wall.getSize().x * x + 60, wall.getSize().x * y + 60));
 }
 
+walls::walls(int side, int x, int y, sf::Color color)
+{
+	wall.setSize(sf::Vector2f(60, 5));
+	wall.setOrigin(sf::Vector2f(wall.getSize().x / 2, wall.getSize().x / 2));
+	wall.setFillColor(color);
+	wall.setRotation(side * 90);
+	wall.setPosition(sf::Vector2f(wall.getSize().x * x + 60, wall.getSize().x * y + 60));
+}
+
 walls::~walls()
 {
 
