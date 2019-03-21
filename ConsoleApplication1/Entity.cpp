@@ -34,6 +34,11 @@ void Entity::handleEvents()
 {
 }
 
+void Entity::respawn()
+{
+	sprite.setPosition(startPos);
+}
+
 bool Entity::checkCollision() 
 {
 	/*

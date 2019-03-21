@@ -25,6 +25,16 @@ public:
 	
 	//		VARIABLES
 	
+	int lives = 1;
+	/*
+		The amount of lives the Entity has.  
+			Managed by game.
+	*/
+	sf::Vector2f startPos;
+	/*
+		The starting position of the Entity.
+			Used for respawning only.
+	*/
 	sf::Vector2f velocity;
 	/*
 		Velocity that holds an X and Y.
@@ -76,7 +86,11 @@ public:
 	*/
 	
 	//		FUNCTIONS
-		
+	
+	virtual void respawn();
+	/*
+		Used to respawn the Entity.
+	*/
 	virtual bool checkCollision();
 	/*
 		Most entities need this. 

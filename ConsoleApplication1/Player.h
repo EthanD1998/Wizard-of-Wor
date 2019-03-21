@@ -15,10 +15,16 @@ class Player : public Entity
 public:
 
 	Player(Map*);
+	Player(sf::Texture);
 	~Player();
 	
 	//		VARIABLES
 	
+	std::vector<sf::Sprite*> lifeDisplay;
+	/*
+		Handles the life display
+	*/
+
 	//		FUNCTIONS
 	
 	void handleEvents() override;
@@ -29,6 +35,10 @@ public:
 	/*
 		returns the type of Entity
 	*/
+	void draw(sf::RenderWindow*) override;
+
+	void respawn() override;
+
 	void keyInput();
 	/*
 		Passes single key presses to the player.

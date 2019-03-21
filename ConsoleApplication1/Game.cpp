@@ -45,8 +45,19 @@ Game::~Game()
 
 void Game::kill(int index)
 {
-	std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
-	entities.erase(entities.begin() + index);
+	entities.at(index)->lives--;
+
+	if (entities.at(index)->lives == 0)
+	{
+		std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
+		entities.erase(entities.begin() + index);
+	}
+	else
+	{
+		entities.at(index)->Alive = true;
+		entities.at(index)->respawn();
+		std::cout << "Removed 1 life from [" << entities.at(index)->type() << "], " << entities.at(index)->lives << " lives left." << std::endl;
+	}
 }
 
 

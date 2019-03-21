@@ -10,9 +10,12 @@ Player::Player(Map* _map = nullptr)
 	charScale = 2;
 	charMove = 2;
 	
-	//radar color
 	color = sf::Color::White;
 	
+	startPos = sf::Vector2f(715, 418);
+
+	lives = 4;
+
 	map = _map;
 	
 	texture.loadFromFile("Sprites/Worrior.png");
@@ -20,14 +23,43 @@ Player::Player(Map* _map = nullptr)
 	sprite.setTexture(texture);
 	sprite.setScale(sf::Vector2f(charScale, charScale));
 	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
-	sprite.setPosition(sf::Vector2f(715, 418));
+	sprite.setPosition(startPos);
+
+	for (int i = 0; i < 4; i++)
+	{
+		Player* p = new Player(texture);
+		p->sprite.setPosition(sf::Vector2f(300, 100 + (i * 40)));
+		lifeDisplay.push_back(p);
+	}
+
 }
 
-
+Player::Player(sf::Texture t)
+{
+	texture.loadFromFile("Sprites/Worrior.png");
+	sprite.setTexture(texture);
+	sprite.setScale(sf::Vector2f(charScale, charScale));
+	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
+}
 
 Player::~Player()
 {
 	
+}
+
+void Player::draw(sf::RenderWindow* target)
+{
+	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
+	radarShape.setFillColor(color);
+	radarShape.setPosition(sf::Vector2f((pos.x * 26) + 282 - 26, (pos.y * 26) + 410));
+
+	target->draw(sprite);
+	target->draw(radarShape);
+
+	for (int i = 0; i < lifeDisplay.size(); i++)
+	{
+		target->draw(lifeDisplay.at(i)->sprite);
+	}
 }
 
 std::string Player::type()
@@ -35,6 +67,11 @@ std::string Player::type()
 	return "Player";
 }
 
+void Player::respawn()
+{
+	sprite.setPosition(startPos);
+	lifeDisplay.pop_back();
+}
 
 void Player::handleEvents()
 {
