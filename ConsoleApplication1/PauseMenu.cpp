@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "PauseMenu.h"
 
 /*
@@ -9,7 +10,7 @@ PauseMenu::PauseMenu(DisplayState* g)
 	hasFocus = false;
 	std::cout << "DisplayState PauseMenu Created" << std::endl;
 	
-	font.loadFromFile("Fonts/Adore.ttf");
+	font.loadFromFile("Fonts/AlienEncounters.ttf");
 		
 	text.setFont(font);
 	text.setString("PAUSED");

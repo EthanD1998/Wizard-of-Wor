@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Game.h"
 
 /*
@@ -60,7 +61,7 @@ void Game::draw(sf::RenderWindow* target)
 	{
 		if(entities.at(i)->Alive && !outsideMap(entities.at(i)))
 		{
-			target->draw(*entities.at(i));
+			entities.at(i)->draw(target);
 		}
 		else
 		{

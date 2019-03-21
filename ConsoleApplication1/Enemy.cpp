@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Enemy.h"
 
 /*
@@ -68,7 +69,7 @@ void Enemy::handleEvents()
 	
 	if(checkCollision())
 	{
-		sprite.move(sf::Vector2f(velocity.x * charMove * -1, velocity.y * charMove * -1));
+		sprite.move(sf::Vector2f(velocity.x * charMove * -2, velocity.y * charMove * -2));
 		velocity = sf::Vector2f(0,0);
 		newDirection();	
 	}
@@ -81,7 +82,6 @@ void Enemy::handleEvents()
 			entities->at(i)->Alive = false;
 		}
 	}
-	
 }
 
 void Enemy::newDirection()

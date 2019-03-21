@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Entity.h"
 
 /*
@@ -7,21 +8,21 @@
 
 Entity::Entity() 
 {
+	radarShape = sf::RectangleShape(sf::Vector2f(26, 26));
 }
 
-void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const 
+void Entity::draw(sf::RenderWindow* target) 
 {
 	/*
 		sf::Drawable's draw function.
 			Allows us to do target.draw(Entity);
 	*/
-	target.draw(sprite, states);
-
 	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
-	sf::RectangleShape s(sf::Vector2f(26,26));
-	s.setFillColor(color);
-	s.setPosition(sf::Vector2f((pos.x * 26) + 282 - 26, (pos.y * 26) + 410));
-	target.draw(s);
+	radarShape.setFillColor(color);
+	radarShape.setPosition(sf::Vector2f((pos.x * 26) + 282 - 26, (pos.y * 26) + 410));
+
+	target->draw(sprite);
+	target->draw(radarShape);
 }
 
 Entity::~Entity() 
@@ -56,7 +57,6 @@ bool Entity::checkCollision()
 	if(!map) return false;
 
 	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
-
 
 	for (int i = pos.x - 1; i < pos.x + 2; i++) {
 		for (int j = pos.y - 1; j < pos.y + 2; j++) {

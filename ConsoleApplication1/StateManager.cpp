@@ -1,7 +1,7 @@
+#include "pch.h"
 #include "StateManager.h"
 #include <fstream>
 #include <iostream>
-
 
 StateManager::StateManager()
 {

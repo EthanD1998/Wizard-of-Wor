@@ -21,7 +21,7 @@ public:
 	sf::Sprite second;
 	int frameCount = 0;
 	std::string type() override;
-private:
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+	void draw(sf::RenderWindow* target) override;
 };
 

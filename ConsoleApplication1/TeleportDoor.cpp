@@ -1,8 +1,8 @@
+#include "pch.h"
 #include "TeleportDoor.h"
 #include <iostream>
 #include "Entity.h"
 #include <cmath>
-
 
 TeleportDoor::TeleportDoor(std::vector<Entity*>* _entities = nullptr)
 {
@@ -110,20 +110,13 @@ void TeleportDoor::handleEvents()
 	}
 }
 
-void TeleportDoor::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-	target.draw(sprite, states);
-	
+void TeleportDoor::draw(sf::RenderWindow* target)
+{	
 	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
-	sf::RectangleShape s(sf::Vector2f(23,23));
-	s.setFillColor(color);
-	s.setPosition(sf::Vector2f((pos.x * 23) + 275, (pos.y * 23) + 410));
-	target.draw(s);
-	
-	target.draw(second);
+	radarShape.setFillColor(color);
+	radarShape.setPosition(sf::Vector2f((pos.x * 26) + 282 - 26, (pos.y * 26) + 410));
+
+	target->draw(sprite);
+	target->draw(radarShape);
+	target->draw(second);
 }
-
-
-
-
-

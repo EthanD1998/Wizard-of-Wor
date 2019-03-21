@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "StartMenu.h"
-
 
 StartMenu::StartMenu()
 {
@@ -21,12 +21,12 @@ StartMenu::StartMenu()
 	
 	
 	second.setFont(font);
-	second.setString(" ");
-	second.setCharacterSize(120);
-	second.setFillColor(sf::Color::Yellow);
+	second.setString("Wizard Of Wor");
+	second.setCharacterSize(60);
+	second.setFillColor(sf::Color::Blue);
 	textRect = second.getLocalBounds();
 	second.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-	second.setPosition(sf::Vector2f(425,400));
+	second.setPosition(sf::Vector2f(425,200));
 }
 
 
@@ -59,10 +59,7 @@ void StartMenu::keyEvent(sf::Keyboard::Key& k)
 void StartMenu::draw(sf::RenderWindow* target)
 {
 	target->draw(text);
-	if(triggered)
-	{
-		target->draw(second);
-	}
+	target->draw(second);
 }
 
 void StartMenu::updateEvents()
@@ -90,6 +87,14 @@ void StartMenu::updateEvents()
 				sf::FloatRect textRect = text.getLocalBounds();
 				text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 				text.setPosition(sf::Vector2f(420,200));
+
+				second.setFont(font);
+				second.setString(" ");
+				second.setCharacterSize(120);
+				second.setFillColor(sf::Color::Yellow);
+				textRect = second.getLocalBounds();
+				second.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+				second.setPosition(sf::Vector2f(425, 400));
 			}
 				break;
 			

@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "Bullet.h"
-
 
 Bullet::Bullet(int _facing = -1, Map* _map = nullptr)
 {

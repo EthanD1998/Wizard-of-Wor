@@ -1,5 +1,5 @@
+#include "pch.h"
 #include "StarBackground.h"
-
 
 StarBackground::StarBackground()
 {

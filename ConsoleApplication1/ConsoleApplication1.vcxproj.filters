@@ -45,18 +45,21 @@
     <ClInclude Include="StartMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StarBackground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="Bullet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ConsoleApplication1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="DisplayState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
@@ -65,19 +68,28 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TeleportDoor.cpp">
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StarBackground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StartMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DisplayState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StartMenu.cpp">
+    <ClCompile Include="TeleportDoor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

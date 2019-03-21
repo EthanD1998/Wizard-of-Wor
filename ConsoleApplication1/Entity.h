@@ -17,7 +17,7 @@ typedef std::vector<std::vector<std::vector<sf::RectangleShape>>> Map;
 //Map declaration to make is cleaner
 //Might be removed with the addition of the Map class.
 
-class Entity : public sf::Drawable
+class Entity
 {
 public:
 	Entity();
@@ -38,6 +38,10 @@ public:
 	sf::Sprite sprite;
 	/*
 		The sprite used for drawing the Entity
+	*/
+	sf::RectangleShape radarShape;
+	/*
+		The shape to be drawn on the radar
 	*/
 	std::vector<Entity*>* entities;
 	/*
@@ -87,7 +91,6 @@ public:
 	/*
 		A simple std::string that contains the type of Entity.
 	*/
-private:
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void draw(sf::RenderWindow* target);
 };
 
