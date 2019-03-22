@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Walls.h"
 
+//please add more comments
 //0 = top, 1 = right, 2 = bottom, 3 = left
 Walls::Walls()
 {

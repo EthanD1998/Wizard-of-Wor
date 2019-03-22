@@ -1,5 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+
+//please add more comments
+
 class Walls : public sf::Drawable
 {
 public:

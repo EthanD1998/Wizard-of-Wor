@@ -2,6 +2,8 @@
 #include "Map.h"
 #include <iostream>
 
+//please add comments
+
 Map::Map()
 {
 	bool temp[4] = { false,false,false,false };
