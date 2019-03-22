@@ -16,12 +16,13 @@ public:
 	~TrapDoor();
 	bool open = true;
 	sf::RectangleShape door;
-	sf::RectangleShape second;
+	sf::Text text;
+	sf::Font font;
 	
 	void handleEvents() override;
 	bool checkCollision() override;
 
-	
+	void draw(sf::RenderWindow*) override;
 	std::string type() override;
 };
 

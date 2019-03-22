@@ -38,6 +38,19 @@ Player::Player(Map* _map = nullptr)
 		p.setTexture(texture);
 		lifeDisplay.push_back(p);
 	}
+	
+	font.loadFromFile("Fonts/Adore.ttf");
+		
+	scoreText.setFont(font);
+	scoreText.setString("000");
+	scoreText.setCharacterSize(35);
+	
+	scoreText.setFillColor(sf::Color::Blue);
+
+	sf::FloatRect textRect = scoreText.getLocalBounds();
+	scoreText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+	scoreText.setPosition(sf::Vector2f(720,500));
+	
 
 }
 
@@ -59,6 +72,8 @@ void Player::draw(sf::RenderWindow* target)
 	{
 		target->draw(lifeDisplay.at(i));
 	}
+	
+	target->draw(scoreText);
 }
 
 std::string Player::type()
@@ -84,6 +99,8 @@ void Player::handleEvents()
 	{
 		timeAlive = temp;
 	}
+	
+	scoreText.setString(std::to_string(score));
 }
 
 void Player::keyInput()

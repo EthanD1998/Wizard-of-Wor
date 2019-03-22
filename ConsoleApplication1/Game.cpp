@@ -5,15 +5,16 @@
 	Game is where most of the flow is handled.		
 */
 
-	/*
-		Creating the map and some starting entities.
-	*/
+/*
+	Creating the map and some starting entities.
+*/
 Game::Game(int index)
 {
 	std::cout << "DisplayState Game Created" << std::endl;
 	level = Map("level_" + std::to_string(index) + ".csv");
 	
-	entities.push_back(new Player(&level));
+	player = new Player(&level);
+	entities.push_back(player);
 	
 	sf::RectangleShape s(sf::Vector2f(286,156));
 	s.setFillColor(sf::Color::Transparent);
@@ -53,6 +54,8 @@ void Game::kill(int index)
 		if (entities.at(index)->lives == 0)
 		{
 			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
+			player->score += entities.at(index)->value;
+			//add the entities's worth to the player's score
 			entities.erase(entities.begin() + index);
 		}
 		else
@@ -133,7 +136,6 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 				kill(i);	
 			}
 		}
-		
 		break;
 	case sf::Keyboard::O:
 		//respawn player
@@ -141,16 +143,11 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 		break;
 	case sf::Keyboard::Space:
 		//shoot a bullet
+		player->killable = true;
 		if (!bulletExists())
 		{
-			for (int i = 0; i < entities.size(); i++)
-			{
-				if (entities.at(i)->type() == "Player")
-				{
-					entities.push_back(new Bullet(&level, entities.at(i)->facing));
-					entities.at(entities.size() - 1)->sprite.setPosition(entities.at(i)->sprite.getPosition());
-				}
-			}
+			entities.push_back(new Bullet(&level, player->facing));
+			entities.at(entities.size() - 1)->sprite.setPosition(player->sprite.getPosition());
 		}
 		break;
 	}
@@ -170,6 +167,8 @@ bool Game::bulletExists()
 
 DisplayState* Game::nextState()
 {
+//	return new GameOver();
+//TODO: Add GameOver screen
 	return new StartMenu();
 }
 

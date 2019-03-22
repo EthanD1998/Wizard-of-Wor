@@ -25,7 +25,13 @@ public:
 	/*
 		Handles the life display
 	*/
-
+	int score = 000;
+	/*
+		Player's current score
+	*/
+	sf::Text scoreText;
+	sf::Font font;
+	
 	//		FUNCTIONS
 	
 	void handleEvents() override;

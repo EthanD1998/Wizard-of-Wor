@@ -10,6 +10,8 @@ Enemy::Enemy(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
 {
 	color = sf::Color::Blue;
 	
+	value = 100;
+	
 	charScale = 2;
 	charMove = 1;
 	

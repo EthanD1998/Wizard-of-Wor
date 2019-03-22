@@ -33,6 +33,11 @@ public:
 		The amount of lives the Entity has.  
 			Managed by game.
 	*/
+	int value = 0;
+	/*
+		The value to add score to the player
+			Is zero for all non-enemy objects
+	*/
 	sf::Vector2f startPos;
 	/*
 		The starting position of the Entity.

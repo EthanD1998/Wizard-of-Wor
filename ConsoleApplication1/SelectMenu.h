@@ -31,6 +31,11 @@ public:
 	/*
 		If the menu has been triggered
 	*/
+	int selected;
+	/*
+		Which menu function is selected
+	*/
+	sf::RectangleShape selectShape;
 	
 	//		FUNCTIONS
 	

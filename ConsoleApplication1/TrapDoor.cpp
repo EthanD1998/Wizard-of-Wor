@@ -19,6 +19,18 @@ TrapDoor::TrapDoor(Map* _map, std::vector<Entity*>* _entities = nullptr)
 	
 	level = _map;
 	
+	font.loadFromFile("Fonts/Adore.ttf");
+		
+	text.setFont(font);
+	text.setString("0");
+	text.setCharacterSize(20);
+	
+	text.setFillColor(sf::Color::Yellow);
+
+	sf::FloatRect textRect = text.getLocalBounds();
+	text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+	text.setPosition(sf::Vector2f(660,420));
+		
 	std::cout << "Spawned TrapDoor @ (" << door.getPosition().x / 60 << ", " << door.getPosition().y / 60 << ")\n";
 }
 
@@ -42,9 +54,29 @@ bool TrapDoor::checkCollision()
 				entities->at(i)->killable = true;
 				std::cout << "Closed Doors\n";
 				open = false;
-				level->getCell(11, 5)->addWall(Walls(2, 11, 5, sf::Color::Red));
+				level->getCell(11, 5)->addWall(Walls(2, 11, 5, sf::Color::Yellow));
 				Alive = false;
 				return true;
+			}
+			else
+			{
+				int temp;
+				//we don't need timeAlive for this Entity, so we use it for a timer
+				temp = round(clock.getElapsedTime().asSeconds());
+				if(temp > timeAlive)
+				{
+					timeAlive = temp;
+				}
+	
+				switch(timeAlive)
+				{
+					case 11:
+						entities->at(i)->sprite.setPosition(sf::Vector2f(entities->at(i)->sprite.getPosition().x, entities->at(i)->sprite.getPosition().y - 10));
+						break;
+					default:
+						text.setString(std::to_string(timeAlive));
+						break;
+				}
 			}
 		}
 	}
@@ -57,4 +89,9 @@ void TrapDoor::handleEvents()
 	{
 		checkCollision();
 	}
+}
+
+void TrapDoor::draw(sf::RenderWindow* target)
+{
+	target->draw(text);
 }
