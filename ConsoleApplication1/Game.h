@@ -21,7 +21,7 @@
 class Game : public DisplayState
 {
 public:
-	Game();
+	Game(int);
 	~Game();
 	
 	//		VARIABLES

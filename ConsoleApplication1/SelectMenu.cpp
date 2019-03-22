@@ -36,7 +36,7 @@ SelectMenu::~SelectMenu()
 
 DisplayState* SelectMenu::nextState()
 {
-	return new Game();
+	return new Game(1);
 }
 
 void SelectMenu::keyEvent(sf::Keyboard::Key& k)

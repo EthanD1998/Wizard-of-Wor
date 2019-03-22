@@ -8,11 +8,10 @@
 	/*
 		Creating the map and some starting entities.
 	*/
-Game::Game()
+Game::Game(int index)
 {
 	std::cout << "DisplayState Game Created" << std::endl;
-
-	level = Map("level_1.csv");
+	level = Map("level_" + std::to_string(index) + ".csv");
 	
 	entities.push_back(new Player(&level));
 	

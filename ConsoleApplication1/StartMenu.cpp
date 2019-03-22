@@ -36,7 +36,7 @@ StartMenu::~StartMenu()
 
 DisplayState* StartMenu::nextState()
 {
-	return new Game();
+	return new Game(1);
 }
 
 void StartMenu::keyEvent(sf::Keyboard::Key& k)
