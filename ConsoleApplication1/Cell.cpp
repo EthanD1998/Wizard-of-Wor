@@ -19,7 +19,7 @@ void Cell::set(bool iWalls[4], int x, int y)
 		isWall[i] = iWalls[i];
 		if (iWalls[i])
 		{
-			wall.push_back(walls(i, x, y));
+			Wall.push_back(Walls(i, x, y));
 		}
 	/*	std::cout << iWalls[i];
 		std::cout << isWall[i];*/
@@ -28,34 +28,34 @@ void Cell::set(bool iWalls[4], int x, int y)
 }
 
 
-std::vector<walls> Cell::getWalls()
+std::vector<Walls> Cell::getWalls()
 {
-	return wall;
+	return Wall;
 }
 
 
 bool Cell::hasWall()
 {
 	bool isWall = false;
-	if (wall.size() > 0)
+	if (Wall.size() > 0)
 		isWall = true;
 	return isWall;
 }
 
-void Cell::addWall(walls newWall)
+void Cell::addWall(Walls newWall)
 {
-	wall.push_back(newWall);
+	Wall.push_back(newWall);
 }
 
 void Cell::deleteLastWall()
 {
-	wall.pop_back();
+	Wall.pop_back();
 }
 
 void Cell::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	for (int i = 0; i < wall.size(); i++)
+	for (int i = 0; i < Wall.size(); i++)
 	{
-		target.draw(wall.at(i), states);
+		target.draw(Wall.at(i), states);
 	}
 }

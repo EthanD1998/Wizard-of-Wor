@@ -2,12 +2,12 @@
 #include "Cell.h"
 #include <fstream>
 #include <SFML/Graphics.hpp>
-class map : public sf::Drawable
+class Map : public sf::Drawable
 {
 public:
-	map();
-	map(std::string);
-	~map();
+	Map();
+	Map(std::string);
+	~Map();
 	Cell* getCell(int, int);
 	
 private:

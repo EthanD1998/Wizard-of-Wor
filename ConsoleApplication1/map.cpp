@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "map.h"
+#include "Map.h"
 #include <iostream>
 
-map::map()
+Map::Map()
 {
 	bool temp[4] = { false,false,false,false };
 
@@ -19,7 +19,7 @@ map::map()
 	}
 }
 
-map::map(std::string fileName)
+Map::Map(std::string fileName)
 {
 	std::ifstream file("Levels/" + fileName);
 	std::string value;
@@ -56,17 +56,17 @@ map::map(std::string fileName)
 	std::cout << intTemp << std::endl;
 }
 
-map::~map()
+Map::~Map()
 {
 }
 
-Cell* map::getCell(int x, int y)
+Cell* Map::getCell(int x, int y)
 {
 	Cell *cellPtr = &cellMap.at(x).at(y);
 	return cellPtr;
 }
 
-void map::draw(sf::RenderTarget & target, sf::RenderStates states) const
+void Map::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	for (int i = 0; i < 13; i++)
 	{

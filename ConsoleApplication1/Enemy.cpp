@@ -6,7 +6,7 @@
 	-Justin		
 */
 
-Enemy::Enemy(map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
+Enemy::Enemy(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
 {
 	color = sf::Color::Blue;
 	
@@ -78,8 +78,11 @@ void Enemy::handleEvents()
 	{
 		if((entities->at(i)->type() == "Bullet" || entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 		{
-			Alive = false;
-			entities->at(i)->Alive = false;
+			if(entities->at(i)->killable)
+			{
+				Alive = false;
+				entities->at(i)->Alive = false;
+			}
 		}
 	}
 }

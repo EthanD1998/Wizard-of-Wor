@@ -7,7 +7,8 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "TeleportDoor.h"
-#include "map.h"
+#include "TrapDoor.h"
+#include "Map.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>
@@ -15,11 +16,6 @@
 /*
 	Game class is a child of DisplayState.
 		It handles almost all aspects of the actual game.
-*/
-
-typedef std::vector<std::vector<std::vector<sf::RectangleShape>>> Map;
-/*
-	Map declaration to make things cleaner.
 */
 
 class Game : public DisplayState
@@ -38,7 +34,7 @@ public:
 		A vector of Entity pointers the game holds.
 			During each frame, the game will call Entity.handleEvents() and draw(Entity) for each item in the vector.
 	*/
-	map level;
+	Map level;
 	
 	
 	/*

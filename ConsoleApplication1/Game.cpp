@@ -12,7 +12,7 @@ Game::Game()
 {
 	std::cout << "DisplayState Game Created" << std::endl;
 
-	level = map("level_1.csv");
+	level = Map("level_1.csv");
 	
 	entities.push_back(new Player(&level));
 	
@@ -25,6 +25,7 @@ Game::Game()
 	//the radar outline box
 
 	entities.push_back(new TeleportDoor(&level, &entities));
+	entities.push_back(new TrapDoor(&level, &entities));
 	
 	for(int i=0; i < 6; i++)
 	{
@@ -46,18 +47,26 @@ Game::~Game()
 
 void Game::kill(int index)
 {
-	entities.at(index)->lives--;
-
-	if (entities.at(index)->lives == 0)
+	if(entities.at(index)->killable)
 	{
-		std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
-		entities.erase(entities.begin() + index);
+		entities.at(index)->lives--;
+	
+		if (entities.at(index)->lives == 0)
+		{
+			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
+			entities.erase(entities.begin() + index);
+		}
+		else
+		{
+			entities.push_back(new TrapDoor(&level, &entities));
+			entities.at(index)->Alive = true;
+			entities.at(index)->respawn();
+			std::cout << "Removed 1 life from [" << entities.at(index)->type() << "], " << entities.at(index)->lives << " lives left." << std::endl;
+		}
 	}
 	else
 	{
 		entities.at(index)->Alive = true;
-		entities.at(index)->respawn();
-		std::cout << "Removed 1 life from [" << entities.at(index)->type() << "], " << entities.at(index)->lives << " lives left." << std::endl;
 	}
 }
 
@@ -126,18 +135,6 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 			}
 		}
 		
-		break;
-	case sf::Keyboard::R:
-		//re-open doors
-		for(int i = entities.size() - 1; i > 0; i--)
-		{
-			if(entities.at(i)->type().find("Door") != std::string::npos)
-			{
-				kill(i);	
-			}
-		}
-				
-		entities.push_back(new TeleportDoor(&level, &entities));
 		break;
 	case sf::Keyboard::O:
 		//respawn player

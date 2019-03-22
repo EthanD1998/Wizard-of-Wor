@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Bullet.h"
 
-Bullet::Bullet(map* _map, int _facing = -1)
+Bullet::Bullet(Map* _map, int _facing = -1)
 {
 	charScale = 1;
 	charMove = 5;

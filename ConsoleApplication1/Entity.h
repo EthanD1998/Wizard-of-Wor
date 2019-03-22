@@ -1,7 +1,9 @@
 #pragma once
 #include "pch.h"
+#include "Map.h"
+#include "Cell.h"
+#include "Walls.h"
 #include "SFML/Graphics.hpp"
-#include "map.h"
 #include <iostream>
 #include <cmath>
 
@@ -22,7 +24,7 @@ public:
 	
 	//		VARIABLES
 	
-	map* level;
+	Map* level;
 	/*
 		The pointer to a map
 	*/
@@ -72,7 +74,7 @@ public:
 	/*
 		Each Entity has these ints in order to make the scale and movement easier to change.
 	*/
-	bool Alive = true;
+	bool Alive = true, killable = true;
 	/*
 		If the Entity is not Alive, the Game will kill it and de-reference it.
 	*/
@@ -80,6 +82,11 @@ public:
 	/*
 		An int that holds the direction the Entity is facing.
 	*/
+	sf::Clock clock;
+	/*
+		A clock used to time events
+	*/
+	int timeAlive = 0;
 	
 	//		FUNCTIONS
 	

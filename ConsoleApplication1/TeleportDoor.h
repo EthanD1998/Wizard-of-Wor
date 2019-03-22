@@ -9,7 +9,7 @@ class TeleportDoor : public Entity
 	
 public:
 
-	TeleportDoor(map*,std::vector<Entity*>*);
+	TeleportDoor(Map*,std::vector<Entity*>*);
 	~TeleportDoor();
 	void handleEvents() override;
 	bool checkCollision() override;

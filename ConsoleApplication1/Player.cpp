@@ -5,10 +5,14 @@
 	Player needs a reference to the map so it can check collision.	
 */
 
-Player::Player(map* _map = nullptr)
+Player::Player(Map* _map = nullptr)
 {
+	killable = false;
+	
 	charScale = 2;
 	charMove = 2;
+	
+	sprite.setRotation(90);
 	
 	color = sf::Color::White;
 	
@@ -64,13 +68,22 @@ std::string Player::type()
 
 void Player::respawn()
 {
+	killable = false;
 	sprite.setPosition(startPos);
 	lifeDisplay.pop_back();
+	level->getCell(11, 5)->deleteLastWall();
 }
 
 void Player::handleEvents()
 {
 	keyInput();
+	
+	int temp;
+	temp = round(clock.getElapsedTime().asSeconds());
+	if(temp > timeAlive)
+	{
+		timeAlive = temp;
+	}
 }
 
 void Player::keyInput()

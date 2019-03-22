@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "Entity.h"
-#include "map.h"
+#include "Map.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
 
@@ -10,7 +10,7 @@ class Bullet : public Entity
 
 public:
 
-	Bullet(map*, int);
+	Bullet(Map*, int);
 	~Bullet();
 	
 	void handleEvents() override;

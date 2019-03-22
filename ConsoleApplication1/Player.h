@@ -1,7 +1,8 @@
 #pragma once
 #include "pch.h"
 #include "Entity.h"
-#include "map.h"
+#include "Map.h"
+#include "TrapDoor.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
 
@@ -15,7 +16,7 @@ class Player : public Entity
 	
 public:
 
-	Player(map*);
+	Player(Map*);
 	~Player();
 	
 	//		VARIABLES

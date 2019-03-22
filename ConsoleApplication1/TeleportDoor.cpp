@@ -4,7 +4,7 @@
 #include "Entity.h"
 #include <cmath>
 
-TeleportDoor::TeleportDoor(map* _map, std::vector<Entity*>* _entities = nullptr)
+TeleportDoor::TeleportDoor(Map* _map, std::vector<Entity*>* _entities = nullptr)
 {
 	charScale = 1;
 	charMove = 1;
@@ -50,18 +50,20 @@ bool TeleportDoor::checkCollision()
 			{
 				entities->at(i)->sprite.setPosition(second.getPosition());
 				std::cout << "Closed Doors\n";
-				level->getCell(1, 2)->addWall(walls(3, 1, 2, sf::Color::Red));
-				level->getCell(11, 2)->addWall(walls(1, 11, 2, sf::Color::Red));
+				level->getCell(1, 2)->addWall(Walls(3, 1, 2, sf::Color::Red));
+				level->getCell(11, 2)->addWall(Walls(1, 11, 2, sf::Color::Red));
 				open = false;
+				clock.restart();
 				return true;
 			}
 			else if (second.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 			{
 				entities->at(i)->sprite.setPosition(sprite.getPosition());
 				std::cout << "Closed Doors\n";
-				level->getCell(1, 2)->addWall(walls(3, 1, 2, sf::Color::Red));
-				level->getCell(11, 2)->addWall(walls(1, 11, 2, sf::Color::Red));
+				level->getCell(1, 2)->addWall(Walls(3, 1, 2, sf::Color::Red));
+				level->getCell(11, 2)->addWall(Walls(1, 11, 2, sf::Color::Red));
 				open = false;
+				clock.restart();
 				return true;
 			}
 		}
@@ -71,14 +73,25 @@ bool TeleportDoor::checkCollision()
 
 void TeleportDoor::checkFrameCount()
 {
-	frameCount++;
-	if((frameCount / 60) / 10 == 1)
+	int temp;
+	temp = round(clock.getElapsedTime().asSeconds());
+	//I'm using facing here because this Entity doesn't need it and it's an int that's already declared.
+	if(temp > facing)
 	{
-		std::cout << "Re-Opened Doors" << std::endl;
-		level->getCell(1, 2)->deleteLastWall();
-		level->getCell(11, 2)->deleteLastWall();
-		open = true;
-		frameCount = 0;
+		facing = temp;
+	}
+	
+	switch(facing) //seconds
+	{
+		case 10:
+			std::cout << "Re-Opened Doors" << std::endl;
+			level->getCell(1, 2)->deleteLastWall();
+			level->getCell(11, 2)->deleteLastWall();
+			open = true;
+			facing = 0;
+			break;
+		default:
+			break;
 	}
 }
 	

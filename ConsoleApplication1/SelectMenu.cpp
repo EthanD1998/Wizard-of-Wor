@@ -1,9 +1,9 @@
 #include "pch.h"
-#include "StartMenu.h"
+#include "SelectMenu.h"
 
-StartMenu::StartMenu()
+SelectMenu::SelectMenu()
 {
-	std::cout << "DisplayState StartMenu Created" << std::endl;
+	std::cout << "DisplayState SelectMenu Created" << std::endl;
 	/*
 		Setting up both text objects	
 	*/
@@ -30,16 +30,16 @@ StartMenu::StartMenu()
 }
 
 
-StartMenu::~StartMenu()
+SelectMenu::~SelectMenu()
 {
 }
 
-DisplayState* StartMenu::nextState()
+DisplayState* SelectMenu::nextState()
 {
 	return new Game();
 }
 
-void StartMenu::keyEvent(sf::Keyboard::Key& k)
+void SelectMenu::keyEvent(sf::Keyboard::Key& k)
 {
 	switch(k)
 	{
@@ -51,20 +51,18 @@ void StartMenu::keyEvent(sf::Keyboard::Key& k)
 				}
 				
 			break;
-		case sf::Keyboard::Q:
-			exists = false;
 		default:
 			break;
 	}
 }
 
-void StartMenu::draw(sf::RenderWindow* target)
+void SelectMenu::draw(sf::RenderWindow* target)
 {
 	target->draw(text);
 	target->draw(second);
 }
 
-void StartMenu::updateEvents()
+void SelectMenu::updateEvents()
 {
 	if(triggered)
 	{
@@ -122,8 +120,8 @@ void StartMenu::updateEvents()
 	}
 }
 
-std::string StartMenu::type()
+std::string SelectMenu::type()
 {
-	return "StartMenu";
+	return "SelectMenu";
 }
 
