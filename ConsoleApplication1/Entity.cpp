@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Entity.h"
+#include "Bullet.h"
+
 
 /*
 	Entity Parent Class
@@ -9,6 +11,7 @@
 Entity::Entity() 
 {
 	radarShape = sf::RectangleShape(sf::Vector2f(26, 26));
+	team = 1; // entity team;
 }
 
 void Entity::draw(sf::RenderWindow* target) 
@@ -32,6 +35,28 @@ Entity::~Entity()
 
 void Entity::handleEvents() 
 {
+}
+
+void Entity::shoot()
+{
+	if (!bulletExists())
+	{
+		Bullet* b = new Bullet(level, facing, team, entities);
+		b->sprite.setPosition(sprite.getPosition());
+		entities->push_back(b);
+	}
+}
+
+bool Entity::bulletExists()
+{
+	for (int i = 0; i < entities->size(); i++)
+	{
+		if (entities->at(i)->type().find("Bullet") != std::string::npos)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void Entity::respawn()

@@ -16,7 +16,7 @@ class Player : public Entity
 	
 public:
 
-	Player(Map*);
+	Player(Map*, std::vector<Entity*>*);
 	~Player();
 	
 	//		VARIABLES

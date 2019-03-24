@@ -5,8 +5,12 @@
 	Player needs a reference to the map so it can check collision.	
 */
 
-Player::Player(Map* _map = nullptr)
+Player::Player(Map* _map = nullptr, std::vector<Entity*>* e = nullptr)
 {
+	entities = e;
+	
+	team = 0;
+	
 	killable = false;
 	
 	charScale = 2;

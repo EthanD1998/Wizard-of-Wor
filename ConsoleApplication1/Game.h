@@ -77,11 +77,6 @@ public:
 		Checks if the Entity passed is outside the map bounds. 
 			This happens to enemies often because their movement algorithm doesn't work.
 	*/
-	bool bulletExists();
-	/*
-		Checking the vector of entities to see if a bullet exists.
-			Called when trying to create a new bullet.
-	*/
 	
 };
 

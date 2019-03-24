@@ -78,7 +78,7 @@ void Enemy::handleEvents()
 	
 	for(int i=0; i < entities->size(); i++)
 	{
-		if((entities->at(i)->type() == "Bullet" || entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
+		if((entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 		{
 			if(entities->at(i)->killable)
 			{
@@ -87,10 +87,13 @@ void Enemy::handleEvents()
 			}
 		}
 	}
+	
+	if(rand() % 1000 == 1) shoot();
 }
 
 void Enemy::newDirection()
 {
+	int temp;
 	while(temp == facing || temp > 3 || temp < 0)
 	{
 		temp = rand() % 4;

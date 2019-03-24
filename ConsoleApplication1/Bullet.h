@@ -10,7 +10,7 @@ class Bullet : public Entity
 
 public:
 
-	Bullet(Map*, int);
+	Bullet(Map*, int, int,std::vector<Entity*>*);
 	~Bullet();
 	
 	void handleEvents() override;

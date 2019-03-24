@@ -13,7 +13,7 @@ Game::Game(int index)
 	std::cout << "DisplayState Game Created" << std::endl;
 	level = Map("level_" + std::to_string(index) + ".csv");
 	
-	player = new Player(&level);
+	player = new Player(&level,&entities);
 	entities.push_back(player);
 	
 	sf::RectangleShape s(sf::Vector2f(286,156));
@@ -139,30 +139,12 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 		break;
 	case sf::Keyboard::O:
 		//respawn player
-		entities.push_back(new Player(&level));
+		entities.push_back(new Player(&level, &entities));
 		break;
 	case sf::Keyboard::Space:
-		//shoot a bullet
-		player->killable = true;
-		if (!bulletExists())
-		{
-			entities.push_back(new Bullet(&level, player->facing));
-			entities.at(entities.size() - 1)->sprite.setPosition(player->sprite.getPosition());
-		}
+		player->shoot();
 		break;
 	}
-}
-
-bool Game::bulletExists()
-{
-	for (int i = 0; i < entities.size(); i++)
-	{
-		if (entities.at(i)->type() == "Bullet")
-		{
-			return true;
-		}
-	}
-	return false;
 }
 
 DisplayState* Game::nextState()

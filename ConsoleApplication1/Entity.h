@@ -16,6 +16,7 @@
 			targer.draw(Entity) is how it should be drawn.
 */
 
+
 class Entity
 {
 public:
@@ -23,6 +24,8 @@ public:
 	~Entity();
 	
 	//		VARIABLES
+	
+	int team;
 	
 	Map* level;
 	/*
@@ -94,7 +97,14 @@ public:
 	int timeAlive = 0;
 	
 	//		FUNCTIONS
-	
+	bool bulletExists();
+	/*
+		Exactly what it sounds like
+	*/
+	virtual void shoot();
+	/*
+		Creates a bullet at the entity's position
+	*/
 	virtual void respawn();
 	/*
 		Used to respawn the Entity.

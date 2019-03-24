@@ -1,8 +1,12 @@
 #include "pch.h"
 #include "Bullet.h"
 
-Bullet::Bullet(Map* _map, int _facing = -1)
+Bullet::Bullet(Map* _map, int _facing = -1, int t = 0, std::vector<Entity*>* e = nullptr)
 {
+	team = t;
+	
+	entities = e;
+	
 	charScale = 1;
 	charMove = 5;
 	//The sprite scale and movement scale.  Both are ints.
@@ -52,9 +56,20 @@ void Bullet::handleEvents()
 	
 	sprite.move(sf::Vector2f(velocity.x * charMove, velocity.y * charMove));
 	//move the sprite (dependent on the x / y velocity)
+	for(int i=0; i < entities->size(); i++)
+	{
+		if((entities->at(i)->type() == "Enemy" || entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
+		{
+			if(entities->at(i)->killable && entities->at(i)->team != team)
+			{
+				Alive = false;
+				entities->at(i)->Alive = false;
+			}
+		}
+	}
 }
 
 std::string Bullet::type()
 {
-	return "Bullet";
+	return "Bullet" + std::to_string(team);
 }

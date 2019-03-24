@@ -21,9 +21,6 @@ public:
 	
 	//		VARIABLES
 	
-	int temp;
-	//not really sure what this is used for, will probably be removed
-	
 	//		FUNCTIONS
 	
 	void handleEvents() override;
