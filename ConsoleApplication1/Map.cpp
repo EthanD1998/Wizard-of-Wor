@@ -53,9 +53,6 @@ Map::Map(std::string fileName)
 			}
 		}
 	}
-	if (!file.good())
-		std::cout << "BAD" << std::endl;
-	std::cout << intTemp << std::endl;
 }
 
 Map::~Map()

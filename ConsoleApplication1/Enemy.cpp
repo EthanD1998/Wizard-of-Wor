@@ -88,7 +88,7 @@ void Enemy::handleEvents()
 		}
 	}
 	
-	if(rand() % 1000 == 1) shoot();
+	if(rand() % 300 == 1) shoot();
 }
 
 void Enemy::newDirection()
@@ -99,8 +99,6 @@ void Enemy::newDirection()
 		temp = rand() % 4;
 	}
 	facing = temp;
-	//needs fixed ASAP
-
 }
 
 

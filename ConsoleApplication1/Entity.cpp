@@ -51,7 +51,7 @@ bool Entity::bulletExists()
 {
 	for (int i = 0; i < entities->size(); i++)
 	{
-		if (entities->at(i)->type().find("Bullet") != std::string::npos)
+		if (entities->at(i)->type().find("Bullet" + std::to_string(team)) != std::string::npos)
 		{
 			return true;
 		}

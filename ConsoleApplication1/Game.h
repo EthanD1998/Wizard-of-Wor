@@ -25,6 +25,10 @@ public:
 	~Game();
 	
 	//		VARIABLES
+	int gameLevel;
+	/*
+		The current level
+	*/
 	std::vector<sf::RectangleShape> shapes;
 	/*
 		A vector of shapes that the game holds so it can draw them easily.
@@ -76,6 +80,11 @@ public:
 	/*
 		Checks if the Entity passed is outside the map bounds. 
 			This happens to enemies often because their movement algorithm doesn't work.
+	*/
+	int findEntity(std::string);
+	/*
+		Tries to find the Entity with given type.
+			Return -1 if not successful.
 	*/
 	
 };

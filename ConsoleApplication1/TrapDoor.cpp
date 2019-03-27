@@ -65,7 +65,7 @@ bool TrapDoor::checkCollision()
 				temp = round(clock.getElapsedTime().asSeconds());
 				if(temp > timeAlive)
 				{
-					timeAlive = temp;
+					timeAlive++;
 				}
 	
 				switch(timeAlive)

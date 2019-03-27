@@ -57,10 +57,10 @@ void SelectMenu::keyEvent(sf::Keyboard::Key& k)
 					clock.restart();
 				}
 			break;
-		case sf::Keyboard::Up:
+		case sf::Keyboard::W:
 			selected--;
 			break;
-		case sf::Keyboard::Down:
+		case sf::Keyboard::S:
 			selected++;
 			break;
 		case sf::Keyboard::Q:

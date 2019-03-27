@@ -38,34 +38,18 @@ void StateManager::init()
 		        case sf::Event::Closed:
 		            window.close();
 		            break;
-		            
+		        case sf::Event::LostFocus:
+		        	pause();
+		        	break;
 		        case sf::Event::KeyPressed:
 		        {
 		        	sf::Keyboard::Key j = event.key.code;
 		        	switch(j)
 		        	{
-		        		case sf::Keyboard::W:
-		        			//dont pass WASD, as it is checked in handleEvents.
-		        			break;
-		        		case sf::Keyboard::A:
-		        			break;
-		        		case sf::Keyboard::S:
-		        			break;
-		        		case sf::Keyboard::D:
-		        			break;
 		        		case sf::Keyboard::P:
 		        			if(!isPaused())
 		        			{
-		        				for(int i=0; i < gameStates.size(); i++)
-		        				{
-		        					if(gameStates.at(i)->type() == "Game")
-		        					{
-		        						gameStates.at(i)->hasFocus = false;
-		        						gameStates.at(i)->getsEvents = false;
-		        						gameStates.push_back(new PauseMenu(gameStates.at(i)));
-									}
-								}
-		        				
+		        				pause();
 							}
 		        		default:
 		        			for(int i=0; i < gameStates.size(); i++)
@@ -104,6 +88,20 @@ void StateManager::init()
 		}
 		
 		window.display();
+	}
+}
+
+void StateManager::pause()
+{
+	for(int i=0; i < gameStates.size(); i++)
+	{
+		if(gameStates.at(i)->type() == "Game")
+		{
+			gameStates.at(i)->hasFocus = false;
+			gameStates.at(i)->getsEvents = false;
+			gameStates.push_back(new PauseMenu(gameStates.at(i)));
+			break;
+		}
 	}
 }
 

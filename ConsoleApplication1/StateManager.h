@@ -27,7 +27,13 @@ public:
 		Kills the DisplayState at the given index
 	*/
 	bool isPaused();
-	
+	/*
+		Returns true if the game is paused
+	*/
+	void pause();
+	/*
+		Pauses the game
+	*/
 	std::vector<DisplayState*> gameStates;
 	
 	

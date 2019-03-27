@@ -10,6 +10,8 @@
 */
 Game::Game(int index)
 {
+	gameLevel = index;
+	
 	std::cout << "DisplayState Game Created" << std::endl;
 	level = Map("level_" + std::to_string(index) + ".csv");
 	
@@ -42,7 +44,16 @@ std::string Game::type()
 
 Game::~Game()
 {
-	
+}
+
+int Game::findEntity(std::string target)
+{
+	for(int i=0; i < entities.size(); i++)
+	{
+		if(entities.at(i)->type() == target)
+			return i;
+	}
+	return -1;
 }
 
 void Game::kill(int index)
@@ -100,9 +111,7 @@ void Game::draw(sf::RenderWindow* target)
 }
 
 void Game::updateEvents()
-{
-	//clock for the respawn timer to be implemented (maybe)
-	
+{	
 	for(int i=0; i < entities.size(); i++)
 	{
 		if(entities.at(i)->Alive && !outsideMap(entities.at(i)))
@@ -113,6 +122,10 @@ void Game::updateEvents()
 		{
 			kill(i);
 		}
+	}
+	if(player->lives == 0 || findEntity("Enemy") == -1)
+	{
+	 exists = false;
 	}
 }
 /*
@@ -150,8 +163,9 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 DisplayState* Game::nextState()
 {
 //	return new GameOver();
-//TODO: Add GameOver screen
-	return new StartMenu();
+	if(player->lives == 0) return new StartMenu();
+	gameLevel++;
+	return new Game(gameLevel); //increment this
 }
 
 bool Game::outsideMap(Entity* e)
