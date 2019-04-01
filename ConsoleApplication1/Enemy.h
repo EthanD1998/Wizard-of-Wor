@@ -16,7 +16,7 @@ class Enemy : public Entity
 	
 public:
 
-	Enemy(Map*, std::vector<Entity*> *);
+	Enemy();
 	~Enemy();
 	
 	//		VARIABLES
@@ -38,6 +38,5 @@ public:
 	/*
 		Returns the type of Entity.
 	*/
-
 };
 

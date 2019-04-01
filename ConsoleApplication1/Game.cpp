@@ -31,9 +31,11 @@ Game::Game(int index)
 	
 	for(int i=0; i < 6; i++)
 	{
-		entities.push_back(new Enemy(&level, &entities));
+		entities.push_back(new Burwor(&level, &entities));
 		//Makes 6 enemies
 	}
+	//entities.push_back(new Garwor(&level, &entities));
+	//entities.push_back(new Thorwor(&level, &entities));
 	
 }
 
@@ -138,7 +140,7 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 	{
 	case sf::Keyboard::Q:
 		//spawn new enemy
-		entities.push_back(new Enemy(&level, &entities));
+		entities.push_back(new Burwor(&level, &entities));
 		break;
 	case sf::Keyboard::E:
 		//kill all enemies

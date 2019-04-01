@@ -26,7 +26,10 @@ public:
 	//		VARIABLES
 	
 	int team;
-	
+	/*
+		Entities on similar teams can't hurt eachother.
+			So enemies don't shoot eachother.
+	*/
 	Map* level;
 	/*
 		The pointer to a map

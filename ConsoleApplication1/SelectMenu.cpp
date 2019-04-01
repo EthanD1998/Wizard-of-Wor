@@ -32,8 +32,6 @@ SelectMenu::SelectMenu()
 	selectShape.setFillColor(sf::Color::Red);
 	//selectShape.setOrigin(selectShape.getLocalBounds().height / 2, selectShape.getLocalBounds().width / 2);
 	selectShape.setPosition(sf::Vector2f(170, 230 + selected * 200));
-	
-	
 }
 
 

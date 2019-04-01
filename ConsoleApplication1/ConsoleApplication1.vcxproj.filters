@@ -66,6 +66,15 @@
     <ClInclude Include="Walls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Burwor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Garwor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Thorwor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -120,6 +129,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Walls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Burwor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Garwor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Thorwor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
