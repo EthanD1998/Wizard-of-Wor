@@ -155,25 +155,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Cell.h" />
     <ClInclude Include="DisplayState.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SelectMenu.h" />
     <ClInclude Include="StarBackground.h" />
     <ClInclude Include="StartMenu.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="TeleportDoor.h" />
+    <ClInclude Include="TrapDoor.h" />
+    <ClInclude Include="Walls.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Cell.cpp" />
     <ClCompile Include="ConsoleApplication1.cpp" />
     <ClCompile Include="DisplayState.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -182,10 +189,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SelectMenu.cpp" />
     <ClCompile Include="StarBackground.cpp" />
     <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="TeleportDoor.cpp" />
+    <ClCompile Include="TrapDoor.cpp" />
+    <ClCompile Include="Walls.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

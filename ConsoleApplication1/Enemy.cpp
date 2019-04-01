@@ -93,7 +93,7 @@ void Enemy::handleEvents()
 
 void Enemy::newDirection()
 {
-	int temp;
+	int temp = -1;
 	while(temp == facing || temp > 3 || temp < 0)
 	{
 		temp = rand() % 4;
