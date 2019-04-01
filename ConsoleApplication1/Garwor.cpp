@@ -2,8 +2,10 @@
 #include "Garwor.h"
 
 
-Garwor::Garwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
+Garwor::Garwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr, Entity* p = nullptr)
 {
+	player = p;
+	
 	color = sf::Color::Yellow;
 
 	value = 200;
@@ -27,7 +29,19 @@ Garwor::Garwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
 
 std::string Garwor::type()
 {
-	return "Garwor";
+	return "Enemy Garwor";
+}
+
+void Garwor::columnOpacity()
+{
+	if(player->getPosition().x == getPosition().x)
+	{
+		sprite.setColor(sf::Color(255,255,255,255));
+	}
+	else
+	{
+		sprite.setColor(sf::Color(255,255,255,0));
+	}
 }
 
 Garwor::~Garwor()

@@ -14,6 +14,12 @@ Entity::Entity()
 	team = 1; // entity team;
 }
 
+sf::Vector2f Entity::getPosition()
+{
+	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
+	return pos;
+}
+
 void Entity::draw(sf::RenderWindow* target) 
 {
 	/*

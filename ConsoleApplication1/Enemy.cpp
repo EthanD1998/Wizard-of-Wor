@@ -8,6 +8,11 @@
 
 Enemy::Enemy()
 {
+	color = sf::Color::Transparent;
+
+	value = 0;
+	
+	facing = rand() % 4;
 }
 
 Enemy::~Enemy()
@@ -23,6 +28,8 @@ std::string Enemy::type()
 
 void Enemy::handleEvents()
 {
+	columnOpacity();
+	
 	switch(facing)
 	{
 		case N:
@@ -70,6 +77,10 @@ void Enemy::handleEvents()
 	}
 	
 	if(rand() % 300 == 1) shoot();
+}
+
+void Enemy::columnOpacity()
+{
 }
 
 void Enemy::newDirection()

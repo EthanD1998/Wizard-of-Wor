@@ -104,6 +104,10 @@ public:
 	/*
 		Exactly what it sounds like
 	*/
+	sf::Vector2f getPosition();
+	/*
+		Returns the grid co-ordinate of the sprite.
+	*/
 	virtual void shoot();
 	/*
 		Creates a bullet at the entity's position

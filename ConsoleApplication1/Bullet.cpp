@@ -58,7 +58,7 @@ void Bullet::handleEvents()
 	//move the sprite (dependent on the x / y velocity)
 	for(int i=0; i < entities->size(); i++)
 	{
-		if((entities->at(i)->type() == "Enemy" || entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
+		if((entities->at(i)->type().find("Enemy") != std::string::npos || entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 		{
 			if(entities->at(i)->killable && entities->at(i)->team != team)
 			{

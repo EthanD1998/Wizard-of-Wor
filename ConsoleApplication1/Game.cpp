@@ -34,8 +34,8 @@ Game::Game(int index)
 		entities.push_back(new Burwor(&level, &entities));
 		//Makes 6 enemies
 	}
-	//entities.push_back(new Garwor(&level, &entities));
-	//entities.push_back(new Thorwor(&level, &entities));
+	entities.push_back(new Garwor(&level, &entities, player));
+	entities.push_back(new Thorwor(&level, &entities, player));
 	
 }
 
@@ -52,7 +52,7 @@ int Game::findEntity(std::string target)
 {
 	for(int i=0; i < entities.size(); i++)
 	{
-		if(entities.at(i)->type() == target)
+		if(entities.at(i)->type().find(target) != std::string::npos)
 			return i;
 	}
 	return -1;
@@ -127,7 +127,7 @@ void Game::updateEvents()
 	}
 	if(player->lives == 0 || findEntity("Enemy") == -1)
 	{
-	 exists = false;
+		exists = false;
 	}
 }
 /*

@@ -65,7 +65,7 @@ Player::~Player()
 
 void Player::draw(sf::RenderWindow* target)
 {
-	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
+	sf::Vector2f pos = getPosition();
 	radarShape.setFillColor(color);
 	radarShape.setPosition(sf::Vector2f((pos.x * 26) + 282 - 26, (pos.y * 26) + 410));
 

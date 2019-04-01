@@ -29,11 +29,14 @@ Map::Map(std::string fileName)
 	int intTemp = 0;
 	bool temp[4];
 
+	cellMap.resize(13);
+	for (int i = 0; i < 13; i++)
+		cellMap.at(i).resize(7);
+
 	while (file.good())
 	{
-		cellMap.resize(13);
-		for (int i = 0; i < 13; i++)
-			cellMap.at(i).resize(7);
+		
+			
 		for (int i = 0; i < 13; i++)
 		{
 			for (int j = 0; j < 7; j++)
@@ -53,6 +56,7 @@ Map::Map(std::string fileName)
 			}
 		}
 	}
+	std::cout << cellMap.size() << std::endl;
 }
 
 Map::~Map()

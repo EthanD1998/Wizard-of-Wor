@@ -2,8 +2,9 @@
 #include "Thorwor.h"
 
 
-Thorwor::Thorwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
+Thorwor::Thorwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr, Entity* p = nullptr)
 {
+	player = p;
 	color = sf::Color::Red;
 
 	value = 500;
@@ -27,7 +28,19 @@ Thorwor::Thorwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
 
 std::string Thorwor::type()
 {
-	return "Thorwor";
+	return "Enemy Thorwor";
+}
+
+void Thorwor::columnOpacity()
+{
+	if(player->getPosition().x == getPosition().x)
+	{
+		sprite.setColor(sf::Color(255,255,255,255));
+	}
+	else
+	{
+		sprite.setColor(sf::Color(255,255,255,0));
+	}
 }
 
 Thorwor::~Thorwor()

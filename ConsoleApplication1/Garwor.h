@@ -7,9 +7,9 @@
 class Garwor : public Enemy
 {
 public:
-	Garwor(Map*, std::vector<Entity*> *);
+	Garwor(Map*, std::vector<Entity*> *, Entity*);
 	~Garwor();
-
+	void columnOpacity() override;
 	std::string type() override;
 };
 

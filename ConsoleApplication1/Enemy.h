@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "Entity.h"
 #include "Map.h"
+#include "Player.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
 
@@ -20,8 +21,10 @@ public:
 	~Enemy();
 	
 	//		VARIABLES
-	
+	Entity* player;
 	//		FUNCTIONS
+	
+	virtual void columnOpacity();
 	
 	void handleEvents() override;
 	/*
@@ -34,7 +37,7 @@ public:
 		Part of the automatic movement
 			It's funky.
 	*/
-	std::string type() override;
+	virtual std::string type() override;
 	/*
 		Returns the type of Entity.
 	*/

@@ -7,9 +7,10 @@
 class Thorwor : public Enemy
 {
 public:
-	Thorwor(Map*, std::vector<Entity*> *);
+	Thorwor(Map*, std::vector<Entity*> *, Entity*);
 	~Thorwor();
 
+	void columnOpacity() override;
 	std::string type() override;
 };
-
+ 

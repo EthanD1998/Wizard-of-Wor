@@ -30,5 +30,5 @@ Burwor::~Burwor()
 
 std::string Burwor::type()
 {
-	return "Burwor";
+	return "Enemy Burwor";
 }
