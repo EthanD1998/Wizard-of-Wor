@@ -12,14 +12,14 @@ Cell::~Cell()
 }
 
 
-void Cell::set(bool iWalls[4], int x, int y)
+void Cell::set(bool iWalls[4], int x, int y, sf::Color c)
 {
 	for (int i = 0; i < 4; i++)
 	{
 		isWall[i] = iWalls[i];
 		if (iWalls[i])
 		{
-			Wall.push_back(Walls(i, x, y));
+			Wall.push_back(Walls(i, x, y, c));
 		}
 	/*	std::cout << iWalls[i];
 		std::cout << isWall[i];*/

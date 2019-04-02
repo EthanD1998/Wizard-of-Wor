@@ -10,6 +10,7 @@
 
 Entity::Entity() 
 {
+	link = this;
 	radarShape = sf::RectangleShape(sf::Vector2f(26, 26));
 	team = 1; // entity team;
 }
@@ -36,7 +37,6 @@ void Entity::draw(sf::RenderWindow* target)
 
 Entity::~Entity() 
 {
-
 }
 
 void Entity::handleEvents() 
@@ -50,6 +50,7 @@ void Entity::shoot()
 		Bullet* b = new Bullet(level, facing, team, entities);
 		b->sprite.setPosition(sprite.getPosition());
 		entities->push_back(b);
+		link = entities->back();
 	}
 }
 

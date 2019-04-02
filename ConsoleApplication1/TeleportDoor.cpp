@@ -44,7 +44,7 @@ bool TeleportDoor::checkCollision()
 {
 	for(int i = 0; i < entities->size(); i++)
 	{
-		if(entities->at(i)->type() == "Player" || entities->at(i)->type() == "Enemy" || entities->at(i)->type().find("Bullet") != std::string::npos)
+		if(entities->at(i)->type() == "Player" || entities->at(i)->type().find("Enemy") != std::string::npos || entities->at(i)->type() == "Bullet1")
 		{
 			if (sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 			{

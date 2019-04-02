@@ -81,6 +81,10 @@ public:
 	/*
 		Directions so each Entity can easily tell which way it's facing.
 	*/
+	Entity* link;
+	/*
+		The link to a entity (usually a bullet) that it will destroy on deconstruction
+	*/
 	int charScale, charMove;
 	/*
 		Each Entity has these ints in order to make the scale and movement easier to change.

@@ -28,7 +28,8 @@ std::string Enemy::type()
 
 void Enemy::handleEvents()
 {
-	columnOpacity();
+	if(invisible)
+		columnOpacity();
 	
 	switch(facing)
 	{
@@ -81,6 +82,14 @@ void Enemy::handleEvents()
 
 void Enemy::columnOpacity()
 {
+	if(player->getPosition().x == getPosition().x)
+	{
+		sprite.setColor(sf::Color(255,255,255,255));
+	}
+	else
+	{
+		sprite.setColor(sf::Color(255,255,255,50));
+	}
 }
 
 void Enemy::newDirection()

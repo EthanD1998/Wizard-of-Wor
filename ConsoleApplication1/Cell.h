@@ -6,7 +6,7 @@ class Cell : public sf::Drawable
 public:
 	Cell();
 	~Cell();
-	void set(bool[4], int,int);
+	void set(bool[4], int,int,sf::Color);
 	std::vector<Walls> getWalls();
 	bool hasWall();
 	void addWall(Walls);

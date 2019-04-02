@@ -22,9 +22,11 @@ public:
 	
 	//		VARIABLES
 	Entity* player;
+	
+	bool invisible = false;
 	//		FUNCTIONS
 	
-	virtual void columnOpacity();
+	void columnOpacity();
 	
 	void handleEvents() override;
 	/*

@@ -10,7 +10,6 @@ public:
 	Thorwor(Map*, std::vector<Entity*> *, Entity*);
 	~Thorwor();
 
-	void columnOpacity() override;
 	std::string type() override;
 };
  

@@ -10,6 +10,10 @@
 */
 Game::Game(int index)
 {
+	enum {
+		burwor, garwor, thorwor
+	};
+	
 	gameLevel = index;
 	
 	std::cout << "DisplayState Game Created" << std::endl;
@@ -29,14 +33,19 @@ Game::Game(int index)
 	entities.push_back(new TeleportDoor(&level, &entities));
 	entities.push_back(new TrapDoor(&level, &entities));
 	
-	for(int i=0; i < 6; i++)
+	for(int i=0; i < level.getProperty(burwor); i++)
 	{
 		entities.push_back(new Burwor(&level, &entities));
 		//Makes 6 enemies
 	}
-	entities.push_back(new Garwor(&level, &entities, player));
-	entities.push_back(new Thorwor(&level, &entities, player));
-	
+	for(int i=0; i < level.getProperty(garwor); i++)
+	{
+		entities.push_back(new Garwor(&level, &entities, player));
+	}
+	for(int i=0; i < level.getProperty(thorwor); i++)
+	{
+		entities.push_back(new Thorwor(&level, &entities, player));
+	}
 }
 
 std::string Game::type()
@@ -69,6 +78,7 @@ void Game::kill(int index)
 			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
 			player->score += entities.at(index)->value;
 			//add the entities's worth to the player's score
+			entities.at(index)->link->Alive = false;
 			entities.erase(entities.begin() + index);
 		}
 		else
@@ -146,7 +156,7 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 		//kill all enemies
 		for(int i = entities.size() - 1; i >= 0; i--)
 		{
-			if(entities.at(i)->type() == "Enemy")
+			if(entities.at(i)->type().find("Enemy") != std::string::npos)
 			{
 				kill(i);	
 			}
@@ -159,6 +169,10 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 	case sf::Keyboard::Space:
 		player->shoot();
 		break;
+	case sf::Keyboard::I:
+		player->killable = false;
+		break;
+			
 	}
 }
 
