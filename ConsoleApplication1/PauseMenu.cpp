@@ -6,6 +6,7 @@
 */
 PauseMenu::PauseMenu(DisplayState* g)
 {
+	hasNext = false;
 	game = g;
 	hasFocus = false;
 	std::cout << "DisplayState PauseMenu Created" << std::endl;

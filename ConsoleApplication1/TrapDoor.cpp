@@ -49,7 +49,7 @@ bool TrapDoor::checkCollision()
 	{
 		if(entities->at(i)->type() == "Player")
 		{
-			if(entities->at(i)->sprite.getPosition().y < door.getPosition().y)
+			if(entities->at(i)->sprite.getPosition().y < door.getPosition().y + 5)
 			{
 				entities->at(i)->killable = true;
 				std::cout << "Closed Doors\n";

@@ -80,6 +80,7 @@ void Game::kill(int index)
 			//add the entities's worth to the player's score
 			entities.at(index)->link->Alive = false;
 			entities.erase(entities.begin() + index);
+			entities.shrink_to_fit();
 		}
 		else
 		{

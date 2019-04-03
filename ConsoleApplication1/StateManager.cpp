@@ -9,6 +9,7 @@ StateManager::StateManager()
 	
 	gameStates.push_back(new StarBackground());
 	gameStates.push_back(new StartMenu());
+	gameStates.push_back(new FpsCounter());
 }
 
 StateManager::~StateManager()
@@ -18,7 +19,8 @@ StateManager::~StateManager()
 void StateManager::kill(int index)
 {
 	std::cout << "Killed DisplayState [" << gameStates.at(index)->type() << "] @ " << index << std::endl;
-	gameStates.erase(gameStates.begin() + index);
+	gameStates.erase(gameStates.begin() + (index));
+	gameStates.shrink_to_fit();
 }
 
 void StateManager::init()
@@ -81,7 +83,10 @@ void StateManager::init()
 			
 			if(!gameStates.at(i)->exists)
 			{
-				gameStates.push_back(gameStates.at(i)->nextState());
+				if(gameStates.at(i)->hasNext)
+				{
+					gameStates.push_back(gameStates.at(i)->nextState());
+				}
 				kill(i);
 			}
 			

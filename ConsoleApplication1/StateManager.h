@@ -6,6 +6,7 @@
 #include "PauseMenu.h"
 #include "StarBackground.h"
 #include "StartMenu.h"
+#include "FpsCounter.h"
 
 /*
 	Class that manages the game's many states.

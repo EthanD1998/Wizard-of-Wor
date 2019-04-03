@@ -25,7 +25,7 @@ public:
 	
 	//		VARIABLES
 	
-	bool hasFocus = true, exists = true, getsEvents = true;
+	bool hasFocus = true, exists = true, getsEvents = true, hasNext = true;
 	
 	int sec = 0;
 	sf::Clock clock;
