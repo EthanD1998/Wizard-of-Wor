@@ -8,18 +8,20 @@
 /*
 	Creating the map and some starting entities.
 */
-Game::Game(int index)
+Game::Game(int index, int nextlevel, int playerLives)
 {
 	enum {
 		burwor, garwor, thorwor
 	};
 	
+	nextlvl = nextlevel;
+	
 	gameLevel = index;
 	
 	std::cout << "DisplayState Game Created" << std::endl;
-	level = Map("level_" + std::to_string(index) + ".csv");
+	level = Map("level_" + std::to_string(nextlvl) + ".csv");
 	
-	player = new Player(&level,&entities);
+	player = new Player(&level,&entities, playerLives);
 	entities.push_back(player);
 	
 	sf::RectangleShape s(sf::Vector2f(286,156));
@@ -163,10 +165,6 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 			}
 		}
 		break;
-	case sf::Keyboard::O:
-		//respawn player
-		entities.push_back(new Player(&level, &entities));
-		break;
 	case sf::Keyboard::Space:
 		player->shoot();
 		break;
@@ -179,10 +177,29 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 
 DisplayState* Game::nextState()
 {
-//	return new GameOver();
+	int nextLevel = 1;
 	if(player->lives == 0) return new StartMenu();
 	gameLevel++;
-	return new Game(gameLevel); //increment this
+	
+	do
+	{
+		if (gameLevel > 7)
+		{
+			if ((gameLevel - 13) % 6 == 0)
+				nextLevel = 25;
+			else
+				nextLevel = rand() % 8 + 16; // this number is based on how many we have done
+		}
+		else
+		{
+			if (gameLevel == 4)
+				nextLevel = 24;
+			else
+				nextLevel = rand() % 2 + 1; // this number is based on how many we have done
+		}
+	} while (nextlvl == nextLevel);
+	
+	return new Game(gameLevel, nextLevel, player->lives); //increment this
 }
 
 bool Game::outsideMap(Entity* e)

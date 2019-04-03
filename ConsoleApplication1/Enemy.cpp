@@ -30,18 +30,19 @@ void Enemy::handleEvents()
 {
 	if(invisible)
 		columnOpacity();
+		
+	int t = clock.getElapsedTime().asMilliseconds();
+	
 	
 	switch(facing)
 	{
 		case N:
 			velocity.y = -1 * charMove;
 			sprite.setRotation(90);
-			sprite.move(sf::Vector2f(0, -1 * charMove));
 			break;
 		case S:
 			velocity.y = 1 * charMove;
 			sprite.setRotation(270);
-			sprite.move(sf::Vector2f(0, charMove));		
 			break;
 		case E:
 			velocity.x = 1 * charMove;
@@ -56,11 +57,11 @@ void Enemy::handleEvents()
 		default:
 			std::cout << "no direction " << facing << "\n";
 	}
-	sprite.move(sf::Vector2f(velocity.x * charMove, velocity.y * charMove));
+	sprite.move(sf::Vector2f(velocity.x * charMove * t, velocity.y * charMove * t));
 	
 	if(checkCollision())
 	{
-		sprite.move(sf::Vector2f(velocity.x * charMove * -2, velocity.y * charMove * -2));
+		sprite.move(sf::Vector2f(velocity.x * charMove * -2 * t, velocity.y * charMove * -2 * t));
 		velocity = sf::Vector2f(0,0);
 		newDirection();	
 	}
@@ -78,6 +79,8 @@ void Enemy::handleEvents()
 	}
 	
 	if(rand() % 300 == 1) shoot();
+	
+	clock.restart().asSeconds();
 }
 
 void Enemy::columnOpacity()

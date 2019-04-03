@@ -85,7 +85,8 @@ public:
 	/*
 		The link to a entity (usually a bullet) that it will destroy on deconstruction
 	*/
-	int charScale, charMove;
+	int charScale;
+	double charMove;
 	/*
 		Each Entity has these ints in order to make the scale and movement easier to change.
 	*/

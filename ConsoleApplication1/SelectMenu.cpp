@@ -7,6 +7,8 @@ SelectMenu::SelectMenu()
 	/*
 		Setting up both text objects	
 	*/
+	selected = 0;
+	
 	font.loadFromFile("Fonts/Adore.ttf");
 		
 	text.setFont(font);
@@ -41,7 +43,7 @@ SelectMenu::~SelectMenu()
 
 DisplayState* SelectMenu::nextState()
 {
-	return new Game(1);
+	return new Game(1, 1, 4);
 }
 
 void SelectMenu::keyEvent(sf::Keyboard::Key& k)

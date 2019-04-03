@@ -8,7 +8,7 @@ Bullet::Bullet(Map* _map, int _facing = -1, int t = 0, std::vector<Entity*>* e =
 	entities = e;
 	
 	charScale = 1;
-	charMove = 5;
+	charMove = .5;
 	//The sprite scale and movement scale.  Both are ints.
 	
 	level = _map;
@@ -51,10 +51,11 @@ Bullet::~Bullet()
 
 void Bullet::handleEvents()
 {
+	int t = clock.getElapsedTime().asMilliseconds();
 	if(checkCollision()) Alive = false;
 	//if the Bullet collides, it needs to die.
 	
-	sprite.move(sf::Vector2f(velocity.x * charMove, velocity.y * charMove));
+	sprite.move(sf::Vector2f(velocity.x * charMove * t, velocity.y * charMove * t));
 	//move the sprite (dependent on the x / y velocity)
 	for(int i=0; i < entities->size(); i++)
 	{
@@ -67,6 +68,7 @@ void Bullet::handleEvents()
 			}
 		}
 	}
+	clock.restart().asSeconds();
 }
 
 std::string Bullet::type()

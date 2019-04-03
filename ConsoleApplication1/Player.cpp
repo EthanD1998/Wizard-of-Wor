@@ -5,24 +5,24 @@
 	Player needs a reference to the map so it can check collision.	
 */
 
-Player::Player(Map* _map = nullptr, std::vector<Entity*>* e = nullptr)
+Player::Player(Map* _map = nullptr, std::vector<Entity*>* e = nullptr, int playerLives = 4)
 {
 	entities = e;
+	
+	lives = playerLives;
 	
 	team = 0;
 	
 	killable = false;
 	
 	charScale = 2;
-	charMove = 2;
+	charMove = .13;
 	
 	sprite.setRotation(90);
 	
 	color = sf::Color::White;
 	
 	startPos = sf::Vector2f(715, 418);
-
-	lives = 4;
 
 	level = _map;
 	
@@ -33,7 +33,7 @@ Player::Player(Map* _map = nullptr, std::vector<Entity*>* e = nullptr)
 	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
 	sprite.setPosition(startPos);
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < lives - 1; i++)
 	{
 		sf::Sprite p = sf::Sprite();
 		p.setPosition(sf::Vector2f(780, 250 + (i * 60)));
@@ -109,6 +109,7 @@ void Player::handleEvents()
 
 void Player::keyInput()
 {
+	int t = clock.getElapsedTime().asMilliseconds();
 	/*
 		Has to be setup this way in order to remove stuttering.
 	*/
@@ -116,34 +117,31 @@ void Player::keyInput()
 	{
 		sprite.setScale(charScale, charScale);
 		sprite.setRotation(0);
-		sprite.move(sf::Vector2f(charMove * -1, 0));
-		if (checkCollision()) sprite.move(sf::Vector2f(charMove, 0));
+		sprite.move(sf::Vector2f(charMove * -1 * t, 0));
+		if (checkCollision()) sprite.move(sf::Vector2f(charMove * t, 0));
 		facing = W;
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		sprite.setScale(sf::Vector2f(charScale, -1 * charScale));
 		sprite.setRotation(180);
-		sprite.move(sf::Vector2f(charMove, 0));
-		if (checkCollision()) sprite.move(sf::Vector2f(-1 * charMove, 0));
+		sprite.move(sf::Vector2f(charMove * t, 0));
+		if (checkCollision()) sprite.move(sf::Vector2f(-1 * charMove * t, 0));
 		facing = E;
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		sprite.setRotation(90);
-		sprite.move(sf::Vector2f(0, -1 * charMove));
-		if (checkCollision()) sprite.move(sf::Vector2f(0, charMove));
+		sprite.move(sf::Vector2f(0, -1 * charMove * t));
+		if (checkCollision()) sprite.move(sf::Vector2f(0, charMove * t));
 		facing = N;
 	}
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		sprite.setRotation(270);
-		sprite.move(sf::Vector2f(0, charMove));
-		if (checkCollision()) sprite.move(sf::Vector2f(0, -1 * charMove));
+		sprite.move(sf::Vector2f(0, charMove * t));
+		if (checkCollision()) sprite.move(sf::Vector2f(0, -1 * charMove * t));
 		facing = S;
 	}
-	
+	clock.restart().asSeconds();
 }

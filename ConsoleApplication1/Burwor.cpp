@@ -7,7 +7,7 @@ Burwor::Burwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr)
 	value = 100;
 
 	charScale = 2;
-	charMove = 1;
+	charMove = .25;
 
 	level = _map;
 	entities = _entities;

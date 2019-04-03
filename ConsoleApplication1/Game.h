@@ -24,11 +24,11 @@
 class Game : public DisplayState
 {
 public:
-	Game(int);
+	Game(int, int, int);
 	~Game();
 	
 	//		VARIABLES
-	int gameLevel;
+	int gameLevel, nextlvl;
 	/*
 		The current level
 	*/

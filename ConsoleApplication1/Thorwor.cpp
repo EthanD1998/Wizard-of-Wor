@@ -12,7 +12,7 @@ Thorwor::Thorwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr,
 	value = 500;
 
 	charScale = 2;
-	charMove = 1;
+	charMove = .25;
 
 	level = _map;
 	entities = _entities;
