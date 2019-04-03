@@ -16,6 +16,8 @@ public:
 	StarBackground();
 	~StarBackground();
 	
+	sf::Color color = sf::Color(0, 187, 103);
+
 	std::vector<sf::CircleShape> shapes;
 	/*
 		A vector of shapes to draw (stars)
