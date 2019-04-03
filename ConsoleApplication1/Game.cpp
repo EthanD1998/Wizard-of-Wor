@@ -78,9 +78,7 @@ void Game::kill(int index)
 		if (entities.at(index)->lives == 0)
 		{
 			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
-			if(entities.at(index)->score != 0)
-				entities.at(index)->killedBy->score += entities.at(index)->value;
-
+			player->score += entities.at(index)->value;
 			//add the entities's worth to the player's score
 			entities.at(index)->link->Alive = false;
 			entities.erase(entities.begin() + index);
@@ -99,6 +97,7 @@ void Game::kill(int index)
 		entities.at(index)->Alive = true;
 	}
 }
+
 
 /*
 	Loops through the vector of entities and shapes and draws them all.		

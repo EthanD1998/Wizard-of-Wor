@@ -10,7 +10,7 @@ StarBackground::StarBackground()
 	for (int i = 0; i < 650; i++)
 	{
 		sf::CircleShape c(1);
-		c.setFillColor(color);
+		c.setFillColor(sf::Color(0, 187, 103));
 		c.setPosition(sf::Vector2f(rand() % 850, rand() % 600));
 		shapes.push_back(c);
 	}
@@ -35,9 +35,11 @@ void StarBackground::updateEvents()
 	sf::Color c;
 	for (int i = 0; i < shapes.size(); i++)
 	{
-		shapes.at(i).setFillColor(sf::Color(color.r, color.g, color.b, rand() % 155 + 100));
+		c = shapes.at(i).getFillColor();
+		shapes.at(i).setFillColor(sf::Color(c.r, c.g, c.b, rand() % 155 + 100));
 	}
 }
+	
 
 std::string StarBackground::type()
 {

@@ -61,9 +61,8 @@ void Bullet::handleEvents()
 	{
 		if((entities->at(i)->type().find("Enemy") != std::string::npos || entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 		{
-			if(entities->at(i)->team != team)
+			if(entities->at(i)->killable && entities->at(i)->team != team)
 			{
-				entities->at(i)->killedBy = this->link;
 				Alive = false;
 				entities->at(i)->Alive = false;
 			}

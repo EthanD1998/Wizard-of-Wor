@@ -24,12 +24,7 @@ public:
 	~Entity();
 	
 	//		VARIABLES
-	Entity* killedBy = nullptr;
-
-	int score = 0;
-	/*
-	Player's current score
-	*/
+	
 	int team;
 	/*
 		Entities on similar teams can't hurt eachother.
