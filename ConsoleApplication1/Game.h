@@ -1,7 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "DisplayState.h"
-#include "StartMenu.h"
+#include "ScoreMenu.h"
 #include "Entity.h"
 #include "Player.h"
 #include "Bullet.h"

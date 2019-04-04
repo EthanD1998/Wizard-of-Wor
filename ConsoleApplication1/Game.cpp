@@ -178,7 +178,7 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 DisplayState* Game::nextState()
 {
 	int nextLevel = 1;
-	if(player->lives == 0) return new StartMenu();
+	if(player->lives == 0) return new ScoreMenu();
 	gameLevel++;
 	
 	do
