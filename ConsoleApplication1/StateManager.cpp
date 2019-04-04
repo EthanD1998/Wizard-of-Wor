@@ -43,6 +43,17 @@ void StateManager::init()
 		        case sf::Event::LostFocus:
 		        	pause();
 		        	break;
+		        case sf::Event::TextEntered:
+		        	{
+		        	for(int i=0; i < gameStates.size(); i++)
+		        	{
+		        		if(gameStates.at(i)->hasFocus && event.text.unicode != 8)
+		        		{
+		        			gameStates.at(i)->input(event.text);
+						}
+					}
+					}
+					break;
 		        case sf::Event::KeyPressed:
 		        {
 		        	sf::Keyboard::Key j = event.key.code;
@@ -54,14 +65,14 @@ void StateManager::init()
 		        				pause();
 							}
 		        		default:
-		        			for(int i=0; i < gameStates.size(); i++)
-		        			{
-		        				if(gameStates.at(i)->hasFocus)
-		        				{
-		        					gameStates.at(i)->keyEvent(j);
-								}
-							}
 							break;
+					}
+		        	for(int i=0; i < gameStates.size(); i++)
+		        	{
+		        		if(gameStates.at(i)->hasFocus)
+		        		{
+		        			gameStates.at(i)->keyEvent(j);
+						}
 					}
 				}
 		    		break;

@@ -35,7 +35,7 @@ public:
 		The font we use
 	*/
 	std::vector<score> scores;
-	
+	std::vector<char> newName;
 	
 	//		FUNCTIONS
 	
@@ -54,6 +54,7 @@ public:
 	/*
 		draws all the shapes.
 	*/
+	void input(sf::Event::TextEvent) override;
 	DisplayState* nextState() override;
 };
 

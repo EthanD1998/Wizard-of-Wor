@@ -57,6 +57,8 @@ public:
 			Each DisplayState will override this.
 			Allows each DisplayState to draw custom shapes.
 	*/
+	virtual void input(sf::Event::TextEvent);
+	
 	virtual std::string type();
 	/*
 		Returns the DisplayState's type

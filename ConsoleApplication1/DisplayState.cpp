@@ -14,6 +14,10 @@ DisplayState::~DisplayState()
 {
 }
 
+void DisplayState::input(sf::Event::TextEvent t)
+{
+}
+
 void DisplayState::keyEvent(sf::Keyboard::Key&)
 {
 }

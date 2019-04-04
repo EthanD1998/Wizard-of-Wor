@@ -17,7 +17,7 @@ ScoreMenu::ScoreMenu()
 	text.setPosition(sf::Vector2f(420,60));
 	texts.push_back(text);
 	
-	text = sf::Text("Press Enter to Start", font, 25);
+	text = sf::Text("Press Enter to Save", font, 25);
 	text.setFillColor(sf::Color::Blue);
 	textRect = text.getLocalBounds();
 	text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
@@ -111,9 +111,41 @@ void ScoreMenu::keyEvent(sf::Keyboard::Key& k)
 	{
 		case sf::Keyboard::Enter:
 				exists = false;
+				break;
+		case sf::Keyboard::BackSpace:
+			{
+				if(newName.size() != 0)
+				{
+					newName.pop_back();
+					std::string v = "";
+					for(int i=0; i < newName.size(); i++)
+						v += newName.at(i);
+					texts.at(2).setString(v);
+				}
+			}
+			break;
+	
 		default:
+			 
 			break;
 	}
+}
+
+void ScoreMenu::input(sf::Event::TextEvent t)
+{
+	if(newName.size() < 5)
+	{
+		
+	std::string v = "";
+	
+	newName.push_back(static_cast<char>(t.unicode));
+	
+	for(int i=0; i < newName.size(); i++)
+		v += newName.at(i);
+		
+	texts.at(2).setString(v);
+	}
+//    score.SetText(str);
 }
 
 void ScoreMenu::draw(sf::RenderWindow* target)

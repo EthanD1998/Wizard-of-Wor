@@ -168,6 +168,8 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 	case sf::Keyboard::Space:
 		player->shoot();
 		break;
+	case sf::Keyboard::K:
+		player->lives = 0;
 	case sf::Keyboard::I:
 		player->killable = false;
 		break;
