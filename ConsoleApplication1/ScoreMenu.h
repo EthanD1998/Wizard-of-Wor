@@ -21,7 +21,7 @@ public:
 		std::string name;
 	};
 	
-	ScoreMenu();
+	ScoreMenu(int);
 	~ScoreMenu();
 	
 	//		VARIABLES
@@ -34,6 +34,7 @@ public:
 	/*
 		The font we use
 	*/
+	int scoreIndex = -1;
 	std::vector<score> scores;
 	std::vector<char> newName;
 	
@@ -55,6 +56,7 @@ public:
 		draws all the shapes.
 	*/
 	void input(sf::Event::TextEvent) override;
+	void writeScores();
 	DisplayState* nextState() override;
 };
 

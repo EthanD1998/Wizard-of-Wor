@@ -16,7 +16,7 @@ class Player : public Entity
 	
 public:
 
-	Player(Map*, std::vector<Entity*>*, int);
+	Player(Map*, std::vector<Entity*>*, int = 4, int = 0);
 	~Player();
 	
 	//		VARIABLES
@@ -25,7 +25,7 @@ public:
 	/*
 		Handles the life display
 	*/
-	int score = 000;
+	int score = 0;
 	/*
 		Player's current score
 	*/

@@ -3,7 +3,7 @@
 
 
 
-ScoreMenu::ScoreMenu()
+ScoreMenu::ScoreMenu(int playerScore)
 {
 	score s;
 	
@@ -48,6 +48,10 @@ ScoreMenu::ScoreMenu()
 				scores.push_back(s);
 		}
 	}
+	s.name = "_____";
+	s.value = playerScore;
+	scores.push_back(s);
+	
 	
 	sort();
 	
@@ -72,6 +76,19 @@ ScoreMenu::ScoreMenu()
 			text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 			text.setPosition(sf::Vector2f(320 + j * 200, 200 + 50 * i));
 			
+			texts.push_back(text);
+		}
+		
+		if(scoreIndex == -1 && s.value == playerScore && s.name == "_____")
+		{
+			scoreIndex = i;
+			texts.at(2 + (i * 2)).setFillColor(sf::Color(225,20,147));
+			
+			text = sf::Text("_____", font, 24);
+			text.setFillColor(sf::Color::White);
+			textRect = text.getLocalBounds();
+			text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height - 20 / 2.0f);
+			text.setPosition(texts.at(2 + (i * 2)).getPosition());
 			texts.push_back(text);
 		}
 	}
@@ -101,6 +118,34 @@ void ScoreMenu::sort()
     }
 }
 
+void ScoreMenu::writeScores()
+{
+	std::ofstream file;
+	file.open("Levels/scores.csv");
+	score s;
+	
+	
+	for(int i=0; i < 3; i++)
+	{
+		s = scores.at(i);
+		
+		for(int j = 0; j < 2; j++)
+		{
+			if(j == 0)
+			{
+				file << s.name << ",";
+			}
+			else
+			{
+				file << std::to_string(s.value) << ",";
+			}
+		}
+			
+	}
+	
+	file.close();
+}
+
 ScoreMenu::~ScoreMenu()
 {
 }
@@ -111,16 +156,18 @@ void ScoreMenu::keyEvent(sf::Keyboard::Key& k)
 	{
 		case sf::Keyboard::Enter:
 				exists = false;
+				writeScores();
 				break;
 		case sf::Keyboard::BackSpace:
 			{
-				if(newName.size() != 0)
+				if(scoreIndex != -1 && newName.size() != 0)
 				{
 					newName.pop_back();
 					std::string v = "";
 					for(int i=0; i < newName.size(); i++)
 						v += newName.at(i);
-					texts.at(2).setString(v);
+					texts.at(2 + (scoreIndex * 2)).setString(v);
+					scores.at(scoreIndex).name = v;
 				}
 			}
 			break;
@@ -133,17 +180,16 @@ void ScoreMenu::keyEvent(sf::Keyboard::Key& k)
 
 void ScoreMenu::input(sf::Event::TextEvent t)
 {
-	if(newName.size() < 5)
+	if(scoreIndex != -1 && newName.size() < 5)
 	{
-		
-	std::string v = "";
+		std::string v = "";
+		newName.push_back(static_cast<char>(t.unicode));
 	
-	newName.push_back(static_cast<char>(t.unicode));
-	
-	for(int i=0; i < newName.size(); i++)
-		v += newName.at(i);
+		for(int i=0; i < newName.size(); i++)
+			v += newName.at(i);
 		
-	texts.at(2).setString(v);
+		texts.at(2 + (scoreIndex * 2)).setString(v);
+		scores.at(scoreIndex).name = v;
 	}
 //    score.SetText(str);
 }

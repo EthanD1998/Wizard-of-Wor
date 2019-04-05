@@ -24,7 +24,7 @@
 class Game : public DisplayState
 {
 public:
-	Game(int, int, int);
+	Game(int, int, int = 4, int = 0);
 	~Game();
 	
 	//		VARIABLES
@@ -41,7 +41,8 @@ public:
 		A vector of Entity pointers the game holds.
 			During each frame, the game will call Entity.handleEvents() and draw(Entity) for each item in the vector.
 	*/
-	Player* player;
+	Player* player = nullptr;
+	Player* playerTwo = nullptr;
 	/*
 		A reference to a player object so we don't have to search the vector every time we need it.
 	*/
