@@ -24,7 +24,8 @@ public:
 	~Entity();
 	
 	//		VARIABLES
-	
+
+
 	int team;
 	/*
 		Entities on similar teams can't hurt eachother.
@@ -38,6 +39,10 @@ public:
 	/*
 		The amount of lives the Entity has.  
 			Managed by game.
+	*/
+	int score = 0;
+	/*
+		Player's current score
 	*/
 	int value = 0;
 	/*

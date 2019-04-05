@@ -28,10 +28,13 @@ public:
 	~Game();
 	
 	//		VARIABLES
-	int gameLevel, nextlvl;
+	int gameLevel, nextlvl, enemyNum;
 	/*
 		The current level
 	*/
+	sf::Text dungeonLevel;
+	sf::Font font;
+
 	std::vector<sf::RectangleShape> shapes;
 	/*
 		A vector of shapes that the game holds so it can draw them easily.

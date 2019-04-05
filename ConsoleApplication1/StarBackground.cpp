@@ -9,7 +9,7 @@ StarBackground::StarBackground()
 	
 	for (int i = 0; i < 650; i++)
 	{
-		sf::CircleShape c(1);
+		sf::RectangleShape c(sf::Vector2f(1.5,1.5));
 		c.setFillColor(sf::Color(0, 187, 103));
 		c.setPosition(sf::Vector2f(rand() % 850, rand() % 600));
 		shapes.push_back(c);

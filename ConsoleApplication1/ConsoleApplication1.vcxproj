@@ -167,6 +167,7 @@
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ScoreMenu.h" />
     <ClInclude Include="SelectMenu.h" />
     <ClInclude Include="StarBackground.h" />
     <ClInclude Include="StartMenu.h" />
@@ -180,7 +181,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Burwor.cpp" />
     <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="ConsoleApplication1.cpp" />
+    <ClCompile Include="Wizard Of Wor.cpp" />
     <ClCompile Include="DisplayState.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -196,6 +197,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ScoreMenu.cpp" />
     <ClCompile Include="SelectMenu.cpp" />
     <ClCompile Include="StarBackground.cpp" />
     <ClCompile Include="StartMenu.cpp" />

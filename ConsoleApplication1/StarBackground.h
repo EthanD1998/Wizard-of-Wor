@@ -16,7 +16,7 @@ public:
 	StarBackground();
 	~StarBackground();
 	
-	std::vector<sf::CircleShape> shapes;
+	std::vector<sf::RectangleShape> shapes;
 	/*
 		A vector of shapes to draw (stars)
 	*/

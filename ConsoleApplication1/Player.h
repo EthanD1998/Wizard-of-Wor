@@ -25,10 +25,7 @@ public:
 	/*
 		Handles the life display
 	*/
-	int score = 0;
-	/*
-		Player's current score
-	*/
+	
 	sf::Text scoreText;
 	sf::Font font;
 	

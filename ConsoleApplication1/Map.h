@@ -12,13 +12,9 @@ public:
 	Map(std::string);
 	~Map();
 	Cell* getCell(int, int);
-	std::vector<int>* getProperties();
-	int getProperty(int);
 	
 protected:
 	std::vector<std::vector<Cell>> cellMap;
-	std::vector<int> levelProperties;
 	//please add comments
 	virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const;
 };
-

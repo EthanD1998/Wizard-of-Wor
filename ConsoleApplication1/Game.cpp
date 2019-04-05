@@ -17,6 +17,10 @@ Game::Game(int index, int nextlevel, int pLives, int pScore)
 	nextlvl = nextlevel;
 	
 	gameLevel = index;
+	if (index > 6)
+		enemyNum = 6;
+	else
+		enemyNum = index;
 	
 	std::cout << "DisplayState Game Created" << std::endl;
 	
@@ -39,19 +43,19 @@ Game::Game(int index, int nextlevel, int pLives, int pScore)
 	entities.push_back(new TeleportDoor(&level, &entities));
 	entities.push_back(new TrapDoor(&level, &entities));
 	
-	for(int i=0; i < level.getProperty(burwor); i++)
+	for (int i = 0; i < 6; i++)
 	{
 		entities.push_back(new Burwor(&level, &entities));
 		//Makes 6 enemies
 	}
-	for(int i=0; i < level.getProperty(garwor); i++)
-	{
-		entities.push_back(new Garwor(&level, &entities, player));
-	}
-	for(int i=0; i < level.getProperty(thorwor); i++)
-	{
-		entities.push_back(new Thorwor(&level, &entities, player));
-	}
+
+	font.loadFromFile("Fonts/Adore.ttf");
+	dungeonLevel.setFont(font);
+	dungeonLevel.setString("Dungeon " + std::to_string(gameLevel));
+	dungeonLevel.setPosition(sf::Vector2f(shapes.at(0).getPosition().x + shapes.at(0).getSize().x / 4, shapes.at(0).getPosition().y - 20));
+	dungeonLevel.setScale(sf::Vector2f(.5, .5));
+	dungeonLevel.setFillColor(sf::Color::Red);
+
 }
 
 std::string Game::type()
@@ -75,16 +79,29 @@ int Game::findEntity(std::string target)
 
 void Game::kill(int index)
 {
-	if(entities.at(index)->killable)
+	if (entities.at(index)->killable)
 	{
 		entities.at(index)->lives--;
-	
+
 		if (entities.at(index)->lives == 0)
 		{
 			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
-			player->score += entities.at(index)->value;
+			if (entities.at(index)->score != 0)
+				player->score += entities.at(index)->value;
+				//entities.at(index)->killedBy->score += entities.at(index)->value;
+
 			//add the entities's worth to the player's score
 			entities.at(index)->link->Alive = false;
+			if (entities.at(index)->type() == "Enemy Burwor")
+			{
+				if (enemyNum > 0)
+				{
+					enemyNum--;
+					entities.push_back(new Garwor(&level, &entities, player));
+				}
+			}
+			else if (entities.at(index)->type() == "Enemy Garwor")
+				entities.push_back(new Thorwor(&level, &entities, player));
 			entities.erase(entities.begin() + index);
 			entities.shrink_to_fit();
 		}
@@ -109,7 +126,10 @@ void Game::kill(int index)
 void Game::draw(sf::RenderWindow* target)
 {
 	target->draw(level);
-	
+	target->draw(dungeonLevel);
+
+
+
 	for(int i=0; i < entities.size(); i++)
 	{
 		if(entities.at(i)->Alive && !outsideMap(entities.at(i)))

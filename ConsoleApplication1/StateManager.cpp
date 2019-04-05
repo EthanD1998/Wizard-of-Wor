@@ -26,7 +26,7 @@ void StateManager::kill(int index)
 void StateManager::init()
 {
 	sf::RenderWindow window(sf::VideoMode(840, 600), "Wizard of Wor [DEBUG]");
-	window.setFramerateLimit(60);
+	//window.setFramerateLimit(60);
 	
 	
 	while (window.isOpen())
