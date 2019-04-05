@@ -65,6 +65,11 @@ std::string Game::type()
 
 Game::~Game()
 {
+	for (int i = 0; i < entities.size(); i++)
+	{
+		delete entities.at(i);
+	}
+	delete player;
 }
 
 int Game::findEntity(std::string target)
@@ -102,6 +107,7 @@ void Game::kill(int index)
 			}
 			else if (entities.at(index)->type() == "Enemy Garwor")
 				entities.push_back(new Thorwor(&level, &entities, player));
+			delete entities.at(index);
 			entities.erase(entities.begin() + index);
 			entities.shrink_to_fit();
 		}

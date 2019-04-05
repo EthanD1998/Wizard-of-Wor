@@ -14,11 +14,16 @@ StateManager::StateManager()
 
 StateManager::~StateManager()
 {
+	for (int i = 0; i < gameStates.size(); i++)
+	{
+		delete gameStates.at(i);
+	}
 }
 
 void StateManager::kill(int index)
 {
 	std::cout << "Killed DisplayState [" << gameStates.at(index)->type() << "] @ " << index << std::endl;
+	delete gameStates.at(index);
 	gameStates.erase(gameStates.begin() + (index));
 	gameStates.shrink_to_fit();
 }
