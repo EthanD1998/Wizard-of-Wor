@@ -85,8 +85,8 @@ void Game::kill(int index)
 
 		if (entities.at(index)->lives == 0)
 		{
-			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << std::endl;
-			if (entities.at(index)->score != 0)
+			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << " with score: " << entities.at(index)->value << std::endl;
+			if (entities.at(index)->value != 0)
 				player->score += entities.at(index)->value;
 				//entities.at(index)->killedBy->score += entities.at(index)->value;
 
