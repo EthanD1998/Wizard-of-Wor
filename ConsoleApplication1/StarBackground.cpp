@@ -4,13 +4,13 @@
 StarBackground::StarBackground()
 {
 	hasFocus = false;
-	
+	color = sf::Color(0, 187, 103);
 	std::cout << "DisplayState StarBackground Created" << std::endl;
 	
 	for (int i = 0; i < 650; i++)
 	{
 		sf::RectangleShape c(sf::Vector2f(1.5,1.5));
-		c.setFillColor(sf::Color(0, 187, 103));
+		c.setFillColor(color);
 		c.setPosition(sf::Vector2f(rand() % 850, rand() % 600));
 		shapes.push_back(c);
 	}
@@ -32,11 +32,12 @@ void StarBackground::draw(sf::RenderWindow* target)
 
 void StarBackground::updateEvents()
 {
-	sf::Color c;
+	int t = 0;
+
 	for (int i = 0; i < shapes.size(); i++)
 	{
-		c = shapes.at(i).getFillColor();
-		shapes.at(i).setFillColor(sf::Color(c.r, c.g, c.b, rand() % 155 + 100));
+		if (i % 100 == 0) t = rand() % 155 + 100;
+		shapes.at(i).setFillColor(sf::Color(color.r, color.g, color.b, t));
 	}
 }
 	
