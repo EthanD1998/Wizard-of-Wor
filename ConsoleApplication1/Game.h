@@ -59,6 +59,11 @@ public:
 	
 	//		FUNCTIONS
 	
+	void spawnEnemies(int);
+	/*
+		Does exactly what it sounds like.
+	*/
+	
 	void updateEvents() override;
 	/*
 		updateEvents overridden from parent DisplayState.

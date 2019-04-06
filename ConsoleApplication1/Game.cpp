@@ -82,6 +82,22 @@ int Game::findEntity(std::string target)
 	return -1;
 }
 
+void Game::spawnEnemies(int index)
+{
+	if (entities.at(index)->type() == "Enemy Burwor")
+	{
+		if (enemyNum > 0)
+		{
+			enemyNum--;
+			entities.push_back(new Garwor(&level, &entities, player));
+		}
+	}
+	else if (entities.at(index)->type() == "Enemy Garwor")
+	{
+		entities.push_back(new Thorwor(&level, &entities, player));
+	}
+}
+
 void Game::kill(int index)
 {
 	if (entities.at(index)->killable)
@@ -95,22 +111,10 @@ void Game::kill(int index)
 			{
 				player->score += entities.at(index)->value;
 			}
-
 			entities.at(index)->link->Alive = false;
 			
-			if (entities.at(index)->type() == "Enemy Burwor")
-			{
-				if (enemyNum > 0)
-				{
-					enemyNum--;
-					entities.push_back(new Garwor(&level, &entities, player));
-				}
-			}
-			else if (entities.at(index)->type() == "Enemy Garwor")
-			{
-				entities.push_back(new Thorwor(&level, &entities, player));
-			}
-				
+			spawnEnemies(index);
+			
 			if(entities.at(index)->type().find("Enemy") != std::string::npos)
 			{
 				entities.push_back(new Explosion(entities.at(index)->sprite.getPosition()));

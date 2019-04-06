@@ -12,4 +12,5 @@ int main()
 	srand(time(NULL));
 	StateManager control = StateManager();
 	control.init();
+	
 }
