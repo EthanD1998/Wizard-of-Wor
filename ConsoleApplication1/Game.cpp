@@ -100,6 +100,11 @@ void Game::spawnEnemies(int index)
 
 void Game::kill(int index)
 {
+	if(entities.at(index)->type().find("Enemy") != std::string::npos || entities.at(index)->type().find("Player") != std::string::npos)
+	{
+		entities.push_back(new Explosion(entities.at(index)->sprite.getPosition()));
+	}
+	
 	if (entities.at(index)->killable)
 	{
 		entities.at(index)->lives--;
@@ -114,12 +119,6 @@ void Game::kill(int index)
 			entities.at(index)->link->Alive = false;
 			
 			spawnEnemies(index);
-			
-			if(entities.at(index)->type().find("Enemy") != std::string::npos || entities.at(index)->type().find("Player") != std::string::npos)
-			{
-				entities.push_back(new Explosion(entities.at(index)->sprite.getPosition()));
-			}
-			
 			
 			delete entities.at(index);
 			entities.erase(entities.begin() + index);

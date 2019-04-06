@@ -25,7 +25,7 @@ public:
 	/*
 		Handles the life display
 	*/
-	
+
 	sf::Text scoreText;
 	sf::Font font;
 	

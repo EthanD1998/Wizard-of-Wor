@@ -17,7 +17,6 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
-	
 }
 
 std::string Enemy::type()
@@ -72,7 +71,7 @@ void Enemy::handleEvents()
 		{
 			if(entities->at(i)->killable)
 			{
-				Alive = false;
+				//Alive = false;
 				entities->at(i)->Alive = false;
 			}
 		}

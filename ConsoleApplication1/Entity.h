@@ -115,6 +115,7 @@ public:
 		A clock used to time events
 	*/
 	int timeAlive = 0;
+	bool respawning = false;
 	
 	//		FUNCTIONS
 	bool bulletExists();

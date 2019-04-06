@@ -32,6 +32,15 @@ TrapDoor::TrapDoor(Map* _map, std::vector<Entity*>* _entities = nullptr)
 	text.setPosition(sf::Vector2f(660,420));
 		
 	std::cout << "Spawned TrapDoor @ (" << door.getPosition().x / 60 << ", " << door.getPosition().y / 60 << ")\n";
+	
+	for(int i = 0; i < entities->size(); i++)
+	{
+		if(entities->at(i)->type() == "Player")
+		{
+			player = entities->at(i);
+			break;
+		}
+	}		
 }
 
 TrapDoor::~TrapDoor()
@@ -45,39 +54,33 @@ std::string TrapDoor::type()
 
 bool TrapDoor::checkCollision()
 {
-	for(int i = 0; i < entities->size(); i++)
-	{
-		if(entities->at(i)->type() == "Player")
-		{
-			if(entities->at(i)->sprite.getPosition().y < door.getPosition().y + 5)
-			{
-				entities->at(i)->killable = true;
-				std::cout << "Closed Doors\n";
-				open = false;
-				level->getCell(11, 5)->addWall(Walls(2, 11, 5, sf::Color::Yellow));
-				Alive = false;
-				return true;
-			}
-			else
-			{
-				int temp;
-				//we don't need timeAlive for this Entity, so we use it for a timer
-				temp = round(clock.getElapsedTime().asSeconds());
-				if(temp > timeAlive)
-				{
-					timeAlive++;
-				}
 	
+	if(player->sprite.getPosition().y < door.getPosition().y + 5)
+	{
+		player->killable = true;
+		std::cout << "Closed Doors\n";
+		open = false;
+		level->getCell(11, 5)->addWall(Walls(2, 11, 5, sf::Color::Blue));
+		Alive = false;
+		return true;
+	}
+	else
+	{
+		int temp;
+		//we don't need timeAlive for this Entity, so we use it for a timer
+		temp = round(clock.getElapsedTime().asSeconds());
+		if(temp > timeAlive)
+		{
+			timeAlive++;
+		}
 				switch(timeAlive)
-				{
-					case 11:
-						entities->at(i)->sprite.setPosition(sf::Vector2f(entities->at(i)->sprite.getPosition().x, entities->at(i)->sprite.getPosition().y - 10));
-						break;
-					default:
-						text.setString(std::to_string(timeAlive));
-						break;
-				}
-			}
+		{
+			case 11:
+				player->sprite.setPosition(sf::Vector2f(player->sprite.getPosition().x, player->sprite.getPosition().y - 10));
+				break;
+			default:
+				text.setString(std::to_string(timeAlive));
+				break;
 		}
 	}
 	return false;
