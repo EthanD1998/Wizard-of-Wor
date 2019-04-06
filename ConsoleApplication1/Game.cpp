@@ -115,7 +115,7 @@ void Game::kill(int index)
 			
 			spawnEnemies(index);
 			
-			if(entities.at(index)->type().find("Enemy") != std::string::npos)
+			if(entities.at(index)->type().find("Enemy") != std::string::npos || entities.at(index)->type().find("Player") != std::string::npos)
 			{
 				entities.push_back(new Explosion(entities.at(index)->sprite.getPosition()));
 			}
