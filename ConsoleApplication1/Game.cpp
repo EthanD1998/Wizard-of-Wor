@@ -92,11 +92,12 @@ void Game::kill(int index)
 		{
 			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << " with score: " << entities.at(index)->value << std::endl;
 			if (entities.at(index)->value != 0)
+			{
 				player->score += entities.at(index)->value;
-				//entities.at(index)->killedBy->score += entities.at(index)->value;
+			}
 
-			//add the entities's worth to the player's score
 			entities.at(index)->link->Alive = false;
+			
 			if (entities.at(index)->type() == "Enemy Burwor")
 			{
 				if (enemyNum > 0)
@@ -106,7 +107,16 @@ void Game::kill(int index)
 				}
 			}
 			else if (entities.at(index)->type() == "Enemy Garwor")
+			{
 				entities.push_back(new Thorwor(&level, &entities, player));
+			}
+				
+			if(entities.at(index)->type().find("Enemy") != std::string::npos)
+			{
+				entities.push_back(new Explosion(entities.at(index)->sprite.getPosition()));
+			}
+			
+			
 			delete entities.at(index);
 			entities.erase(entities.begin() + index);
 			entities.shrink_to_fit();

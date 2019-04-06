@@ -2,6 +2,7 @@
 #include "pch.h"
 #include "DisplayState.h"
 #include "ScoreMenu.h"
+#include "Explosion.h"
 #include "Entity.h"
 #include "Player.h"
 #include "Bullet.h"

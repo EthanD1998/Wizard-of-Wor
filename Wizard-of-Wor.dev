@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=6
 CompilerSettings=0000000000000000001000000
-UnitCount=45
+UnitCount=49
 
 [VersionInfo]
 Major=1
@@ -251,16 +251,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit21]
-FileName=ConsoleApplication1\ConsoleApplication1.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit22]
 FileName=ConsoleApplication1\StarBackground.cpp
 CompileCpp=1
 Folder=
@@ -270,7 +260,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit23]
+[Unit22]
 FileName=ConsoleApplication1\StarBackground.h
 CompileCpp=1
 Folder=
@@ -280,7 +270,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit24]
+[Unit23]
 FileName=ConsoleApplication1\PauseMenu.cpp
 CompileCpp=1
 Folder=
@@ -290,7 +280,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit25]
+[Unit24]
 FileName=ConsoleApplication1\PauseMenu.h
 CompileCpp=1
 Folder=
@@ -300,77 +290,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit27]
-FileName=ConsoleApplication1\Cell.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit30]
-FileName=ConsoleApplication1\TrapDoor.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit31]
-FileName=ConsoleApplication1\TrapDoor.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit32]
-FileName=ConsoleApplication1\Map.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit33]
-FileName=ConsoleApplication1\Map.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit34]
-FileName=ConsoleApplication1\Walls.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit35]
-FileName=ConsoleApplication1\Walls.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit26]
+[Unit25]
 FileName=ConsoleApplication1\Cell.cpp
 CompileCpp=1
 Folder=
@@ -380,7 +300,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit28]
+[Unit27]
 FileName=ConsoleApplication1\SelectMenu.cpp
 CompileCpp=1
 Folder=
@@ -390,8 +310,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit29]
-FileName=ConsoleApplication1\SelectMenu.h
+[Unit30]
+FileName=ConsoleApplication1\TrapDoor.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -400,7 +320,47 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit36]
+[Unit31]
+FileName=ConsoleApplication1\Map.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit32]
+FileName=ConsoleApplication1\Map.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit33]
+FileName=ConsoleApplication1\Walls.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit34]
+FileName=ConsoleApplication1\Walls.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit35]
 FileName=ConsoleApplication1\Burwor.cpp
 CompileCpp=1
 Folder=
@@ -410,7 +370,37 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit37]
+[Unit26]
+FileName=ConsoleApplication1\Cell.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit28]
+FileName=ConsoleApplication1\SelectMenu.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit29]
+FileName=ConsoleApplication1\TrapDoor.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit36]
 FileName=ConsoleApplication1\Burwor.h
 CompileCpp=1
 Folder=
@@ -420,7 +410,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit38]
+[Unit37]
 FileName=ConsoleApplication1\Garwor.cpp
 CompileCpp=1
 Folder=
@@ -430,7 +420,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit39]
+[Unit38]
 FileName=ConsoleApplication1\Garwor.h
 CompileCpp=1
 Folder=
@@ -440,7 +430,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit40]
+[Unit39]
 FileName=ConsoleApplication1\Thorwor.cpp
 CompileCpp=1
 Folder=
@@ -450,7 +440,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit41]
+[Unit40]
 FileName=ConsoleApplication1\Thorwor.h
 CompileCpp=1
 Folder=
@@ -460,7 +450,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit42]
+[Unit41]
 FileName=ConsoleApplication1\FpsCounter.cpp
 CompileCpp=1
 Folder=
@@ -470,7 +460,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit43]
+[Unit42]
 FileName=ConsoleApplication1\FpsCounter.h
 CompileCpp=1
 Folder=
@@ -480,7 +470,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit44]
+[Unit43]
 FileName=ConsoleApplication1\ScoreMenu.cpp
 CompileCpp=1
 Folder=
@@ -490,8 +480,58 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit45]
+[Unit44]
 FileName=ConsoleApplication1\ScoreMenu.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit45]
+FileName=ConsoleApplication1\Wizard-Of-Wor.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit46]
+FileName=ConsoleApplication1\AnimatedTexture.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit47]
+FileName=ConsoleApplication1\AnimatedTexture.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit48]
+FileName=ConsoleApplication1\Explosion.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit49]
+FileName=ConsoleApplication1\Explosion.h
 CompileCpp=1
 Folder=
 Compile=1

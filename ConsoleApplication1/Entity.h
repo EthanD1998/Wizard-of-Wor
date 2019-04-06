@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "Cell.h"
 #include "Walls.h"
+#include "AnimatedTexture.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <cmath>
@@ -24,8 +25,14 @@ public:
 	~Entity();
 	
 	//		VARIABLES
-
-
+	AnimatedTexture animation;
+	/*
+		The animated texture;
+	*/
+	bool explosion = false;
+	/*	
+		If the Entity explodes on death.
+	*/
 	int team;
 	/*
 		Entities on similar teams can't hurt eachother.

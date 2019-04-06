@@ -14,7 +14,6 @@ StarBackground::StarBackground()
 		c.setPosition(sf::Vector2f(rand() % 850, rand() % 600));
 		shapes.push_back(c);
 	}
-
 }
 
 StarBackground::~StarBackground()
@@ -27,7 +26,6 @@ void StarBackground::draw(sf::RenderWindow* target)
 	{
 		target->draw(shapes.at(i));
 	}
-
 }
 
 void StarBackground::updateEvents()

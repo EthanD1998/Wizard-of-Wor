@@ -28,8 +28,15 @@ Player::Player(Map* _map, std::vector<Entity*>* e, int playerLives, int playerSc
 	level = _map;
 	
 	texture.loadFromFile("Sprites/Worrior.png");
-
-	sprite.setTexture(texture);
+	
+	animation = AnimatedTexture(.1f, sf::Vector2f(20,20), true);
+	
+	for(int i = 1; i < 3 + 1; i++)
+	{
+		animation.addImage("Sprites/Worrior/Worrior (" + std::to_string(i) + ").png");
+	}
+	
+	sprite.setTexture(animation);
 	sprite.setScale(sf::Vector2f(charScale, charScale));
 	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
 	sprite.setPosition(startPos);
@@ -72,13 +79,13 @@ void Player::draw(sf::RenderWindow* target)
 
 	target->draw(sprite);
 	target->draw(radarShape);
-
+	target->draw(scoreText);
+	
 	for (int i = 0; i < lifeDisplay.size(); i++)
 	{
 		target->draw(lifeDisplay.at(i));
 	}
 	
-	target->draw(scoreText);
 }
 
 std::string Player::type()
@@ -105,6 +112,7 @@ void Player::handleEvents()
 		timeAlive = temp;
 	}
 	
+	animation.updateTexture();
 	scoreText.setString(std::to_string(score));
 }
 

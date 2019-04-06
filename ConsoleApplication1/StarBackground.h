@@ -18,6 +18,7 @@ public:
 
 	sf::Color color;
 	std::vector<sf::RectangleShape> shapes;
+	
 	/*
 		A vector of shapes to draw (stars)
 	*/
