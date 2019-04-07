@@ -27,6 +27,9 @@ std::string Enemy::type()
 
 void Enemy::handleEvents()
 {
+	if(animation.Alive)
+		animation.updateTexture();
+	
 	if(invisible)
 		columnOpacity();
 		

@@ -33,7 +33,7 @@ Player::Player(Map* _map, std::vector<Entity*>* e, int playerLives, int playerSc
 	
 	animation = AnimatedTexture(.1f, sf::Vector2f(20,20), true);
 	
-	for(int i = 1; i < 3 + 1; i++)
+	for(int i = 1; i < 4 + 1; i++)
 	{
 		animation.addImage("Sprites/Worrior" + std::to_string(playerType) + "/Worrior (" + std::to_string(i) + ").png");
 	}

@@ -3,6 +3,7 @@
 AnimatedTexture::AnimatedTexture(float f, sf::Vector2f size, bool l)
 : sf::Texture()
 {
+	Alive = true;
 	loops = l;
 	frameTime = f;
 	create(size.x,size.y);
@@ -45,6 +46,7 @@ void AnimatedTexture::nextFrame()
 AnimatedTexture::AnimatedTexture()
 : sf::Texture()
 {
+	Alive = false;
 }
 
 void AnimatedTexture::addImage(std::string s)

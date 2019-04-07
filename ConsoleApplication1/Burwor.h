@@ -11,5 +11,6 @@ public:
 	~Burwor();
 
 	std::string type() override;
+	//void draw(sf::RenderWindow*) override;
 };
 

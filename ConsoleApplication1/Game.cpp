@@ -138,7 +138,7 @@ void Game::kill(int index)
 		}
 		else
 		{
-			entities.push_back(new TrapDoor(&level, &entities, 0));
+			entities.push_back(new TrapDoor(&level, &entities, e->team));
 			e->Alive = true;
 			e->respawn();
 			std::cout << "Removed 1 life from [" << e->type() << "], " << e->lives << " lives left." << std::endl;
