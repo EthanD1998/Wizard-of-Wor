@@ -25,7 +25,7 @@
 class Game : public DisplayState
 {
 public:
-	Game(int, int, int = 4, int = 0);
+	Game(int, int, std::vector<int>);
 	~Game();
 	
 	//		VARIABLES

@@ -16,7 +16,7 @@ class Player : public Entity
 	
 public:
 
-	Player(Map*, std::vector<Entity*>*, int = 4, int = 0);
+	Player(Map*, std::vector<Entity*>*, int = 4, int = 0, int = 1);
 	~Player();
 	
 	//		VARIABLES
@@ -25,9 +25,10 @@ public:
 	/*
 		Handles the life display
 	*/
-
+	int playerType;
 	sf::Text scoreText;
 	sf::Font font;
+	std::vector<sf::Keyboard::Key> controls;
 	
 	//		FUNCTIONS
 	

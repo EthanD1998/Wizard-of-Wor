@@ -12,10 +12,11 @@ class TrapDoor : public Entity
 	
 public:
 
-	TrapDoor(Map*,std::vector<Entity*>*);
+	TrapDoor(Map*,std::vector<Entity*>*, int);
 	~TrapDoor();
 	
 	Entity* player;
+	int playerType;
 	bool open = true;
 	sf::RectangleShape door;
 	sf::Text text;

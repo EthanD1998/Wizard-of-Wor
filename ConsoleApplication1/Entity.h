@@ -114,6 +114,10 @@ public:
 	/*
 		A clock used to time events
 	*/
+	int killedBy = -1;
+	/*
+		The Entity that killed 
+	*/
 	int timeAlive = 0;
 	bool respawning = false;
 	

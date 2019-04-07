@@ -8,7 +8,7 @@
 /*
 	Creating the map and some starting entities.
 */
-Game::Game(int index, int nextlevel, int pLives, int pScore)
+Game::Game(int index, int nextlevel, std::vector<int> playerProp)
 {
 	enum {
 		burwor, garwor, thorwor
@@ -26,11 +26,12 @@ Game::Game(int index, int nextlevel, int pLives, int pScore)
 	
 	level = Map("level_" + std::to_string(nextlvl) + ".csv");
 	
-	player = new Player(&level,&entities, pLives, pScore);
+	player = new Player(&level,&entities, playerProp.at(0), playerProp.at(1), 0);
+	playerTwo = new Player(&level,&entities, playerProp.at(2), playerProp.at(3), 1);
 		
-	//playerTwo = new Player(&level,&entities, 4);
-	//entities.push_back(playerTwo);
+	entities.push_back(playerTwo);
 	entities.push_back(player);
+	
 	
 	sf::RectangleShape s(sf::Vector2f(286,156));
 	s.setFillColor(sf::Color::Transparent);
@@ -41,7 +42,8 @@ Game::Game(int index, int nextlevel, int pLives, int pScore)
 	//the radar outline box
 
 	entities.push_back(new TeleportDoor(&level, &entities));
-	entities.push_back(new TrapDoor(&level, &entities));
+	entities.push_back(new TrapDoor(&level, &entities, 0));
+	entities.push_back(new TrapDoor(&level, &entities, 1));	
 	
 	for (int i = 0; i < 6; i++)
 	{
@@ -100,41 +102,51 @@ void Game::spawnEnemies(int index)
 
 void Game::kill(int index)
 {
-	if(entities.at(index)->type().find("Enemy") != std::string::npos || entities.at(index)->type().find("Player") != std::string::npos)
+	Entity* e = entities.at(index);
+	
+	if(e->type().find("Enemy") != std::string::npos || e->type().find("Player") != std::string::npos)
 	{
-		entities.push_back(new Explosion(entities.at(index)->sprite.getPosition()));
+		entities.push_back(new Explosion(e->sprite.getPosition()));
 	}
 	
-	if (entities.at(index)->killable)
+	if (e->killable)
 	{
-		entities.at(index)->lives--;
+		e->lives--;
 
-		if (entities.at(index)->lives == 0)
+		if (e->lives == 0)
 		{
-			std::cout << "Killed Entity [" << entities.at(index)->type() << "] @ " << index << " with score: " << entities.at(index)->value << std::endl;
-			if (entities.at(index)->value != 0)
+			std::cout << "Killed Entity [" << e->type() << "] @ " << index << " with score: " << e->value << std::endl;
+			if (e->value != 0)
 			{
-				player->score += entities.at(index)->value;
+				if(player->team == e->killedBy)
+				{
+					player->score += e->value;
+				}
+				else if(playerTwo->team == e->killedBy)
+				{
+					playerTwo->score += e->value;
+				}
+				
 			}
-			entities.at(index)->link->Alive = false;
+			e->link->Alive = false;
 			
 			spawnEnemies(index);
 			
-			delete entities.at(index);
+			delete e;
 			entities.erase(entities.begin() + index);
 			entities.shrink_to_fit();
 		}
 		else
 		{
-			entities.push_back(new TrapDoor(&level, &entities));
-			entities.at(index)->Alive = true;
-			entities.at(index)->respawn();
-			std::cout << "Removed 1 life from [" << entities.at(index)->type() << "], " << entities.at(index)->lives << " lives left." << std::endl;
+			entities.push_back(new TrapDoor(&level, &entities, 0));
+			e->Alive = true;
+			e->respawn();
+			std::cout << "Removed 1 life from [" << e->type() << "], " << e->lives << " lives left." << std::endl;
 		}
 	}
 	else
 	{
-		entities.at(index)->Alive = true;
+		e->Alive = true;
 	}
 }
 
@@ -209,7 +221,7 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 		}
 		break;
 	case sf::Keyboard::Space:
-		player->shoot();
+		//player->shoot();
 		break;
 	case sf::Keyboard::K:
 		player->lives = 0;
@@ -226,8 +238,16 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 
 DisplayState* Game::nextState()
 {
+	std::vector<int> prop;
+	
+	prop.push_back(player->lives);
+	prop.push_back(player->score);
+	
+	prop.push_back(playerTwo->lives);
+	prop.push_back(playerTwo->score);
+	
 	int nextLevel = 1;
-	if(player->lives == 0) return new ScoreMenu(player->score);
+	if(player->lives == 0) return new ScoreMenu(player->score); //, playerTwo->score);
 	gameLevel++;
 	
 		
@@ -249,7 +269,7 @@ DisplayState* Game::nextState()
 		}
 	} while (nextlvl == nextLevel);
 	
-	return new Game(gameLevel, nextLevel, player->lives, player->score); //increment this
+	return new Game(gameLevel, nextLevel, prop); //increment this
 }
 
 bool Game::outsideMap(Entity* e)

@@ -43,7 +43,14 @@ SelectMenu::~SelectMenu()
 
 DisplayState* SelectMenu::nextState()
 {
-	return new Game(1, 1, 4);
+	std::vector<int> prop;
+	
+	prop.push_back(4);
+	prop.push_back(0);
+	prop.push_back(4);
+	prop.push_back(0);
+	
+	return new Game(1, 1, prop);
 }
 
 void SelectMenu::keyEvent(sf::Keyboard::Key& k)

@@ -4,8 +4,10 @@
 #include <iostream>
 #include <cmath>
 
-TrapDoor::TrapDoor(Map* _map, std::vector<Entity*>* _entities = nullptr)
+TrapDoor::TrapDoor(Map* _map, std::vector<Entity*>* _entities = nullptr, int pType = 0)
 {
+	playerType = pType;
+	
 	charScale = 1;
 	charMove = 1;
 	
@@ -14,7 +16,7 @@ TrapDoor::TrapDoor(Map* _map, std::vector<Entity*>* _entities = nullptr)
 	door.setSize(sf::Vector2f(60,5));
 	door.setFillColor(sf::Color::Green);
 	door.setOrigin(door.getLocalBounds().height / 2, door.getLocalBounds().width / 2);
-	door.setPosition(sf::Vector2f(747, 360));
+	door.setPosition(sf::Vector2f(747 - (playerType * 600), 360));
 	door.setRotation(180);
 	
 	level = _map;
@@ -29,13 +31,13 @@ TrapDoor::TrapDoor(Map* _map, std::vector<Entity*>* _entities = nullptr)
 
 	sf::FloatRect textRect = text.getLocalBounds();
 	text.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-	text.setPosition(sf::Vector2f(660,420));
+	text.setPosition(sf::Vector2f(660 - (playerType * 600),420));
 		
 	std::cout << "Spawned TrapDoor @ (" << door.getPosition().x / 60 << ", " << door.getPosition().y / 60 << ")\n";
 	
 	for(int i = 0; i < entities->size(); i++)
 	{
-		if(entities->at(i)->type() == "Player")
+		if(entities->at(i)->type() == "Player" + std::to_string(playerType))
 		{
 			player = entities->at(i);
 			break;
@@ -60,7 +62,7 @@ bool TrapDoor::checkCollision()
 		player->killable = true;
 		std::cout << "Closed Doors\n";
 		open = false;
-		level->getCell(11, 5)->addWall(Walls(2, 11, 5, sf::Color::Blue));
+		level->getCell(11 - (playerType * 10), 5)->addWall(Walls(2, 11 - (playerType * 10), 5, sf::Color::Blue));
 		Alive = false;
 		return true;
 	}
