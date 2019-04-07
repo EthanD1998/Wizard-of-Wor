@@ -60,6 +60,8 @@ Player::Player(Map* _map, std::vector<Entity*>* e, int playerLives, int playerSc
 	scoreText.setCharacterSize(35);
 	
 	scoreText.setFillColor(sf::Color::Blue);
+	if(playerType == 1)
+		scoreText.setFillColor(sf::Color::Yellow);
 
 	sf::FloatRect textRect = scoreText.getLocalBounds();
 	scoreText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
