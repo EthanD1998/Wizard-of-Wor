@@ -17,9 +17,14 @@ Thorwor::Thorwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr,
 	level = _map;
 	entities = _entities;
 
-	texture.loadFromFile("Sprites/Thorwor.png");
-
-	sprite.setTexture(texture);
+	animation = AnimatedTexture(.1f, sf::Vector2f(20,20), true);
+	
+	for(int i = 1; i < 4 + 1; i++)
+	{
+		animation.addImage("Sprites/Thorwor/Thorwor (" + std::to_string(i) + ").png");
+	}
+	
+	sprite.setTexture(animation);
 	sprite.setScale(sf::Vector2f(charScale, charScale));
 	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
 	sprite.setPosition(sf::Vector2f((rand() % 11 + 2) * 60, (rand() % 6 + 1) * 60));
