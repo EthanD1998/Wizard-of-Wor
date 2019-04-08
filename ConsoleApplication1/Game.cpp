@@ -8,11 +8,9 @@
 /*
 	Creating the map and some starting entities.
 */
-Game::Game(int index, int nextlevel, std::vector<int> playerProp)
+Game::Game(int index, int nextlevel, int pCount, std::vector<int> playerProp)
 {
-	enum {
-		burwor, garwor, thorwor
-	};
+	playerCount = pCount;
 	
 	nextlvl = nextlevel;
 	
@@ -27,11 +25,13 @@ Game::Game(int index, int nextlevel, std::vector<int> playerProp)
 	level = Map("level_" + std::to_string(nextlvl) + ".csv");
 	
 	player = new Player(&level,&entities, playerProp.at(0), playerProp.at(1), 0);
-	playerTwo = new Player(&level,&entities, playerProp.at(2), playerProp.at(3), 1);
-		
-	entities.push_back(playerTwo);
 	entities.push_back(player);
-	
+		
+	if(playerCount > 1)
+	{
+		playerTwo = new Player(&level,&entities, playerProp.at(2), playerProp.at(3), 1);
+		entities.push_back(playerTwo);
+	}
 	
 	sf::RectangleShape s(sf::Vector2f(286,156));
 	s.setFillColor(sf::Color::Transparent);
@@ -72,6 +72,7 @@ Game::~Game()
 		delete entities.at(i);
 	}
 	delete player;
+	delete playerTwo;
 }
 
 int Game::findEntity(std::string target)
@@ -122,7 +123,7 @@ void Game::kill(int index)
 				{
 					player->score += e->value;
 				}
-				else if(playerTwo->team == e->killedBy)
+				else if(playerCount > 1 && playerTwo->team == e->killedBy)
 				{
 					playerTwo->score += e->value;
 				}
@@ -193,7 +194,7 @@ void Game::updateEvents()
 			kill(i);
 		}
 	}
-	if(player->lives == 0 || findEntity("Enemy") == -1)
+	if(player->lives == 0 || findEntity("Enemy") == -1 || (playerCount > 1 && playerTwo->lives == 0))
 	{
 		exists = false;
 	}
@@ -243,14 +244,24 @@ DisplayState* Game::nextState()
 	prop.push_back(player->lives);
 	prop.push_back(player->score);
 	
+	if(playerCount > 1)
+	{
 	prop.push_back(playerTwo->lives);
 	prop.push_back(playerTwo->score);
+	}
 	
 	int nextLevel = 1;
-	if(player->lives == 0) return new ScoreMenu(player->score); //, playerTwo->score);
+	if(player->lives == 0)
+	{
+		if(playerCount > 1)
+		{
+			return new ScoreMenu(player->score); //, playerTwo->score);
+		}
+		return new ScoreMenu(player->score, playerTwo->score); //, playerTwo->score);
+	}
+	
 	gameLevel++;
 	
-		
 	do
 	{
 		if (gameLevel > 7)
@@ -269,7 +280,7 @@ DisplayState* Game::nextState()
 		}
 	} while (nextlvl == nextLevel);
 	
-	return new Game(gameLevel, nextLevel, prop); //increment this
+	return new Game(gameLevel, nextLevel, playerCount, prop); //increment this
 }
 
 bool Game::outsideMap(Entity* e)

@@ -42,7 +42,15 @@ TrapDoor::TrapDoor(Map* _map, std::vector<Entity*>* _entities = nullptr, int pTy
 			player = entities->at(i);
 			break;
 		}
-	}		
+	}
+	
+	if(player == nullptr)
+	{
+		open = false;
+		level->getCell(11 - (playerType * 10), 5)->addWall(Walls(2, 11 - (playerType * 10), 5, sf::Color::Blue));
+		Alive = false;
+	}
+	
 }
 
 TrapDoor::~TrapDoor()

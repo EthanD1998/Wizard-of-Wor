@@ -15,7 +15,7 @@ public:
 	TrapDoor(Map*,std::vector<Entity*>*, int);
 	~TrapDoor();
 	
-	Entity* player;
+	Entity* player = nullptr;
 	int playerType;
 	bool open = true;
 	sf::RectangleShape door;

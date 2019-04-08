@@ -25,7 +25,7 @@
 class Game : public DisplayState
 {
 public:
-	Game(int, int, std::vector<int>);
+	Game(int, int, int, std::vector<int>);
 	~Game();
 	
 	//		VARIABLES
@@ -47,6 +47,7 @@ public:
 	*/
 	Player* player = nullptr;
 	Player* playerTwo = nullptr;
+	int playerCount;
 	/*
 		A reference to a player object so we don't have to search the vector every time we need it.
 	*/
