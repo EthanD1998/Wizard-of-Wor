@@ -154,12 +154,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedTexture.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Burwor.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="DisplayState.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Garwor.h" />
@@ -178,13 +180,14 @@
     <ClInclude Include="Walls.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedTexture.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Burwor.cpp" />
     <ClCompile Include="Cell.cpp" />
-    <ClCompile Include="Wizard Of Wor.cpp" />
     <ClCompile Include="DisplayState.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Garwor.cpp" />
@@ -206,6 +209,7 @@
     <ClCompile Include="Thorwor.cpp" />
     <ClCompile Include="TrapDoor.cpp" />
     <ClCompile Include="Walls.cpp" />
+    <ClCompile Include="Wizard-Of-Wor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

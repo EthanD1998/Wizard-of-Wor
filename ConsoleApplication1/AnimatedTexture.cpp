@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "AnimatedTexture.h"
 
 AnimatedTexture::AnimatedTexture(float f, sf::Vector2f size, bool l)
