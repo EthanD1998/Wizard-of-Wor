@@ -60,6 +60,8 @@ void Enemy::handleEvents()
 			std::cout << "no direction " << facing << "\n";
 	}
 	sprite.move(sf::Vector2f(velocity.x * charMove * t, velocity.y * charMove * t));
+
+
 	
 	if(checkCollision())
 	{
@@ -70,17 +72,14 @@ void Enemy::handleEvents()
 	
 	for(int i=0; i < entities->size(); i++)
 	{
-		if((entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
+		if(entities->at(i)->type().find("Player") != std::string::npos && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 		{
-			if(entities->at(i)->killable)
-			{
-				//Alive = false;
-				entities->at(i)->Alive = false;
-			}
+			//Alive = false;
+			entities->at(i)->Alive = false;
 		}
 	}
 	
-	if(rand() % 300 == 1) shoot();
+	if(rand() % 350 == 1) shoot();
 	
 	clock.restart().asSeconds();
 }

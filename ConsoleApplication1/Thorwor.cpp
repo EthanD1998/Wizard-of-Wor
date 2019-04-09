@@ -28,7 +28,7 @@ Thorwor::Thorwor(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr,
 	sprite.setScale(sf::Vector2f(charScale, charScale));
 	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
 	sprite.setPosition(sf::Vector2f((rand() % 11 + 2) * 60, (rand() % 6 + 1) * 60));
-	std::cout << "Spawned Thorwor @ (" << sprite.getPosition().x / 60 << ", " << sprite.getPosition().y / 60 << ")\n";
+	//std::cout << "Spawned Thorwor @ (" << sprite.getPosition().x / 60 << ", " << sprite.getPosition().y / 60 << ")\n";
 
 	facing = rand() % 4;
 }

@@ -7,6 +7,8 @@
 
 Player::Player(Map* _map, std::vector<Entity*>* e, int playerLives, int playerScore, int p)
 {
+	value = 200;
+
 	playerType = p;
 	entities = e;
 	
@@ -37,7 +39,8 @@ Player::Player(Map* _map, std::vector<Entity*>* e, int playerLives, int playerSc
 	{
 		animation.addImage("Sprites/Worrior" + std::to_string(playerType) + "/Worrior (" + std::to_string(i) + ").png");
 	}
-	
+	animation.updateTexture();
+
 	sprite.setTexture(animation);
 	sprite.setScale(sf::Vector2f(charScale, charScale));
 	sprite.setOrigin(sprite.getLocalBounds().height / 2, sprite.getLocalBounds().width / 2);
@@ -134,7 +137,6 @@ void Player::handleEvents()
 		timeAlive = temp;
 	}
 	
-	animation.updateTexture();
 	scoreText.setString(std::to_string(score));
 }
 
@@ -144,7 +146,9 @@ void Player::keyInput()
 	/*
 		Has to be setup this way in order to remove stuttering.
 	*/
-	
+	bool moved = false;
+
+
 	if (sf::Keyboard::isKeyPressed(controls.at(4)))
 	{
 		shoot();
@@ -156,6 +160,7 @@ void Player::keyInput()
 		sprite.move(sf::Vector2f(charMove * -1 * t, 0));
 		if (checkCollision()) sprite.move(sf::Vector2f(charMove * t, 0));
 		facing = W;
+		moved = true;
 	}
 	if (sf::Keyboard::isKeyPressed(controls.at(1)))
 	{
@@ -164,6 +169,7 @@ void Player::keyInput()
 		sprite.move(sf::Vector2f(charMove * t, 0));
 		if (checkCollision()) sprite.move(sf::Vector2f(-1 * charMove * t, 0));
 		facing = E;
+		moved = true;
 	}
 	if (sf::Keyboard::isKeyPressed(controls.at(2)))
 	{
@@ -171,6 +177,7 @@ void Player::keyInput()
 		sprite.move(sf::Vector2f(0, -1 * charMove * t));
 		if (checkCollision()) sprite.move(sf::Vector2f(0, charMove * t));
 		facing = N;
+		moved = true;
 	}
 	if (sf::Keyboard::isKeyPressed(controls.at(3)))
 	{
@@ -178,6 +185,9 @@ void Player::keyInput()
 		sprite.move(sf::Vector2f(0, charMove * t));
 		if (checkCollision()) sprite.move(sf::Vector2f(0, -1 * charMove * t));
 		facing = S;
+		moved = true;
 	}
+	if(moved)
+		animation.updateTexture();
 	clock.restart().asSeconds();
 }

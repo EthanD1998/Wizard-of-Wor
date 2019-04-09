@@ -13,6 +13,7 @@ Entity::Entity()
 	link = this;
 	radarShape = sf::RectangleShape(sf::Vector2f(26, 26));
 	team = 3; // entity team;
+	
 }
 
 sf::Vector2f Entity::getPosition()
@@ -23,12 +24,9 @@ sf::Vector2f Entity::getPosition()
 
 void Entity::draw(sf::RenderWindow* target) 
 {
-	/*
-		sf::Drawable's draw function.
-			Allows us to do target.draw(Entity);
-	*/
-	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
+
 	radarShape.setFillColor(color);
+	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
 	radarShape.setPosition(sf::Vector2f((pos.x * 26) + 282 - 26, (pos.y * 26) + 410));
 
 	target->draw(sprite);
