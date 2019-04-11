@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
+#include <algorithm>
 
 /*
 	Enemy is the base class for all enemies.  
@@ -23,11 +24,14 @@ public:
 	//		VARIABLES
 	Entity* player;
 	
+	sf::Vector2f lastPos;
+
 	bool invisible = false;
 	//		FUNCTIONS
 	
 	void columnOpacity();
-	
+
+
 	void handleEvents() override;
 	/*
 		Overriden from Entity.h
@@ -42,6 +46,10 @@ public:
 	virtual std::string type() override;
 	/*
 		Returns the type of Entity.
+	*/
+	virtual void move();
+	/*
+		Enemies overridable move function.
 	*/
 };
 
