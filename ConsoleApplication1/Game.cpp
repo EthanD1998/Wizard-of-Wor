@@ -45,7 +45,7 @@ Game::Game(int index, int nextlevel, int pCount, std::vector<int> playerProp)
 	entities.push_back(new TrapDoor(&level, &entities, 0));
 	entities.push_back(new TrapDoor(&level, &entities, 1));	
 	
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		entities.push_back(new Burwor(&level, &entities));
 		//Makes 6 enemies

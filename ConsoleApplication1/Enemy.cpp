@@ -15,8 +15,7 @@ Enemy::Enemy()
 	facing = rand() % 4;
 
 	current = getRelative();
-	prev = getRelative();
-
+	prev = current;
 }
 
 Enemy::~Enemy()
@@ -67,7 +66,6 @@ void Enemy::handleEvents()
 
 
 	sprite.move(sf::Vector2f(velocity.x * charMove * t, velocity.y * charMove * t));
-	
 	
 	if (current != prev)
 	{
