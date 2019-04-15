@@ -13,7 +13,6 @@ Entity::Entity()
 	link = this;
 	radarShape = sf::RectangleShape(sf::Vector2f(26, 26));
 	team = 3; // entity team;
-	
 }
 
 sf::Vector2f Entity::getPosition()

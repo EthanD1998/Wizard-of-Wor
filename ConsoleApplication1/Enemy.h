@@ -5,32 +5,28 @@
 #include "Player.h"
 #include "SFML/Graphics.hpp"
 #include <iostream>
-#include <algorithm>
 
 /*
-	Enemy is the base class for all enemies.  
-		When more enemies are implemented, they may be children of this class, or be seperate entities.	
+	Enemy is the base class for all enemies.
+		When more enemies are implemented, they may be children of this class, or be seperate entities.
 		Enemy is a child of Entity.
 */
 
 class Enemy : public Entity
 {
-	
+
 public:
 
 	Enemy();
 	~Enemy();
-	
+
 	//		VARIABLES
 	Entity* player;
-	
-	sf::Vector2f lastPos;
 
 	bool invisible = false;
 	//		FUNCTIONS
-	
-	void columnOpacity();
 
+	void columnOpacity();
 
 	void handleEvents() override;
 	/*
@@ -43,13 +39,12 @@ public:
 		Part of the automatic movement
 			It's funky.
 	*/
+	void getPaths();
 	virtual std::string type() override;
 	/*
 		Returns the type of Entity.
 	*/
-	virtual void move();
-	/*
-		Enemies overridable move function.
-	*/
-};
 
+	sf::Vector2f prev, current;
+	std::vector<int> openPaths;
+};

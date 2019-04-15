@@ -60,7 +60,7 @@ Player::Player(Map* _map, std::vector<Entity*>* e, int playerLives, int playerSc
 		
 	scoreText.setFont(font);
 	scoreText.setString("0000");
-	scoreText.setCharacterSize(10);
+	scoreText.setCharacterSize(25);
 	
 	scoreText.setFillColor(sf::Color::Blue);
 	if(playerType == 1)
@@ -137,9 +137,7 @@ void Player::handleEvents()
 		timeAlive = temp;
 	}
 	
-	//scoreText.setString(std::to_string(score));
-	std::string s = std::to_string(getPosition().x) + ", " + std::to_string(getPosition().y);
-	scoreText.setString(s);
+	scoreText.setString(std::to_string(score));
 
 }
 
