@@ -21,17 +21,14 @@ sf::Vector2f Entity::getPosition()
 	return pos;
 }
 
-sf::Vector2f Entity::getRelative()
-{
-	sf::Vector2f pos(round((sprite.getPosition().x - 60 - 30) / 60), round((sprite.getPosition().y - 60 - 30) / 60));
-	return pos;
-}
-
 void Entity::draw(sf::RenderWindow* target) 
 {
-
-	radarShape.setFillColor(color);
+	/*
+		sf::Drawable's draw function.
+			Allows us to do target.draw(Entity);
+	*/
 	sf::Vector2f pos(round((sprite.getPosition().x - 60) / 60), round((sprite.getPosition().y - 60) / 60));
+	radarShape.setFillColor(color);
 	radarShape.setPosition(sf::Vector2f((pos.x * 26) + 282 - 26, (pos.y * 26) + 410));
 
 	target->draw(sprite);
@@ -48,9 +45,10 @@ void Entity::handleEvents()
 
 void Entity::shoot()
 {
-	if (!bulletExists())
+	if (!hasShot)
 	{
-		Bullet* b = new Bullet(level, facing, team, entities);
+		hasShot = true;
+		Bullet* b = new Bullet(this, level, facing, team, entities);
 		b->sprite.setPosition(sprite.getPosition());
 		entities->push_back(b);
 		link = entities->back();

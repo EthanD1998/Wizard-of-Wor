@@ -1,12 +1,14 @@
 #include "pch.h"
 #include "Bullet.h"
 
-Bullet::Bullet(Map* _map, int _facing = -1, int t = 0, std::vector<Entity*>* e = nullptr)
+Bullet::Bullet(Entity* creator, Map* _map, int _facing = -1, int t = 0, std::vector<Entity*>* e = nullptr)
 {
 	team = t;
 	
 	entities = e;
 	
+	owner = creator;
+
 	charScale = 1;
 	charMove = .5;
 	//The sprite scale and movement scale.  Both are ints.
@@ -47,6 +49,7 @@ Bullet::Bullet(Map* _map, int _facing = -1, int t = 0, std::vector<Entity*>* e =
 
 Bullet::~Bullet()
 {
+	owner->hasShot = false;
 }
 
 void Bullet::handleEvents()
@@ -54,8 +57,8 @@ void Bullet::handleEvents()
 	int t = clock.getElapsedTime().asMilliseconds();
 	if(checkCollision()) Alive = false;
 	//if the Bullet collides, it needs to die.
-	
-	sprite.move(sf::Vector2f(velocity.x * charMove * t, velocity.y * charMove * t));
+	if(Alive)
+		sprite.move(sf::Vector2f(velocity.x * charMove * t, velocity.y * charMove * t));
 	//move the sprite (dependent on the x / y velocity)
 	for(int i=0; i < entities->size(); i++)
 	{

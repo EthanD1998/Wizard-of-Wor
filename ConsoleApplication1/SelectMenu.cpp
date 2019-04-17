@@ -50,7 +50,7 @@ DisplayState* SelectMenu::nextState()
 	prop.push_back(4);
 	prop.push_back(0);
 	
-	return new Game(1, 1, selected + 1, prop);
+	return new Game(1, 1, selected + 1, prop, false);
 }
 
 void SelectMenu::keyEvent(sf::Keyboard::Key& k)

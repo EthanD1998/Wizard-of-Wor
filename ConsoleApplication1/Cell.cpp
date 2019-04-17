@@ -52,11 +52,6 @@ void Cell::deleteLastWall()
 	Wall.pop_back();
 }
 
-void Cell::deleteAt(int index)
-{
-	Wall.erase(Wall.begin() + index);
-}
-
 void Cell::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	for (int i = 0; i < Wall.size(); i++)
