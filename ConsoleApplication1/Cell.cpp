@@ -35,11 +35,11 @@ void Cell::color(sf::Color c)
 	}
 }
 
-void Cell::image(const sf::Texture t)
+void Cell::image(const sf::Texture* t)
 {
 	for (int i = 0; i < Wall.size(); i++)
 	{
-		Wall.at(i).Wall.setTexture(&t);
+		Wall.at(i).Wall.setTexture(t);
 	}
 }
 

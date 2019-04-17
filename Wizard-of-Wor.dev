@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=6
 CompilerSettings=0000000000000000001000000
-UnitCount=49
+UnitCount=55
 
 [VersionInfo]
 Major=1
@@ -541,7 +541,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit50]
-FileName=ConsoleApplication1\memcheck.cpp
+FileName=ConsoleApplication1\IntermediateState.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -551,7 +551,47 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit51]
-FileName=ConsoleApplication1\memcheck.h
+FileName=ConsoleApplication1\IntermediateState.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit52]
+FileName=ConsoleApplication1\Wizard.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit53]
+FileName=ConsoleApplication1\Wizard.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit54]
+FileName=ConsoleApplication1\Worluk.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit55]
+FileName=ConsoleApplication1\Worluk.h
 CompileCpp=1
 Folder=
 Compile=1

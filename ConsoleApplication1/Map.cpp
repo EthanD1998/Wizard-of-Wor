@@ -71,13 +71,15 @@ Cell* Map::getCell(int x, int y)
 
 void Map::setTex(sf::Image a)
 {
+	tex.create(60,5);
 	tex.update(a);
 
 	for (int i = 0; i < 13; i++)
 	{
 		for (int j = 0; j < 7; j++)
 		{
-			cellMap.at(i).at(j).image(tex);
+			cellMap.at(i).at(j).color(sf::Color::White);
+			cellMap.at(i).at(j).image(&tex);
 		}
 	}
 }

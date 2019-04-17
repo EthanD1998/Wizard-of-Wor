@@ -280,7 +280,16 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 				level.cellMap.at(i).at(j).color(sf::Color::Red);
 			}
 		}
-			
+	break;
+	case sf::Keyboard::B:
+	{
+		sf::Image a;
+		a.create(60, 5, sf::Color::Yellow);
+		//a.
+		level.setTex(a);
+		
+	}
+	break;
 	}
 }
 
@@ -338,7 +347,7 @@ DisplayState* Game::nextState()
 		}
 	} while (nextlvl == nextLevel);
 	
-	return new IntermediateState(gameLevel, nextLevel, playerCount, prop, worlukKilled); //increment this
+	return new IntermediateState(gameLevel, nextLevel, playerCount, prop, worlukKilled, level); //increment this
 }
 
 bool Game::outsideMap(Entity* e)

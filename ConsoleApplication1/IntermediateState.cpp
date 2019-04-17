@@ -2,8 +2,9 @@
 #include "IntermediateState.h"
 
 
-IntermediateState::IntermediateState(int index, int nextLevel, int pCount, std::vector<int> playerProp, bool doubleDungeon)
+IntermediateState::IntermediateState(int index, int nextLevel, int pCount, std::vector<int> playerProp, bool doubleDungeon, Map lev)
 {
+	level = lev;
 	gameIndex = index;
 	nextGameLevel = nextLevel;
 	gamePCount = pCount;
@@ -57,11 +58,26 @@ IntermediateState::~IntermediateState()
 
 void IntermediateState::updateEvents()
 {
-		if (scoreDouble && rand() % 3 == 1)
+	if (scoreDouble && rand() % 3 == 1)
+	{
+		text.setFillColor(colors.at(rand() % colors.size()));
+		second.setFillColor(colors.at(rand() % colors.size()));
+	}
+	if(nextGameLevel % 3 == 0)
+	{
+		sf::Image a;
+		int r;
+		a.create(60, 5);
+		for(int i = 0; i < 60; i++)
 		{
-			text.setFillColor(colors.at(rand() % colors.size()));
-			second.setFillColor(colors.at(rand() % colors.size()));
+			for(int j = 0; j < 5; j++)
+			{
+				r = rand() % 255;
+				a.setPixel(i, j, sf::Color(r, r, r));
+			}
 		}
+		level.setTex(a);
+	}
 }
 
 
@@ -73,6 +89,7 @@ DisplayState* IntermediateState::nextState()
 
 void IntermediateState::draw(sf::RenderWindow *target)
 {
+	target->draw(level);
 	int temp = round(clock.getElapsedTime().asSeconds());
 	if (temp > sec)
 	{

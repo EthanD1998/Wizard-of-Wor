@@ -1,12 +1,15 @@
 #pragma once
 #include "DisplayState.h"
 #include "Game.h"
+#include "Map.h"
+
 class IntermediateState : public DisplayState
 {
 public:
-	IntermediateState(int, int, int, std::vector<int>, bool);
+	IntermediateState(int, int, int, std::vector<int>, bool, Map);
 	~IntermediateState();
 
+	Map level;
 	int gameIndex, nextGameLevel, gamePCount;
 	bool scoreDouble;
 	std::vector<int> gamePlayerProp;
