@@ -13,6 +13,9 @@ Enemy::Enemy()
 	value = 0;
 	
 	facing = rand() % 4;
+
+	current = getRelative();
+	prev = current;
 }
 
 Enemy::~Enemy()
@@ -27,6 +30,7 @@ std::string Enemy::type()
 
 void Enemy::handleEvents()
 {
+	current = getRelative();
 	if(animation.Alive)
 		animation.updateTexture();
 	
@@ -59,30 +63,56 @@ void Enemy::handleEvents()
 		default:
 			std::cout << "no direction " << facing << "\n";
 	}
+
+
 	sprite.move(sf::Vector2f(velocity.x * charMove * t, velocity.y * charMove * t));
 	
+	if (current != prev)
+	{
+		int randNum = rand() % 10;
+		if (randNum < 6)
+		{
+			facing;
+		}
+		else if (randNum > 7)
+		{
+			if (facing > 0)
+				facing = facing - 1;
+			else
+				facing = 3;
+		}
+		else
+		{
+			if (facing < 3)
+				facing = facing + 1;
+			else
+				facing = 0;
+		}
+		velocity = sf::Vector2f(0, 0);
+	}
+
+
 	if(checkCollision())
 	{
 		sprite.move(sf::Vector2f(velocity.x * charMove * -2 * t, velocity.y * charMove * -2 * t));
-		velocity = sf::Vector2f(0,0);
-		newDirection();	
+		velocity = sf::Vector2f(0, 0);
+		newDirection();
 	}
+
 	
 	for(int i=0; i < entities->size(); i++)
 	{
-		if((entities->at(i)->type() == "Player") && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
+		if(entities->at(i)->type().find("Player") != std::string::npos && sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
 		{
-			if(entities->at(i)->killable)
-			{
-				//Alive = false;
-				entities->at(i)->Alive = false;
-			}
+			//Alive = false;
+			entities->at(i)->Alive = false;
 		}
 	}
 	
-	if(rand() % 300 < shootChance && doesShoot) shoot();
+	if(rand() % 350 == 1) shoot();
 	
 	clock.restart().asSeconds();
+	prev = current;
 }
 
 void Enemy::columnOpacity()

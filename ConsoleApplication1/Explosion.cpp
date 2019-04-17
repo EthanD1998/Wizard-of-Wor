@@ -6,9 +6,9 @@
 
 Explosion::Explosion(sf::Vector2f pos)
 {
-	animation = AnimatedTexture(.07f, sf::Vector2f(45, 43), false);
+	animation = AnimatedTexture(.1f, sf::Vector2f(43, 41), false);
 	
-	for(int i=1; i < 14 + 1; i++)
+	for(int i=1; i < 5 + 1; i++)
 	{
 		animation.addImage("Sprites/" + type() + "/" + type() + " (" + std::to_string(i) + ").png");
 	}

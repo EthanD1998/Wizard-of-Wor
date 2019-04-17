@@ -1,7 +1,6 @@
 #pragma once
 #include "pch.h"
 #include "DisplayState.h"
-#include "IntermediateState.h"
 #include "ScoreMenu.h"
 #include "Explosion.h"
 #include "Entity.h"
@@ -11,7 +10,6 @@
 #include "Burwor.h"
 #include "Thorwor.h"
 #include "Garwor.h"
-#include "Worluk.h"
 #include "TeleportDoor.h"
 #include "TrapDoor.h"
 #include "Map.h"
@@ -27,18 +25,14 @@
 class Game : public DisplayState
 {
 public:
-	Game(int, int, int, std::vector<int>, bool);
-	~Game() override;
+	Game(int, int, int, std::vector<int>);
+	~Game();
 	
 	//		VARIABLES
-	int gameLevel, nextlvl, enemyNum, scoreMulti = 1;
+	int gameLevel, nextlvl, enemyNum;
 	/*
-	The current level
+		The current level
 	*/
-
-	bool worlukSpawned = false, worlukKilled = false;
-	// all variables for worluk
-
 	sf::Text dungeonLevel;
 	sf::Font font;
 
@@ -66,7 +60,7 @@ public:
 	
 	//		FUNCTIONS
 	
-	void spawnEnemies(std::string);
+	void spawnEnemies(int);
 	/*
 		Does exactly what it sounds like.
 	*/

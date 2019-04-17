@@ -22,7 +22,7 @@ class Entity
 {
 public:
 	Entity();
-	virtual ~Entity();
+	~Entity();
 	
 	//		VARIABLES
 	AnimatedTexture animation;
@@ -33,7 +33,7 @@ public:
 	/*	
 		If the Entity explodes on death.
 	*/
-	int team, hasShot = false;
+	int team;
 	/*
 		Entities on similar teams can't hurt eachother.
 			So enemies don't shoot eachother.
@@ -153,5 +153,6 @@ public:
 		A simple std::string that contains the type of Entity.
 	*/
 	virtual void draw(sf::RenderWindow* target);
+	sf::Vector2f getRelative();
 };
 

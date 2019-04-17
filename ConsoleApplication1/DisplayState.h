@@ -12,7 +12,7 @@ class DisplayState
 {
 public:
 	DisplayState();
-	virtual ~DisplayState();
+	~DisplayState();
 	
 	/*
 		If the DisplayState hasFocus, the StateManager will pass it keyEvents.

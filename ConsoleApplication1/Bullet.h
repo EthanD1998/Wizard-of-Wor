@@ -10,11 +10,9 @@ class Bullet : public Entity
 
 public:
 
-	Bullet(Entity*, Map*, int, int,std::vector<Entity*>*);
-	~Bullet() override;
+	Bullet(Map*, int, int,std::vector<Entity*>*);
+	~Bullet();
 	
-	Entity *owner = nullptr;
-
 	void handleEvents() override;
 	/*
 		handleEvents() - overridden from Entity.h

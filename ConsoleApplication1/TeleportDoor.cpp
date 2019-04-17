@@ -46,37 +46,26 @@ bool TeleportDoor::checkCollision()
 	{
 		if (entities->at(i)->type().find("Player") != std::string::npos || entities->at(i)->type().find("Enemy") != std::string::npos || entities->at(i)->type().find("Bullet") != std::string::npos)
 		{
-			
-				if (sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
-				{
-					if (entities->at(i)->type().find("Worluk") != std::string::npos)
-						entities->at(i)->Alive = false;
-					else
-					{
-						entities->at(i)->sprite.setPosition(second.getPosition());
-						std::cout << "Closed Doors\n";
-						level->getCell(1, 2)->addWall(Walls(3, 1, 2, sf::Color::Red));
-						level->getCell(11, 2)->addWall(Walls(1, 11, 2, sf::Color::Red));
-						open = false;
-						clock.restart();
-					}
-						return true;
-				}
-				else if (second.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
-				{
-					if (entities->at(i)->type().find("Worluk") != std::string::npos)
-						entities->at(i)->Alive = false;
-					else
-					{
-						entities->at(i)->sprite.setPosition(sprite.getPosition());
-						std::cout << "Closed Doors\n";
-						level->getCell(1, 2)->addWall(Walls(3, 1, 2, sf::Color::Red));
-						level->getCell(11, 2)->addWall(Walls(1, 11, 2, sf::Color::Red));
-						open = false;
-						clock.restart();
-					}
-					return true;
-				}
+			if (sprite.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
+			{
+				entities->at(i)->sprite.setPosition(second.getPosition());
+				std::cout << "Closed Doors\n";
+				level->getCell(1, 2)->addWall(Walls(3, 1, 2, sf::Color::Red));
+				level->getCell(11, 2)->addWall(Walls(1, 11, 2, sf::Color::Red));
+				open = false;
+				clock.restart();
+				return true;
+			}
+			else if (second.getGlobalBounds().intersects(entities->at(i)->sprite.getGlobalBounds()))
+			{
+				entities->at(i)->sprite.setPosition(sprite.getPosition());
+				std::cout << "Closed Doors\n";
+				level->getCell(1, 2)->addWall(Walls(3, 1, 2, sf::Color::Red));
+				level->getCell(11, 2)->addWall(Walls(1, 11, 2, sf::Color::Red));
+				open = false;
+				clock.restart();
+				return true;
+			}
 		}
 	}
 	return false;
