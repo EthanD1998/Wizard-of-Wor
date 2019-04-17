@@ -84,7 +84,7 @@ Player::Player(Map* _map, std::vector<Entity*>* e, int playerLives, int playerSc
 			controls.push_back(sf::Keyboard::M);
 			break;
 	}
-	
+	animation.updateTexture();
 	std::cout << "Created Player " << playerType << std::endl;
 }
 
@@ -120,7 +120,8 @@ void Player::respawn()
 	killable = false;
 	sprite.setPosition(startPos);
 	lifeDisplay.pop_back();
-	level->getCell(11, 5)->deleteLastWall();
+	playerType == 0 ? level->getCell(11, 5)->deleteLastWall() : level->getCell(1, 5)->deleteLastWall();
+	//level->getCell(11, 5)->deleteLastWall();
 }
 
 void Player::handleEvents()
@@ -134,7 +135,7 @@ void Player::handleEvents()
 		timeAlive = temp;
 	}
 	
-	animation.updateTexture();
+	//animation.updateTexture();
 	scoreText.setString(std::to_string(score));
 }
 
@@ -156,6 +157,7 @@ void Player::keyInput()
 		sprite.move(sf::Vector2f(charMove * -1 * t, 0));
 		if (checkCollision()) sprite.move(sf::Vector2f(charMove * t, 0));
 		facing = W;
+		animation.updateTexture();
 	}
 	if (sf::Keyboard::isKeyPressed(controls.at(1)))
 	{
@@ -164,6 +166,7 @@ void Player::keyInput()
 		sprite.move(sf::Vector2f(charMove * t, 0));
 		if (checkCollision()) sprite.move(sf::Vector2f(-1 * charMove * t, 0));
 		facing = E;
+		animation.updateTexture();
 	}
 	if (sf::Keyboard::isKeyPressed(controls.at(2)))
 	{
@@ -171,6 +174,7 @@ void Player::keyInput()
 		sprite.move(sf::Vector2f(0, -1 * charMove * t));
 		if (checkCollision()) sprite.move(sf::Vector2f(0, charMove * t));
 		facing = N;
+		animation.updateTexture();
 	}
 	if (sf::Keyboard::isKeyPressed(controls.at(3)))
 	{
@@ -178,6 +182,7 @@ void Player::keyInput()
 		sprite.move(sf::Vector2f(0, charMove * t));
 		if (checkCollision()) sprite.move(sf::Vector2f(0, -1 * charMove * t));
 		facing = S;
+		animation.updateTexture();
 	}
 	clock.restart().asSeconds();
 }

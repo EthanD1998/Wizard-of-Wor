@@ -13,7 +13,7 @@ Worluk::Worluk(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr, E
 	value = 1000;
 
 	charScale = 2;
-	charMove = 1;
+	charMove = .75;
 
 	level = _map;
 	entities = _entities;

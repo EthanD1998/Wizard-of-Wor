@@ -124,7 +124,7 @@ void Game::spawnEnemies(std::string entityName)
 			entities.push_back(new Worluk(&level, &entities, player));
 			worlukSpawned = true;
 		}
-		if (!isEnemy && worlukSpawned && !wizardSpawned && gameLevel > 1)
+		else if (!isEnemy && worlukSpawned && !wizardSpawned && gameLevel > 1)
 		{
 			wizardSpawned = true;
 			if (rand() % 8 == 0)

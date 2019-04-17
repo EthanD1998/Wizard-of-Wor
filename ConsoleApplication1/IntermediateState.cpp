@@ -38,6 +38,14 @@ IntermediateState::IntermediateState(int index, int nextLevel, int pCount, std::
 	textRect = second.getLocalBounds();
 	second.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 	second.setPosition(sf::Vector2f(425, 300));
+
+
+	colors.push_back(sf::Color::Red);
+	colors.push_back(sf::Color::Blue);
+	colors.push_back(sf::Color::Yellow);
+	colors.push_back(sf::Color::Green);
+	colors.push_back(sf::Color(255, 0, 152));
+	colors.push_back(sf::Color(0, 242, 255));
 }
 
 
@@ -49,11 +57,11 @@ IntermediateState::~IntermediateState()
 
 void IntermediateState::updateEvents()
 {
-	if (scoreDouble)
-	{
-		text.setFillColor(sf::Color(rand() % 256, rand() % 256, rand() % 256));
-		second.setFillColor(sf::Color(rand() % 256, rand() % 256, rand() % 256));
-	}
+		if (scoreDouble && rand() % 3 == 1)
+		{
+			text.setFillColor(colors.at(rand() % colors.size()));
+			second.setFillColor(colors.at(rand() % colors.size()));
+		}
 }
 
 

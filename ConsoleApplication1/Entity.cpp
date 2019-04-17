@@ -21,6 +21,12 @@ sf::Vector2f Entity::getPosition()
 	return pos;
 }
 
+sf::Vector2f Entity::getRelative()
+{
+	sf::Vector2f pos(round((sprite.getPosition().x - 60 - 30) / 60), round((sprite.getPosition().y - 60 - 30) / 60));
+	return pos;
+}
+
 void Entity::draw(sf::RenderWindow* target) 
 {
 	/*

@@ -168,6 +168,7 @@
     <ClInclude Include="FpsCounter.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Garwor.h" />
+    <ClInclude Include="IntermediateState.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="pch.h" />
@@ -181,6 +182,8 @@
     <ClInclude Include="Thorwor.h" />
     <ClInclude Include="TrapDoor.h" />
     <ClInclude Include="Walls.h" />
+    <ClInclude Include="Wizard.h" />
+    <ClInclude Include="Worluk.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedTexture.cpp" />
@@ -194,6 +197,7 @@
     <ClCompile Include="FpsCounter.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Garwor.cpp" />
+    <ClCompile Include="IntermediateState.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="pch.cpp">
@@ -213,6 +217,8 @@
     <ClCompile Include="TrapDoor.cpp" />
     <ClCompile Include="Walls.cpp" />
     <ClCompile Include="Wizard-Of-Wor.cpp" />
+    <ClCompile Include="Wizard.cpp" />
+    <ClCompile Include="Worluk.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

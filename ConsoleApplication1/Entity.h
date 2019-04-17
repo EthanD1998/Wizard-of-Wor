@@ -152,6 +152,7 @@ public:
 	/*
 		A simple std::string that contains the type of Entity.
 	*/
+	sf::Vector2f getRelative();
 	virtual void draw(sf::RenderWindow* target);
 };
 

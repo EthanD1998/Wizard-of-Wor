@@ -2,8 +2,8 @@
 #include "ScoreMenu.h"
 
 ScoreMenu::ScoreMenu(int playerScore)
+	: ScoreMenu(playerScore, 0)
 {
-	ScoreMenu(playerScore, 0);
 }
 
 ScoreMenu::ScoreMenu(int playerScore, int playerTwoScore)

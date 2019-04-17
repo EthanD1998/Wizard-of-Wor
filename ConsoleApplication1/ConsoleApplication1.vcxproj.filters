@@ -87,6 +87,15 @@
     <ClInclude Include="Explosion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Wizard.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Worluk.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IntermediateState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp">
@@ -162,6 +171,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Explosion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IntermediateState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Wizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Worluk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

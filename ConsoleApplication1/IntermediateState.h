@@ -22,5 +22,7 @@ public:
 	DisplayState* nextState() override;
 
 	void draw(sf::RenderWindow*) override;
+
+	std::vector<sf::Color> colors;
 };
 

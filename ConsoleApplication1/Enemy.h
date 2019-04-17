@@ -45,5 +45,6 @@ public:
 	/*
 		Returns the type of Entity.
 	*/
+	sf::Vector2f current, prev;
 };
 

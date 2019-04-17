@@ -18,11 +18,12 @@ Wizard::Wizard(Map* _map = nullptr, std::vector<Entity*> *_entities = nullptr, E
 	level = _map;
 	entities = _entities;
 
+
 	animation = AnimatedTexture(.1f, sf::Vector2f(20, 20), true);
 
 	for (int i = 1; i < 4 + 1; i++)
 	{
-		animation.addImage("Sprites/Thorwor/Thorwor (" + std::to_string(i) + ").png");
+		animation.addImage("Sprites/Wizard.png");
 	}
 
 	sprite.setTexture(animation);
