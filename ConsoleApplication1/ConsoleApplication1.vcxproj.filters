@@ -87,13 +87,13 @@
     <ClInclude Include="Explosion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IntermediateState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Wizard.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Worluk.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IntermediateState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

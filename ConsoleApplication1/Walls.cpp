@@ -8,7 +8,6 @@ Walls::Walls()
 	Wall.setSize(sf::Vector2f(60, 5));
 	Wall.setOrigin(sf::Vector2f(Wall.getSize().x / 2, Wall.getSize().x / 2));
 	Wall.setFillColor(sf::Color::Blue);
-
 }
 
 Walls::Walls(int side, int x, int y)

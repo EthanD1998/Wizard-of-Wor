@@ -12,9 +12,9 @@ public:
 	~Walls();
 	void setWall(int, int, int);
 	sf::RectangleShape getWall();
-
+	sf::RectangleShape Wall;
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	sf::RectangleShape Wall;
+
 };
 

@@ -27,6 +27,13 @@ void Cell::set(bool iWalls[4], int x, int y, sf::Color c)
 	//std::cout << std::endl;
 }
 
+void Cell::color(sf::Color c)
+{
+	for (int i = 0; i < Wall.size(); i++)
+	{
+		Wall.at(i).Wall.setFillColor(c);
+	}
+}
 
 std::vector<Walls> Cell::getWalls()
 {

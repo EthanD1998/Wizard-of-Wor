@@ -11,6 +11,7 @@ public:
 	bool hasWall();
 	void addWall(Walls);
 	void deleteLastWall();
+	void color(sf::Color);
 private:
 	bool isWall[4];
 	std::vector<Walls> Wall;

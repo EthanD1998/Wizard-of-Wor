@@ -271,6 +271,15 @@ void Game::keyEvent(sf::Keyboard::Key& k)
 	case sf::Keyboard::I:
 		player->killable = false;
 		break;
+	case sf::Keyboard::J:
+		for (int i = 0; i < 13; i++)
+		{
+			for (int j = 0; j < 7; j++)
+			{
+				
+				level.cellMap.at(i).at(j).color(sf::Color::Red);
+			}
+		}
 			
 	}
 }
