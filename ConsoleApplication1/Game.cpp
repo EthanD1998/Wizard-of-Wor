@@ -8,8 +8,9 @@
 /*
 	Creating the map and some starting entities.
 */
-Game::Game(int index, int nextlevel, int pCount, std::vector<int> playerProp)
+Game::Game(int index, int nextlevel, int pCount, std::vector<int> playerProp, bool doubleDungeon)
 {
+	sf::FloatRect textRect;
 	playerCount = pCount;
 	
 	nextlvl = nextlevel;
@@ -19,7 +20,9 @@ Game::Game(int index, int nextlevel, int pCount, std::vector<int> playerProp)
 		enemyNum = 6;
 	else
 		enemyNum = index;
-	
+
+	if (doubleDungeon)
+		scoreMulti = 2;
 	std::cout << "DisplayState Game Created" << std::endl;
 	
 	level = Map("level_" + std::to_string(nextlvl) + ".csv");
@@ -54,7 +57,13 @@ Game::Game(int index, int nextlevel, int pCount, std::vector<int> playerProp)
 	font.loadFromFile("Fonts/Adore.ttf");
 	dungeonLevel.setFont(font);
 	dungeonLevel.setString("Dungeon " + std::to_string(gameLevel));
-	dungeonLevel.setPosition(sf::Vector2f(shapes.at(0).getPosition().x + shapes.at(0).getSize().x / 4, shapes.at(0).getPosition().y - 20));
+	if (gameLevel == 4)
+		dungeonLevel.setString("The Arena");
+	if ((gameLevel - 13) % 6 == 0 && gameLevel >= 13)
+		dungeonLevel.setString("The Pit");
+	textRect = dungeonLevel.getLocalBounds();
+	dungeonLevel.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+	dungeonLevel.setPosition(sf::Vector2f(shapes.at(0).getPosition().x + shapes.at(0).getSize().x / 2, shapes.at(0).getPosition().y - 10));
 	dungeonLevel.setScale(sf::Vector2f(.5, .5));
 	dungeonLevel.setFillColor(sf::Color::Red);
 
@@ -69,10 +78,13 @@ Game::~Game()
 {
 	for (int i = 0; i < entities.size(); i++)
 	{
-		delete entities.at(i);
+		if(entities.at(i)->type().find("Player") == std::string::npos)
+			delete entities.at(i);
 	}
-	delete player;
-	delete playerTwo;
+	if (player != nullptr)
+		delete player;
+	if (playerTwo != nullptr)
+		delete playerTwo;
 }
 
 int Game::findEntity(std::string target)
@@ -85,9 +97,10 @@ int Game::findEntity(std::string target)
 	return -1;
 }
 
-void Game::spawnEnemies(int index)
+void Game::spawnEnemies(std::string entityName)
 {
-	if (entities.at(index)->type() == "Enemy Burwor")
+	bool isEnemy = false;
+	if (entityName == "Enemy Burwor")
 	{
 		if (enemyNum > 0)
 		{
@@ -95,15 +108,29 @@ void Game::spawnEnemies(int index)
 			entities.push_back(new Garwor(&level, &entities, player));
 		}
 	}
-	else if (entities.at(index)->type() == "Enemy Garwor")
+	else if (entityName == "Enemy Garwor")
 	{
 		entities.push_back(new Thorwor(&level, &entities, player));
+	}
+	else
+	{
+		for (int i = 0; i < entities.size(); i++)
+		{
+			if (entities.at(i)->type().find("Enemy") != std::string::npos)
+				isEnemy = true;
+		}
+		if (!isEnemy && !worlukSpawned)
+		{
+			entities.push_back(new Worluk(&level, &entities, player));
+			worlukSpawned = true;
+		}
 	}
 }
 
 void Game::kill(int index)
 {
 	Entity* e = entities.at(index);
+	std::string tempEName;
 	
 	if(e->type().find("Enemy") != std::string::npos || e->type().find("Player") != std::string::npos)
 	{
@@ -121,21 +148,26 @@ void Game::kill(int index)
 			{
 				if(player->team == e->killedBy)
 				{
-					player->score += e->value;
+					player->score += e->value * scoreMulti;
 				}
 				else if(playerCount > 1 && playerTwo->team == e->killedBy)
 				{
-					playerTwo->score += e->value;
+					playerTwo->score += e->value * scoreMulti;
 				}
 				
 			}
+			if (e->killedBy != -1 && e->type().find("Worluk") != std::string::npos)
+				worlukKilled = true;
 			e->link->Alive = false;
 			
-			spawnEnemies(index);
+			tempEName = entities.at(index)->type();
+			if (e->type().find("Player") == std::string::npos)
+				delete e;
 			
-			delete e;
 			entities.erase(entities.begin() + index);
 			entities.shrink_to_fit();
+			spawnEnemies(tempEName);
+
 		}
 		else
 		{
@@ -194,7 +226,7 @@ void Game::updateEvents()
 			kill(i);
 		}
 	}
-	if(player->lives == 0 || findEntity("Enemy") == -1 || (playerCount > 1 && playerTwo->lives == 0))
+	if (player->lives <= 0 || findEntity("Enemy") == -1 || (playerCount > 1 && playerTwo->lives == 0))
 	{
 		exists = false;
 	}
@@ -241,6 +273,17 @@ DisplayState* Game::nextState()
 {
 	std::vector<int> prop;
 	
+	if (((gameLevel - 13) % 6 == 0  && gameLevel >= 13) || gameLevel == 4)
+	{
+		if (player->lives > 0 && player->lives < 5)
+			player->lives++;
+		if (playerCount > 1)
+		{
+			if (playerTwo->lives > 0 && playerTwo->lives < 5)
+				playerTwo->lives++;
+		}
+	}
+
 	prop.push_back(player->lives);
 	prop.push_back(player->score);
 	
@@ -251,11 +294,11 @@ DisplayState* Game::nextState()
 	}
 	
 	int nextLevel = 1;
-	if(player->lives == 0)
+	if(player->lives <= 0)
 	{
-		if(playerCount == 2)
+		if(playerCount > 1)
 		{
-			return new ScoreMenu(player->score, playerTwo->score); //, playerTwo->score);
+			return new ScoreMenu(player->score,playerTwo->score); //, playerTwo->score);
 		}
 		return new ScoreMenu(player->score); //, playerTwo->score);
 	}
@@ -280,7 +323,7 @@ DisplayState* Game::nextState()
 		}
 	} while (nextlvl == nextLevel);
 	
-	return new Game(gameLevel, nextLevel, playerCount, prop); //increment this
+	return new IntermediateState(gameLevel, nextLevel, playerCount, prop, worlukKilled); //increment this
 }
 
 bool Game::outsideMap(Entity* e)
