@@ -35,6 +35,14 @@ void Cell::color(sf::Color c)
 	}
 }
 
+void Cell::image(const sf::Texture t)
+{
+	for (int i = 0; i < Wall.size(); i++)
+	{
+		Wall.at(i).Wall.setTexture(&t);
+	}
+}
+
 std::vector<Walls> Cell::getWalls()
 {
 	return Wall;

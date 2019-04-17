@@ -13,6 +13,8 @@ public:
 	~Map();
 	Cell* getCell(int, int);
 	std::vector<std::vector<Cell>> cellMap;
+	void setTex(sf::Image);
+	sf::Texture tex;
 protected:
 	
 	//please add comments

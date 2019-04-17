@@ -69,6 +69,19 @@ Cell* Map::getCell(int x, int y)
 	return cellPtr;
 }
 
+void Map::setTex(sf::Image a)
+{
+	tex.update(a);
+
+	for (int i = 0; i < 13; i++)
+	{
+		for (int j = 0; j < 7; j++)
+		{
+			cellMap.at(i).at(j).image(tex);
+		}
+	}
+}
+
 void Map::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	for (int i = 0; i < 13; i++)

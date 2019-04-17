@@ -12,6 +12,7 @@ public:
 	void addWall(Walls);
 	void deleteLastWall();
 	void color(sf::Color);
+	void image(sf::Texture);
 private:
 	bool isWall[4];
 	std::vector<Walls> Wall;
