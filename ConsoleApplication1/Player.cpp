@@ -123,7 +123,9 @@ void Player::respawn()
 	killable = false;
 	sprite.setPosition(startPos);
 	lifeDisplay.pop_back();
-	level->getCell(11, 5)->deleteLastWall();
+	playerType == 0 ? level->getCell(11, 5)->deleteAt(1) : level->getCell(1, 5)->deleteAt(1);
+	//level->getCell(11, 5)->deleteAt(1);
+	//level->getCell(11, 5)->deleteLastWall();
 }
 
 void Player::handleEvents()

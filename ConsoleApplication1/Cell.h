@@ -10,6 +10,7 @@ public:
 	std::vector<Walls> getWalls();
 	bool hasWall();
 	void addWall(Walls);
+	void deleteAt(int);
 	void deleteLastWall();
 private:
 	bool isWall[4];
