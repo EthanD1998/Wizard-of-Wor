@@ -90,7 +90,7 @@ void Enemy::handleEvents()
 
 	if(checkCollision())
 	{
-		sprite.move(sf::Vector2f(velocity.x * charMove * -2 * t, velocity.y * charMove * -2 * t));
+		sprite.move(sf::Vector2f(velocity.x * charMove * -1 * t, velocity.y * charMove * -1 * t));
 		velocity = sf::Vector2f(0,0);
 		newDirection();	
 	}

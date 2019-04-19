@@ -35,8 +35,9 @@ public:
 	/*
 		Pauses the game
 	*/
+	bool konami();
 	std::vector<DisplayState*> gameStates;
-	
+	std::vector<sf::Keyboard::Key> keys;
 	
 };
 

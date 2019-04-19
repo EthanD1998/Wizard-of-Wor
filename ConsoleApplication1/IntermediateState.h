@@ -26,6 +26,9 @@ public:
 
 	void draw(sf::RenderWindow*) override;
 
+	sf::Color HSLtoRGB(sf::Color);
+
 	std::vector<sf::Color> colors;
+	sf::Color clearColor;
 };
 

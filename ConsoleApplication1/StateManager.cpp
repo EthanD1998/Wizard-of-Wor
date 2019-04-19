@@ -10,6 +10,12 @@ StateManager::StateManager()
 	gameStates.push_back(new StarBackground());
 	gameStates.push_back(new StartMenu());
 	gameStates.push_back(new FpsCounter());
+
+	for (int i = 0; i < 10; i++)
+	{
+		keys.push_back(sf::Keyboard::T);
+	}
+
 }
 
 StateManager::~StateManager()
@@ -30,8 +36,15 @@ void StateManager::kill(int index)
 
 void StateManager::init()
 {
-	sf::RenderWindow window(sf::VideoMode(840, 600), "Wizard of Wor [DEBUG]");
-	//window.setFramerateLimit(60);
+	sf::ContextSettings settings;
+	sf::View view;
+
+	settings.antialiasingLevel = 1;
+	sf::RenderWindow window(sf::VideoMode(840, 600), "Wizard of Wor [DEBUG]", sf::Style::Fullscreen, settings);
+	window.setFramerateLimit(240);
+
+	view.reset(sf::FloatRect(0, 0, 840, 600));
+	window.setView(view);
 	
 	
 	while (window.isOpen())
@@ -69,7 +82,14 @@ void StateManager::init()
 		        			{
 		        				pause();
 							}
+							break;
 		        		default:
+							keys.push_back(j);
+							if (konami())
+							{
+								view.rotate(180);
+								window.setView(view);
+							}
 							break;
 					}
 		        	for(int i=0; i < gameStates.size(); i++)
@@ -110,6 +130,20 @@ void StateManager::init()
 		
 		window.display();
 	}
+}
+
+bool StateManager::konami()
+{
+	keys.erase(keys.begin());
+	if ((keys.at(0) == sf::Keyboard::Up && keys.at(1) == sf::Keyboard::Up) &&
+		(keys.at(2) == sf::Keyboard::Down && keys.at(3) == sf::Keyboard::Down) &&
+		(keys.at(4) == sf::Keyboard::Left && keys.at(5) == sf::Keyboard::Left) &&
+		(keys.at(6) == sf::Keyboard::Right && keys.at(7) == sf::Keyboard::Right) &&
+		(keys.at(8) == sf::Keyboard::Space && keys.at(9) == sf::Keyboard::M))
+	{
+		return true;
+	}
+	return false;
 }
 
 void StateManager::pause()

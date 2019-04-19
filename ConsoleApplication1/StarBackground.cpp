@@ -7,7 +7,7 @@ StarBackground::StarBackground()
 	color = sf::Color(0, 187, 103);
 	std::cout << "DisplayState StarBackground Created" << std::endl;
 	
-	for (int i = 0; i < 650; i++)
+	for (int i = 0; i < 300; i++)
 	{
 		sf::RectangleShape c(sf::Vector2f(1.9f,1.9f));
 		c.setFillColor(color);
