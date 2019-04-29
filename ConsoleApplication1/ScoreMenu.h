@@ -22,7 +22,6 @@ public:
 		std::string name;
 	};
 	
-	ScoreMenu(int, int);
 	ScoreMenu(int);
 	~ScoreMenu();
 	

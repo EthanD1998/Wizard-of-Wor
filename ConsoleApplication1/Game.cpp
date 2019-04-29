@@ -320,9 +320,9 @@ DisplayState* Game::nextState()
 	int nextLevel = 1;
 	if(player->lives <= 0)
 	{
-		if(playerCount > 1)
+		if(playerTwo->score > player->score)
 		{
-			return new ScoreMenu(player->score,playerTwo->score); //, playerTwo->score);
+			return new ScoreMenu(playerTwo->score); //, playerTwo->score);
 		}
 		return new ScoreMenu(player->score); //, playerTwo->score);
 	}

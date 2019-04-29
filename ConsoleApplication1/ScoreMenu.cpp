@@ -1,12 +1,8 @@
 #include "pch.h"
 #include "ScoreMenu.h"
 
-ScoreMenu::ScoreMenu(int playerScore)
-	: ScoreMenu(playerScore, 0)
-{
-}
 
-ScoreMenu::ScoreMenu(int playerScore, int playerTwoScore)
+ScoreMenu::ScoreMenu(int playerScore)
 {
 	score s;
 	
@@ -53,8 +49,6 @@ ScoreMenu::ScoreMenu(int playerScore, int playerTwoScore)
 	}
 	s.name = "_____";
 	s.value = playerScore;
-	scores.push_back(s);
-	s.value = playerTwoScore;	
 	scores.push_back(s);
 	sort();
 	
