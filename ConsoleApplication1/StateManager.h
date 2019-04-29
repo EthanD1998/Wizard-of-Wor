@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include <iostream>
+#include <string>
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "PauseMenu.h"
@@ -35,9 +36,7 @@ public:
 	/*
 		Pauses the game
 	*/
-	bool konami();
 	std::vector<DisplayState*> gameStates;
-	std::vector<sf::Keyboard::Key> keys;
 	
 };
 

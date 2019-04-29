@@ -95,6 +95,8 @@ ScoreMenu::ScoreMenu(int playerScore, int playerTwoScore)
 			texts.push_back(text);
 		}
 	}
+
+	alphabet = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9','~','!','@','#','$','%','^','&','*','(',')','-','_','=','+',':',';','"','<','>','?','/','`' };
 	
 }
 
@@ -149,6 +151,29 @@ void ScoreMenu::writeScores()
 	file.close();
 }
 
+void ScoreMenu::updateName()
+{
+	if (key == -1)
+		key = alphabet.size() - 1;
+
+	if (key == alphabet.size())
+		key = 0;
+
+	if (col == 5)
+		col == 0;
+
+	if (col == -1)
+		col = 4;
+
+	if (scoreIndex != -1)
+	{
+		newName[col] = alphabet.at(key);
+		texts.at(2 + (scoreIndex * 2)).setString(newName);
+		scores.at(scoreIndex).name = newName;
+	}
+	
+}
+
 ScoreMenu::~ScoreMenu()
 {
 }
@@ -158,43 +183,27 @@ void ScoreMenu::keyEvent(sf::Keyboard::Key& k)
 	switch(k)
 	{
 		case sf::Keyboard::Enter:
-				exists = false;
-				writeScores();
-				break;
-		case sf::Keyboard::BackSpace:
-			{
-				if(scoreIndex != -1 && newName.size() != 0)
-				{
-					newName.pop_back();
-					std::string v = "";
-					for(int i=0; i < newName.size(); i++)
-						v += newName.at(i);
-					texts.at(2 + (scoreIndex * 2)).setString(v);
-					scores.at(scoreIndex).name = v;
-				}
-			}
+			exists = false;
+			writeScores();
 			break;
-	
-		default:
-			 
+		case sf::Keyboard::Up:
+			key--;
+			updateName();
+			break;
+		case sf::Keyboard::Down:
+			key++;
+			updateName();
+			break;
+		case sf::Keyboard::Left:
+			key = 0;
+			col--;
+			break;
+		case sf::Keyboard::Right:
+			key = 0;
+			col++;
 			break;
 	}
-}
-
-void ScoreMenu::input(sf::Event::TextEvent t)
-{
-	if(scoreIndex != -1 && newName.size() < 5)
-	{
-		std::string v = "";
-		newName.push_back(static_cast<char>(t.unicode));
 	
-		for(int i=0; i < newName.size(); i++)
-			v += newName.at(i);
-		
-		texts.at(2 + (scoreIndex * 2)).setString(v);
-		scores.at(scoreIndex).name = v;
-	}
-//    score.SetText(str);
 }
 
 void ScoreMenu::draw(sf::RenderWindow* target)
@@ -215,4 +224,3 @@ std::string ScoreMenu::type()
 {
 	return "ScoreMenu";
 }
-

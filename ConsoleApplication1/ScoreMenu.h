@@ -4,6 +4,7 @@
 #include "StartMenu.h"
 #include <SFML/Graphics.hpp>
 #include "fstream"
+#include <string>
 #include <iostream>
 
 /*
@@ -37,7 +38,11 @@ public:
 	*/
 	int scoreIndex = -1;
 	std::vector<score> scores;
-	std::vector<char> newName;
+	std::vector<char> alphabet;
+	std::string newName = "_____";
+	int key = 0;
+	int col = 0;
+
 	
 	//		FUNCTIONS
 	
@@ -56,8 +61,8 @@ public:
 	/*
 		draws all the shapes.
 	*/
-	void input(sf::Event::TextEvent) override;
 	void writeScores();
+	void updateName();
 	DisplayState* nextState() override;
 };
 
