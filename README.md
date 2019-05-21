@@ -1,2 +1,7 @@
 # Wizard-of-Wor
-Ethan, Jonathon, Sam, Justin
+
+The Classic Arcade Game Wizard of Wor Recreate
+
+Using C++ / SFML
+
+By Ethan, Jonathon, Sam, Justin
